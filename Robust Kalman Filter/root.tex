@@ -109,12 +109,12 @@ Thereafter, as implemented by \textcite{DeSilva2020} the model is adjusted by wi
 \begin{equation}
 	\hat{x}_{k+1} = A\hat{x}_k + By_k + K(x_k - \hat{x}_k)
 \end{equation}
-
-Moving average of the innovation covariance
+After  the calculation of $\hat{x}_{k+1}$ \textcite{DeSilva2020} proposes a moving average of the innovation covariance
 \begin{equation}
-	V_k = \frac{1}{N} \sum_{i=k-N}^k (x_i - \hat{x}_i)(x_i - \hat{x}_i)^T
+	\boldsymbol{V}_k = \frac{1}{N} \sum_{i=k-N}^k (x_i - \hat{x}_i)(x_i - \hat{x}_i)^T
 \end{equation}
 
+The moving average is used as an additional input parameter to a decision tree that classifies binary anomalies based on the $\boldsymbol{x_k}$. According to
 
 \subsection{Isolation}
 Decision tree or any other multi-classifying method.

@@ -1,0 +1,180 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
+%In case you encounter the following error:
+%Error 1010 The PDF file may be corrupt (unable to open PDF file) OR
+%Error 1000 An error occurred while parsing a contents stream. Unable to analyze the PDF file.
+%This is a known problem with pdfLaTeX conversion filter. The file cannot be opened with acrobat reader
+%Please use one of the alternatives below to circumvent this error by uncommenting one or the other
+%\pdfobjcompresslevel=0
+%\pdfminorversion=4
+
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{amscd,amsmath}
+\usepackage{amsfonts}
+\usepackage{biblatex}
+
+\title{\LARGE \bf
+Fault Detection to Increase Reliability of Kalman Filter for Satellite Attitude Determination
+}
+
+
+\author{Louw UJ$^{1}$, Jordaan HW$^{2}$, Schoeman JC$^{3}$% <-this % stops a space
+\thanks{*This work was not supported by any organization}% <-this % stops a space
+\thanks{$^{1}$Louw UJ is with Faculty of Electronic \& Electrical Engineering, Electronic System            Laboratory, University of Stellenbosch, Stellenbosch Central, Stellenbosch, 7600
+        {\tt\small louwuj@gmail.com}}%
+}
+
+\addbibresource{bibliography.bib} 
+
+\begin{document}
+
+
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+The Kalman Filter is a state estimator that is often used in attitude determination of satellites. A Kalman filter is highly sensitive to anomalies that occur in sensors. A good example of this is the reflection of a solar panel on a sun sensor that changes the perceived sun vector. This in term influences the estimation of the attitude by the kalman filter and consequently the control of the satellite. Detecting anomalies in sensors and omitting the sensor reading from the measurement update of the Kalman Filter could increase the stability and reliability of the Kalman filter for satellite attitude determination.
+
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+The Extended Kalman filter... Various prediction methodologies... Various sensor anomalies... (specific anomalies such as solar reflection).
+
+\section{Related Work}
+
+
+\subsection{Extended Kalman Filter}
+Explanation of EKF for attitude estimation.
+
+\subsection{Sensitivity of Kalman Filter}
+The effect of sensor anomalies on kalman filter.
+
+\section{Sensor anomalies}
+List of sensor anomalies and a model of specific anomalies. (solar panel reflection)
+
+\subsection{Reflection}`
+Previous work done by \textcite{Cilden-Guler2021} provides models that determine albedo effects from the earth and adjust the CSS measurements to improve accuracy.
+Model of Reflection with pgfplots.
+
+\section{Anomaly Detection}
+To be able to recover from sensor anomalies or to exclude the sensor from the kalman filter, the anomaly must be detected and the sensor from which the anomaly in the data occurs must be classified.
+
+\subsection{Detection}
+The first step to implementing a FDIR for kalman filter robustness is to detect whether an anomaly has occured on one of the filters. There are various different methods for fault detection, with both supervised and unsupervised methods. However this study will only focus on a single method proposed by \textcite{DeSilva2020} to detect failures in sensors.
+
+The proposed method by \textcite{DeSilva2020} uses Dynamic Mode Decomposition (DMD), which was originally developed by \textcite{schmid2011applications} and further expanded to include control by \textcite{proctor2016dynamic}, to provide an estimation of a sensor vector based on the previous measurement fo the sensor as well as the measurements of the other sensors in the system. DMD was first developed in the fluids community and constructs a matrix $\mathbf{A}$ to relate the state vector $x$ with the following time step of the state vector, $x_{k+1}$. The state vector in our case will be the measurement vector of the specific sensor that we want to monitor.
+\begin{equation}
+	x_{k+1} = \mathbf{A}x_k
+\end{equation}
+Where $x_k$ and $x_{k+1}$ over a time period will be denoted as $\mathbf{X}$ and $\mathbf{X'}$ respectively.
+
+The method of DMD however is useful for high order systems where the calculation of $\mathbf{A}$ is computation intensive. This is not the case for our system and using DMD is not justifiable. Therefore we calculate the pseudo-inverse of $\mathbf{X}$, denote it as $\mathbf{X^{\dagger}}$, and $\mathbf{A}$ can be calculate as
+\begin{equation}
+	\mathbf{A} = \mathbf{X}\mathbf{X^{\dagger}}
+\end{equation}
+This necessitates the required data for the state vector. The article by \textcite{DeSilva2020} however includes the $\mathbf{B}$ to relate the vector measurements of the other sensors to adjust the predicted state, $x_{k+1}$ of the monitored sensor. 
+\begin{equation}
+	x_{k+1} = \boldsymbol{A}x_k + \boldsymbol{B}y_k
+	\label{control DMD}
+\end{equation}
+Where $y_k$ is the other sensor measurements. This is adjusted for our use case, where $y_k$ is the control inputs for the magnetotorquers and reaction wheels and $x_k$ is all of the sensor measurements. Consequently, the model of \ref{control DMD} denotes the prediction of the sensor measurements in time step $k+1$ based on the current sensor measurements and control inputs.
+Thereafter, as implemented by \textcite{DeSilva2020} the model is adjusted by with a Kalman Filter. From $\boldsymbol{A}$ and $\boldsymbol{B}$ the Kalman filter can be implemented to predict $x_{k+1}$
+\begin{equation}
+	\hat{x}_{k+1} = A\hat{x}_k + By_k + K(x_k - \hat{x}_k)
+\end{equation}
+
+Moving average of the innovation covariance
+\begin{equation}
+	V_k = \frac{1}{N} \sum_{i=k-N}^k (x_i - \hat{x}_i)(x_i - \hat{x}_i)^T
+\end{equation}
+
+
+\subsection{Isolation}
+Decision tree or any other multi-classifying method.
+
+\subsection{Recovery}
+Backtracking on kalman filter... Removing sensor measurement update... If a fault is predicted, the estimated vector model from the kalman filter is used to to determine the reference position for the control as well as the calculations for the control.
+
+\section{Testing methodology}
+Simulation... Induce anomalies based on physical models or at a specified timestamp.
+
+\section{Results}
+Compare results for estimation error and control error for Kalman filter with and without FDIR.
+
+\subsection{Estimation Error}
+
+\subsection{Control response}
+
+
+\section{CONCLUSIONS}
+Results from kalman filter and attitude determination as well as control compared for EKF with and without FDIR.
+
+\addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
+                                  % on the last page of the document manually. It shortens
+                                  % the textheight of the last page by a suitable amount.
+                                  % This command does not take effect until the next page
+                                  % so it should come on the page before the last. Make
+                                  % sure that you do not shorten the textheight too much.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{APPENDIX}
+Table of anomalies
+
+\section*{ACKNOWLEDGMENT}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+References are important to the reader; therefore, each citation must be complete and correct. If at all possible, references should be commonly available publications.
+
+% \begin{thebibliography}{99}
+
+% \bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York:  % McGraw-Hill, 1964, pp. 15Ð64.
+% \bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
+
+
+
+
+
+
+% \end{thebibliography}
+
+
+\end{document}

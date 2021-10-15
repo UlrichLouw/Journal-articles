@@ -1,0 +1,242 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Cilden-Guler2021}{article}{}
+      \name{author}{4}{}{%
+        {{hash=acac05371f61d3f4c1b8d69055c2be0d}{%
+           family={Cilden-Guler},
+           familyi={C\bibinithyphendelim G\bibinitperiod},
+           given={Demet},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5d9753c98d823c83966f248dbe18f6fd}{%
+           family={Schaub},
+           familyi={S\bibinitperiod},
+           given={Hanspeter},
+           giveni={H\bibinitperiod}}}%
+        {{hash=c5977a7575abf6d5c4d428284686447d}{%
+           family={Hajiyev},
+           familyi={H\bibinitperiod},
+           given={Chingiz},
+           giveni={C\bibinitperiod}}}%
+        {{hash=5f3013ec8c03b047d041a95ef959f246}{%
+           family={Kaymaz},
+           familyi={K\bibinitperiod},
+           given={Zerefsan},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
+      \strng{fullhash}{5bcb2204afe913f053dd90080165a2e0}
+      \strng{bibnamehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
+      \strng{authorbibnamehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
+      \strng{authornamehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
+      \strng{authorfullhash}{5bcb2204afe913f053dd90080165a2e0}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A three-axis attitude estimation scheme is presented using a set of albedo interfered coarse sun sensors (CSSs) of Earth, which are inexpensive, small in size, and light in power consumption. For modeling the interference, a two-stage albedo estimation algorithm based on autoregressive model is proposed. The algorithm does not require any data, such as albedo coefficients, spacecraft position, sky condition, or ground coverage, other than albedo measurements. The results are compared with five albedo models on the basis of two reference conditions. The estimated albedo is fed to the CSS measurements for correction. The corrected CSS measurements are processed under three estimation techniques with two different sensor configurations. The relative performance of the attitude estimation schemes when using different albedo models is examined.}
+      \field{issn}{15336794}
+      \field{journaltitle}{Journal of Spacecraft and Rockets}
+      \field{number}{1}
+      \field{title}{{Attitude estimation with albedo interference on sun sensor measurements}}
+      \field{volume}{58}
+      \field{year}{2021}
+      \field{pages}{148\bibrangedash 163}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.2514/1.A34814
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Attitude estimation with albedo interference on sun sensor measurements.pdf:pdf
+      \endverb
+    \endentry
+    \entry{proctor2016dynamic}{article}{}
+      \name{author}{3}{}{%
+        {{hash=6a40787d40e2987796669ac5bec77021}{%
+           family={Proctor},
+           familyi={P\bibinitperiod},
+           given={Joshua\bibnamedelima L},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=572af75cb67759c9684ffbb4d11cddf8}{%
+           family={Brunton},
+           familyi={B\bibinitperiod},
+           given={Steven\bibnamedelima L},
+           giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=39878c41ca2338687a0064bcc2ba2922}{%
+           family={Kutz},
+           familyi={K\bibinitperiod},
+           given={J\bibnamedelima Nathan},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SIAM}%
+      }
+      \strng{namehash}{b4fa96a762b62c6b19bac5205daace3a}
+      \strng{fullhash}{b4fa96a762b62c6b19bac5205daace3a}
+      \strng{bibnamehash}{b4fa96a762b62c6b19bac5205daace3a}
+      \strng{authorbibnamehash}{b4fa96a762b62c6b19bac5205daace3a}
+      \strng{authornamehash}{b4fa96a762b62c6b19bac5205daace3a}
+      \strng{authorfullhash}{b4fa96a762b62c6b19bac5205daace3a}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM Journal on Applied Dynamical Systems}
+      \field{number}{1}
+      \field{title}{Dynamic mode decomposition with control}
+      \field{volume}{15}
+      \field{year}{2016}
+      \field{pages}{142\bibrangedash 161}
+      \range{pages}{20}
+    \endentry
+    \entry{schmid2011applications}{article}{}
+      \name{author}{4}{}{%
+        {{hash=04dc1a6588142d0cee4237fe24ed942f}{%
+           family={Schmid},
+           familyi={S\bibinitperiod},
+           given={Peter\bibnamedelima J},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=480ac5374515d5357db69805eb7df188}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Larry},
+           giveni={L\bibinitperiod}}}%
+        {{hash=8ab0bc5889d7f4af3205c4a054b953e3}{%
+           family={Juniper},
+           familyi={J\bibinitperiod},
+           given={Matthew\bibnamedelima P},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=a4cf5b3d4a433d81bdf96779288ec0a4}{%
+           family={Pust},
+           familyi={P\bibinitperiod},
+           given={O},
+           giveni={O\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{24974c577bff855eb27c3f0f14f68632}
+      \strng{fullhash}{933e44fe5aeed15e6fc04d0d4ab50d5c}
+      \strng{bibnamehash}{24974c577bff855eb27c3f0f14f68632}
+      \strng{authorbibnamehash}{24974c577bff855eb27c3f0f14f68632}
+      \strng{authornamehash}{24974c577bff855eb27c3f0f14f68632}
+      \strng{authorfullhash}{933e44fe5aeed15e6fc04d0d4ab50d5c}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical and Computational Fluid Dynamics}
+      \field{number}{1}
+      \field{title}{Applications of the dynamic mode decomposition}
+      \field{volume}{25}
+      \field{year}{2011}
+      \field{pages}{249\bibrangedash 259}
+      \range{pages}{11}
+    \endentry
+    \entry{DeSilva2020}{article}{}
+      \name{author}{10}{}{%
+        {{hash=3a617dd71a854ae769670d134794c423}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Brian\bibnamedelima M.},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=c8001251e729e5aef54e7dba124c5c26}{%
+           family={Callaham},
+           familyi={C\bibinitperiod},
+           given={Jared},
+           giveni={J\bibinitperiod}}}%
+        {{hash=56a12884b3a69b4c3cca1cfbcb074b59}{%
+           family={Jonker},
+           familyi={J\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=06eb138264caf02efd95068bc5bd7d5b}{%
+           family={Goebel},
+           familyi={G\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=3b176f65abbaca5ca969c836fef7142b}{%
+           family={Klemisch},
+           familyi={K\bibinitperiod},
+           given={Jennifer},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0567745c562f5b21d2263c98a7069861}{%
+           family={McDonald},
+           familyi={M\bibinitperiod},
+           given={Darren},
+           giveni={D\bibinitperiod}}}%
+        {{hash=30a8f445246ef10507c4b950300dedeb}{%
+           family={Hicks},
+           familyi={H\bibinitperiod},
+           given={Nathan},
+           giveni={N\bibinitperiod}}}%
+        {{hash=39878c41ca2338687a0064bcc2ba2922}{%
+           family={Kutz},
+           familyi={K\bibinitperiod},
+           given={J.\bibnamedelimi Nathan},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=572af75cb67759c9684ffbb4d11cddf8}{%
+           family={Brunton},
+           familyi={B\bibinitperiod},
+           given={Steven\bibnamedelima L.},
+           giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=5a080e6364ec76c0d3081057f4963dc4}{%
+           family={Aravkin},
+           familyi={A\bibinitperiod},
+           given={Aleksandr\bibnamedelima Y.},
+           giveni={A\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{87d195859fd80645eca5be2e1b0391ca}
+      \strng{fullhash}{2a8ffd00088fe8cf20d8594f40675396}
+      \strng{bibnamehash}{87d195859fd80645eca5be2e1b0391ca}
+      \strng{authorbibnamehash}{87d195859fd80645eca5be2e1b0391ca}
+      \strng{authornamehash}{87d195859fd80645eca5be2e1b0391ca}
+      \strng{authorfullhash}{2a8ffd00088fe8cf20d8594f40675396}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We develop data-driven algorithms to fully automate sensor fault detection in systems governed by underlying physics. The proposed machine learning method uses a time series of typical behavior to approximate the evolution of measurements of interest by a linear time-invariant system. Given additional data from related sensors, a Kalman observer is used to maintain a separate real-time estimate of the measurement of interest. Sustained deviation between the measurements and the estimate is used to detect anomalous behavior. A decision tree, informed by integrating other sensor measurement values, is used to determine the amount of deviation required to identify a sensor fault. We validate the method by applying it to three test systems exhibiting various types of sensor faults: commercial flight test data, an unsteady aerodynamics model with dynamic stall, and a model for longitudinal flight dynamics forced by atmospheric turbulence. In the latter two cases we test fault detection for several prototypical failure modes. The combination of a learned dynamical model with the automated decision tree accurately detects sensor faults in each case.}
+      \field{eprinttype}{arXiv}
+      \field{title}{{Physics-informed machine learning for sensor fault detection with flight test data}}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 21}
+      \range{pages}{21}
+      \verb{eprint}
+      \verb 2006.13380
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Physics-informed machine learning for sensor fault detection with flight test data.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2006.13380
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2006.13380
+      \endverb
+      \keyw{anomaly detection,dynamic mode decomposition,kalman filter,machine learning}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

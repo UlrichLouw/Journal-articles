@@ -32,6 +32,11 @@
 \usepackage{amscd,amsmath}
 \usepackage{amsfonts}
 \usepackage{biblatex}
+\usepackage{csvsimple}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.7}
+
+
 
 \title{\LARGE \bf
 Fault Detection to Increase Reliability of Kalman Filter for Satellite Attitude Determination
@@ -113,7 +118,6 @@ After  the calculation of $\hat{x}_{k+1}$ \textcite{DeSilva2020} proposes a movi
 \begin{equation}
 	\boldsymbol{V}_k = \frac{1}{N} \sum_{i=k-N}^k (x_i - \hat{x}_i)(x_i - \hat{x}_i)^T
 \end{equation}
-
 The moving average is used as an additional input parameter to a decision tree that classifies binary anomalies based on the $\boldsymbol{x_k}$. According to
 
 \subsection{Isolation}
@@ -126,7 +130,96 @@ Backtracking on kalman filter... Removing sensor measurement update... If a faul
 Simulation... Induce anomalies based on physical models or at a specified timestamp.
 
 \section{Results}
+Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the possibilities of the recovery method.
 Compare results for estimation error and control error for Kalman filter with and without FDIR.
+
+\subsection{Reflection without any recovery}
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+			\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Quaternions]{Quaternions.}
+	\label{EulerAnglesNone}
+\end{figure}
+
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+			\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Reference Quaternions]{Reference Quaternions.}
+	\label{EulerAnglesReferenceNone}
+\end{figure}
+
+\subsection{Recovery with Perfect fault prediction}
+\begin{figure}
+\begin{tikzpicture}
+	\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+			anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+		\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+		\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+		\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+		\legend{x, y, z}
+	\end{axis}
+\end{tikzpicture}
+\caption[Quaternions]{Quaternions.}
+\label{EulerAngles}
+\end{figure}
+
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+			\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Reference Quaternions]{Reference Quaternions.}
+	\label{EulerAnglesReferece}
+\end{figure}
+
+\subsection{Fault Prediction Isolation and Recovery of Proposed Method}
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+			\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Quaternions]{Quaternions.}
+	\label{EulerAnglesFDIR}
+\end{figure}
+
+\begin{figure}
+	\begin{tikzpicture}
+		\begin{axis}[width = 7cm,xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+			\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Reference Quaternions]{Reference Quaternions.}
+	\label{EulerAnglesReferecneFDIR}
+\end{figure}
+
 
 \subsection{Estimation Error}
 

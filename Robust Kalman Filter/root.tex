@@ -35,7 +35,7 @@
 \usepackage{csvsimple}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.7}
-
+\usepackage{graphicx}
 
 
 \title{\LARGE \bf
@@ -120,8 +120,19 @@ After  the calculation of $\hat{x}_{k+1}$ \textcite{DeSilva2020} proposes a movi
 \end{equation}
 The moving average is used as an additional input parameter to a decision tree that classifies binary anomalies based on the $\boldsymbol{x_k}$. According to
 
+Decision Tree (Discuss gini index)
+
+\begin{figure}[!htb]
+\includegraphics[width = 7cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
+\end{figure}
+
 \subsection{Isolation}
 Decision tree or any other multi-classifying method.
+
+\begin{figure}[!htb]
+\includegraphics[width = 7cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeMultiClass.png}
+\end{figure}
+
 
 \subsection{Recovery}
 Backtracking on kalman filter... Removing sensor measurement update... If a fault is predicted, the estimated vector model from the kalman filter is used to to determine the reference position for the control as well as the calculations for the control.
@@ -134,7 +145,7 @@ Three scenarios are implemented, a satellite that never experiences reflection, 
 Compare results for estimation error and control error for Kalman filter with and without FDIR.
 
 \subsection{Reflection without any recovery}
-\begin{figure}
+\begin{figure}[!htb]
 	\begin{tikzpicture}
 		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
 				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
@@ -148,7 +159,7 @@ Compare results for estimation error and control error for Kalman filter with an
 	\label{EulerAnglesNone}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htb]
 	\begin{tikzpicture}
 		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
 				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
@@ -163,7 +174,7 @@ Compare results for estimation error and control error for Kalman filter with an
 \end{figure}
 
 \subsection{Recovery with Perfect fault prediction}
-\begin{figure}
+\begin{figure}[!htb]
 \begin{tikzpicture}
 	\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
 			anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
@@ -177,7 +188,7 @@ Compare results for estimation error and control error for Kalman filter with an
 \label{EulerAngles}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htb]
 	\begin{tikzpicture}
 		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
 				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
@@ -192,7 +203,7 @@ Compare results for estimation error and control error for Kalman filter with an
 \end{figure}
 
 \subsection{Fault Prediction Isolation and Recovery of Proposed Method}
-\begin{figure}
+\begin{figure}[!htb]
 	\begin{tikzpicture}
 		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
 				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
@@ -206,7 +217,7 @@ Compare results for estimation error and control error for Kalman filter with an
 	\label{EulerAnglesFDIR}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!htb]
 	\begin{tikzpicture}
 		\begin{axis}[width = 7cm,xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
 				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]

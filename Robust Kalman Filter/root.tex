@@ -88,6 +88,8 @@ List of sensor anomalies and a model of specific anomalies. (solar panel reflect
 Previous work done by \textcite{Cilden-Guler2021} provides models that determine albedo effects from the earth and adjust the CSS measurements to improve accuracy.
 Model of Reflection with pgfplots.
 
+The assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect in the same way that a shadow is cast. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor can be taken into account. 
+
 \section{Anomaly Detection}
 To be able to recover from sensor anomalies or to exclude the sensor from the kalman filter, the anomaly must be detected and the sensor from which the anomaly in the data occurs must be classified.
 
@@ -143,6 +145,37 @@ Simulation... Induce anomalies based on physical models or at a specified timest
 \section{Results}
 Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the possibilities of the recovery method.
 Compare results for estimation error and control error for Kalman filter with and without FDIR.
+
+The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a fault is induced, it is induced after the first two orbits and the specific anomaly then occurs for the following 18 orbits.
+
+\subsection{Perfect Designed Satellite Without Reflection}
+\begin{figure}[!htb]
+	\begin{tikzpicture}
+		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+			\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Quaternions]{Quaternions.}
+	\label{EulerAnglesNoneNone}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{tikzpicture}
+		\begin{axis}[width = 7cm,ylabel = Angles ($\theta$), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+			\addplot[smooth, line width=1pt,color=blue, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\addplot[smooth, line width=1pt,color=red, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\addplot[smooth, line width=1pt,color=green, each nth point=10, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Reference Quaternions]{Reference Quaternions.}
+	\label{EulerAnglesReferenceNoneNone}
+\end{figure}
 
 \subsection{Reflection without any recovery}
 \begin{figure}[!htb]

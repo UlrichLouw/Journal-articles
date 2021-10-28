@@ -36,7 +36,8 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.7}
 \usepackage{graphicx}
-
+\usepackage{import}
+\usepackage{placeins}
 
 \title{\LARGE \bf
 Fault Detection to Increase Reliability of Kalman Filter for Satellite Attitude Determination
@@ -88,7 +89,31 @@ List of sensor anomalies and a model of specific anomalies. (solar panel reflect
 Previous work done by \textcite{Cilden-Guler2021} provides models that determine albedo effects from the earth and adjust the CSS measurements to improve accuracy.
 Model of Reflection with pgfplots.
 
-The assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect in the same way that a shadow is cast. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor can be taken into account. 
+\begin{figure}[!htb]
+	\centering
+	\def\svgwidth{7cm}
+	\import{Figures/}{ReflectionModel.pdf_tex}
+	\caption{Cube Sat}
+	\label{fig:Reflection}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\def\svgwidth{7cm}
+	\import{Figures/}{ReflectionModelPoints.pdf_tex}
+	\caption{Reflection}
+	\label{fig:ReflectionPoints}
+\end{figure}
+
+The assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. 
+
+To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor can be taken into account. From Figure~\ref{fig:ReflectionPoints} it is evident that if the solar panel reflects on corner $y$ that corner $x$ will also receive light from the reflection. The same is true for corner $z$ and $w$. Since $C'$ will be at the exact same position as $C$, the reflection from the sun does not need to be calculated for $C$, this is also true for $D$. Therefor it is only necessary to calculate the reflected positions $A'$ and $B'$.
+
+The reflected position $A'$ can be calculated as the intersection of the reflected vector $RR'$ with plane $xyzw$. We also know the position of $A$ and from this the exact position of $A'$ can be calculated as
+
+\begin{equation}
+A' = A
+\end{equation}
 
 \section{Anomaly Detection}
 To be able to recover from sensor anomalies or to exclude the sensor from the kalman filter, the anomaly must be detected and the sensor from which the anomaly in the data occurs must be classified.

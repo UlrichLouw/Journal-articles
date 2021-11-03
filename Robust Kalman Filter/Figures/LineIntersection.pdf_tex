@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.1.1 (1:1.1+202109281949+c3084ef5ed), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'ReflectionModel.pdf' (pdf, eps, ps)
+%% Accompanies image file 'LineIntersection.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{775.00145764bp}%
+    \setlength{\unitlength}{353.93609493bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,19 +50,20 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.76448001)%
+  \begin{picture}(1,0.5841931)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{ReflectionModel.pdf}}%
-    \put(0.39792614,0.39639854){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
-    \put(0.37038272,0.29589704){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Y\end{tabular}}}}%
-    \put(0.46037732,0.29631802){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Z\end{tabular}}}}%
-    \put(0.51680103,0.39349106){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}W\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{ReflectionModel.pdf}}%
-    \put(0.62101254,0.47395548){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D\end{tabular}}}}%
-    \put(0.35048468,0.47685947){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{ReflectionModel.pdf}}%
-    \put(0.3497951,0.71969619){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
-    \put(0.62380161,0.71193408){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{LineIntersection.pdf}}%
+    \put(0.49075489,0.55614097){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
+    \put(0.9579269,0.55947666){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D\end{tabular}}}}%
+    \put(0.56627503,0.27360323){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
+    \put(-0.00332753,0.00147393){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B'\end{tabular}}}}%
+    \put(0.4151621,0){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A'\end{tabular}}}}%
+    \put(0.17596614,0.09927853){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Reflection\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{LineIntersection.pdf}}%
+    \put(0.13818248,0.28907139){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{B'C}$\end{tabular}}}}%
+    \put(0.63949219,0.219599){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{A'D}$\end{tabular}}}}%
+    \put(0.27297915,0.01308293){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{A'B}$\end{tabular}}}}%
+    \put(0.7687614,0.54260423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{CD}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

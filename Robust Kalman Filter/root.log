@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.5.13)  28 OCT 2021 17:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.5.13)  3 NOV 2021 19:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -950,50 +950,42 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 5
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 (./Figures/ReflectionModel.pdf_tex
-<Figures/ReflectionModel.pdf, id=4, page=1, 790.0057pt x 594.94243pt>
+<Figures/ReflectionModel.pdf, id=4, page=1, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page1 used on input line
  56.
-(pdftex.def)             Requested size: 199.16928pt x 149.988pt.
-<Figures/ReflectionModel.pdf, id=5, page=2, 790.0057pt x 594.94243pt>
+(pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
+<Figures/ReflectionModel.pdf, id=5, page=2, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page2 used on input line
  61.
-(pdftex.def)             Requested size: 199.16928pt x 149.988pt.
-<Figures/ReflectionModel.pdf, id=6, page=3, 790.0057pt x 594.94243pt>
+(pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
+<Figures/ReflectionModel.pdf, id=6, page=3, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 3>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page3 used on input line
- 65.
-(pdftex.def)             Requested size: 199.16928pt x 149.988pt.
-) (./Figures/ReflectionModelPoints.pdf_tex
-<Figures/ReflectionModelPoints.pdf, id=7, page=1, 533.0068pt x 403.31813pt>
-File: Figures/ReflectionModelPoints.pdf Graphic file (type pdf)
-<use Figures/ReflectionModelPoints.pdf, page 1>
-Package pdftex.def Info: Figures/ReflectionModelPoints.pdf , page1 used on inpu
-t line 68.
-(pdftex.def)             Requested size: 199.16928pt x 150.70851pt.
-<Figures/ReflectionModelPoints.pdf, id=8, page=2, 533.0068pt x 403.31813pt>
-File: Figures/ReflectionModelPoints.pdf Graphic file (type pdf)
-<use Figures/ReflectionModelPoints.pdf, page 2>
-Package pdftex.def Info: Figures/ReflectionModelPoints.pdf , page2 used on inpu
-t line 72.
-(pdftex.def)             Requested size: 199.16928pt x 150.70851pt.
-<Figures/ReflectionModelPoints.pdf, id=9, page=3, 533.0068pt x 403.31813pt>
-File: Figures/ReflectionModelPoints.pdf Graphic file (type pdf)
-<use Figures/ReflectionModelPoints.pdf, page 3>
-Package pdftex.def Info: Figures/ReflectionModelPoints.pdf , page3 used on inpu
-t line 74.
-(pdftex.def)             Requested size: 199.16928pt x 150.70851pt.
-<Figures/ReflectionModelPoints.pdf, id=10, page=4, 533.0068pt x 403.31813pt>
-File: Figures/ReflectionModelPoints.pdf Graphic file (type pdf)
-<use Figures/ReflectionModelPoints.pdf, page 4>
-Package pdftex.def Info: Figures/ReflectionModelPoints.pdf , page4 used on inpu
-t line 77.
-(pdftex.def)             Requested size: 199.16928pt x 150.70851pt.
+ 64.
+(pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
+) (./Figures/ReflectionModelPoint.pdf_tex
+<Figures/ReflectionModelPoint.pdf, id=7, page=1, 404.11502pt x 361.23102pt>
+File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
+<use Figures/ReflectionModelPoint.pdf, page 1>
+Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page1 used on input
+ line 56.
+(pdftex.def)             Requested size: 199.16928pt x 178.03548pt.
+<Figures/ReflectionModelPoint.pdf, id=8, page=2, 404.11502pt x 361.23102pt>
+File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
+<use Figures/ReflectionModelPoint.pdf, page 2>
+Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page2 used on input
+ line 77.
+(pdftex.def)             Requested size: 199.16928pt x 178.03548pt.
 )
+
+LaTeX Warning: Reference `fig:ReflectionPoints' on page 1 undefined on input li
+ne 141.
+
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -1005,202 +997,152 @@ lusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModelPoints.pdf
+>] (./Figures/LineIntersection.pdf_tex
+<Figures/LineIntersection.pdf, id=81, page=1, 355.26335pt x 207.5424pt>
+File: Figures/LineIntersection.pdf Graphic file (type pdf)
+<use Figures/LineIntersection.pdf, page 1>
+Package pdftex.def Info: Figures/LineIntersection.pdf , page1 used on input lin
+e 56.
+(pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
+<Figures/LineIntersection.pdf, id=82, page=2, 355.26335pt x 207.5424pt>
+File: Figures/LineIntersection.pdf Graphic file (type pdf)
+<use Figures/LineIntersection.pdf, page 2>
+Package pdftex.def Info: Figures/LineIntersection.pdf , page2 used on input lin
+e 63.
+(pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
+)
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/All_Sensors/Reflection.csv"}
 
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoints.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModelPoints.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoints.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModelPoints.pdf
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/All_Sensors/Reflection.csv"' has an empty column name; 
+replacing it by '0'' on input line 161.
 
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoints.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModelPoints.pdf
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/All_Sensors/Reflection.csv"}
 
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoints.pdf): P
-DF inclusion: multiple pdfs with page group included in a single page
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/All_Sensors/Reflection.csv"' has an empty column name; 
+replacing it by '0'' on input line 162.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/All_Sensors/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/All_Sensors/Reflection.csv"' has an empty column name; 
+replacing it by '0'' on input line 163.
+
+ [warning /pgfplots/warning/empty column name]
+
+! Package pgfplots Error: Could not read table file '"/home/ulrich/Documents/Ma
+sters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recover
+y-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv"' in 'search path=.
+'. In case you intended to provide inline data: maybe TeX screwed up your end-o
+f-lines? Try `row sep=crcr' and terminate your lines with `\\' (refer to the pg
+fplotstable manual for details).
+
+See the pgfplots package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.176 ...eral CubeSat Model/All_Sensors/None.csv};
+                                                  
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/All_Sensors/None.csv"}
+
+Package pgfplots Warning: the current plot has no coordinates (or all have been
+ filtered away) on input line 176.
+
+ [warning /pgfplots/warning/plot without coordinates]
+
+! Package pgfplots Error: Could not read table file '"/home/ulrich/Documents/Ma
+sters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recover
+y-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv"' in 'search path=.
+'. In case you intended to provide inline data: maybe TeX screwed up your end-o
+f-lines? Try `row sep=crcr' and terminate your lines with `\\' (refer to the pg
+fplotstable manual for details).
+
+See the pgfplots package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.177 ...eral CubeSat Model/All_Sensors/None.csv};
+                                                  
+(That was another \errmessage.)
+
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/All_Sensors/None.csv"}
+
+Package pgfplots Warning: the current plot has no coordinates (or all have been
+ filtered away) on input line 177.
+
+ [warning /pgfplots/warning/plot without coordinates]
+
+! Package pgfplots Error: Could not read table file '"/home/ulrich/Documents/Ma
+sters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recover
+y-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv"' in 'search path=.
+'. In case you intended to provide inline data: maybe TeX screwed up your end-o
+f-lines? Try `row sep=crcr' and terminate your lines with `\\' (refer to the pg
+fplotstable manual for details).
+
+See the pgfplots package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.178 ...eral CubeSat Model/All_Sensors/None.csv};
+                                                  
+(That was another \errmessage.)
+
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/All_Sensors/None.csv"}
+
+Package pgfplots Warning: the current plot has no coordinates (or all have been
+ filtered away) on input line 178.
+
+ [warning /pgfplots/warning/plot without coordinates]
+
+Package pgfplots Warning: You have an axis with empty range (in direction y). R
+eplacing it with a default range and clearing all plots. on input line 179.
+
+ [warning /pgfplots/warning/empty range cleared axis]
+[2 <./Figures/ReflectionModelPoint.pdf> <./Figures/ReflectionModelPoint.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoint.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+> <./Figures/LineIntersection.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/LineIntersection.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+> <./Figures/LineIntersection.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/LineIntersection.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
 >]
+
+LaTeX Warning: Reference `control DMD' on page 3 undefined on input line 206.
+
 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabled
-DMDMethod/DecisionTreeBinaryClass.png, id=45, 1806.75pt x 1445.4pt>
+DMDMethod/DecisionTreeBinaryClass.png, id=109, 1806.75pt x 1445.4pt>
 File: /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEn
 abledDMDMethod/DecisionTreeBinaryClass.png Graphic file (type png)
 <use /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEna
 bledDMDMethod/DecisionTreeBinaryClass.png>
 Package pdftex.def Info: /home/ulrich/Documents/Masters thesis/Satellite/Hyperp
-arameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png  used on input li
-ne 157.
-(pdftex.def)             Requested size: 199.16928pt x 159.32532pt.
-</home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabled
-DMDMethod/DecisionTreeMultiClass.png, id=47, 1806.75pt x 1445.4pt>
-File: /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEn
-abledDMDMethod/DecisionTreeMultiClass.png Graphic file (type png)
-<use /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEna
-bledDMDMethod/DecisionTreeMultiClass.png>
-Package pdftex.def Info: /home/ulrich/Documents/Masters thesis/Satellite/Hyperp
-arameters/PhysicsEnabledDMDMethod/DecisionTreeMultiClass.png  used on input lin
-e 164.
-(pdftex.def)             Requested size: 199.16928pt x 159.32532pt.
- [2 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEna
-bledDMDMethod/DecisionTreeBinaryClass.png> </home/ulrich/Documents/Masters thes
-is/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeMultiClass.png
->]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterNone.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
- [3]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/
-KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH
-_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
- [4]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilt
-er-EKF/EARTH_SUN/KalmanFilterReflection.csv"}
-
-
-** Conference Paper **
-Before submitting the final camera ready copy, remember to:
-
- 1. Manually equalize the lengths of two columns on the last page
- of your paper;
-
- 2. Ensure that any PostScript and/or PDF output post-processing
- uses only Type 1 fonts and that every step in the generation
- process uses the US letter (8.5in X 11in) paper size.
-
-[5] (./root.aux)
-Package logreq Info: Writing requests to 'root.run.xml'.
-\openout1 = `root.run.xml'.
-
- ) 
-Here is how much of TeX's memory you used:
- 31691 strings out of 483183
- 769245 string characters out of 5966292
- 3166951 words of memory out of 5000000
- 46220 multiletter control sequences out of 15000+600000
- 573363 words of font info for 117 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 66i,19n,98p,1261b,2171s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cmextra/cmmib7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
-r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (5 pages, 1545930 bytes).
-PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+arameters/PhysicsEnabledDMDMethod/Decision

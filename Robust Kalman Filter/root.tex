@@ -82,38 +82,105 @@ Explanation of EKF for attitude estimation.
 \subsection{Sensitivity of Kalman Filter}
 The effect of sensor anomalies on kalman filter.
 
+\section{Simulation}
+Proof of simulation validity, use actual data and simulated data to plot comparative graphs.
+
+\section{Sensors}
+
 \section{Sensor anomalies}
 List of sensor anomalies and a model of specific anomalies. (solar panel reflection)
 
 \subsection{Reflection}`
 Previous work done by \textcite{Cilden-Guler2021} provides models that determine albedo effects from the earth and adjust the CSS measurements to improve accuracy.
-Model of Reflection with pgfplots.
+he assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. The reflected sun vector, $R$, can be calculated as
+\begin{equation}
+	R = V - 2N^T(V \cdot N)
+\end{equation}
+Where $V$ is the incoming sun vector and $N$ is the normal vector to the plan $ABCD$ of the solar panel as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $xwyz$ of the sun sensor the intersecting point the equation of the plane, reflected vector and the point of origin is required. The equation for a plane can be denoted as 
+
+\begin{equation}
+	P = ax + by + cz = d
+	\label{eq:Plane}
+\end{equation}
+
+The reflected vector can also be translated to equations of 
+
+\begin{equation}
+	\begin{aligned}
+	&	x = \alpha t \\
+	&	y = \beta t \\
+	&	z = \zeta t \\
+	\end{aligned}
+\label{eq:LineOfVector}
+\end{equation}
+
+Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the reflected vector, we can calculate $t$, by substituting $x, y \& z$ into Eq~\ref{eq:Plane}. Consequently the intersecting points $x$, $y$ and $z$ can be calculated as
+
+\begin{equation}
+	P(x, y, z) = (o_1 + \alpha t, o_2 + \beta t, o_3 + \zeta t)
+	\label{eq:Intersection}
+\end{equation}
+where $o_1, o_2, o_3$ is the points of origin, in this case the points on the solar panel.
 
 \begin{figure}[!htb]
 	\centering
 	\def\svgwidth{7cm}
 	\import{Figures/}{ReflectionModel.pdf_tex}
 	\caption{Cube Sat}
-	\label{fig:Reflection}
+	\label{fig:CubeSat}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\def\svgwidth{7cm}
-	\import{Figures/}{ReflectionModelPoints.pdf_tex}
+	\import{Figures/}{ReflectionModelPoint.pdf_tex}
 	\caption{Reflection}
 	\label{fig:ReflectionPoints}
 \end{figure}
 
-The assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. 
+To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor can be taken into account. From Figure~\ref{fig:ReflectionPoints} it is evident that if the solar panel reflects on corner $y$ that corner $x$ will also receive light from the reflection. The same is true for corner $z$ and $w$. Since $C'$ will be at the exact same position as $C$, the reflection from the sun does not need to be calculated for $C$, this is also true for $D$. Therefore it is only necessary to calculate the reflected positions $A'$ and $B'$.
 
-To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor can be taken into account. From Figure~\ref{fig:ReflectionPoints} it is evident that if the solar panel reflects on corner $y$ that corner $x$ will also receive light from the reflection. The same is true for corner $z$ and $w$. Since $C'$ will be at the exact same position as $C$, the reflection from the sun does not need to be calculated for $C$, this is also true for $D$. Therefor it is only necessary to calculate the reflected positions $A'$ and $B'$.
+The reflected position $A'$ can be calculated as the intersection of the reflected vector $RR'$ with plane $xyzw$ with Eq~\ref{eq:Intersection}. We also know the position of $A$, based pon the dimensions of the solar panel, consequently we can calculate $A'$. The same applies to $B$ and $B'$. To then determine whether $y$ or $x$ is within the region of reflection, we calculate whether $x$ is between the lines of $A'D'$ and $B'C$ as well as between the lines $ACD$ and $A'B'$. This is done by calculating the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ to determine if $X$ is in the reflection zone, which can be done with logical if statements.
 
-The reflected position $A'$ can be calculated as the intersection of the reflected vector $RR'$ with plane $xyzw$. We also know the position of $A$ and from this the exact position of $A'$ can be calculated as
+\begin{figure}[!htb]
+	\centering
+	\def\svgwidth{7cm}
+	\import{Figures/}{LineIntersection.pdf_tex}
+	\caption{Reflection}
+	\label{fig:LineIntersection}
+\end{figure}
 
-\begin{equation}
-A' = A
-\end{equation}
+The results for the sun vector with and without reflection is shown in Figure... For modelling purposes, the reflection in this example has no influence on the estimation and control of the satellite.
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+		
+		\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/All_Sensors/Reflection.csv};
+		\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/All_Sensors/Reflection.csv};
+		\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/All_Sensors/Reflection.csv};
+	\end{axis}
+	\end{tikzpicture}
+	\caption[Sun vector]{Sun vector.}
+	\label{fig:Sun Vector without Reflection}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+			
+			\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv};
+			\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv};
+			\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv};
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Sun Vector with Reflection}
+\end{figure}
 
 \section{Anomaly Detection}
 To be able to recover from sensor anomalies or to exclude the sensor from the kalman filter, the anomaly must be detected and the sensor from which the anomaly in the data occurs must be classified.
@@ -147,7 +214,7 @@ After  the calculation of $\hat{x}_{k+1}$ \textcite{DeSilva2020} proposes a movi
 \end{equation}
 The moving average is used as an additional input parameter to a decision tree that classifies binary anomalies based on the $\boldsymbol{x_k}$. According to
 
-Decision Tree (Discuss gini index)
+Decision Tree (Discuss gini index). Gini index is the measure of the probability of a particle variable being wrongly chosen when it is randomly chosen.
 
 \begin{equation}
 GI = 1 - \sum_{i = 1}^{n}{(P_i)^2}
@@ -173,7 +240,6 @@ Simulation... Induce anomalies based on physical models or at a specified timest
 
 \section{Results}
 Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the possibilities of the recovery method.
-Compare results for estimation error and control error for Kalman filter with and without FDIR.
 
 The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a fault is induced, it is induced after the first two orbits and the specific anomaly then occurs for the following 18 orbits.
 
@@ -184,241 +250,114 @@ The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a f
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
 			
-			\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
-			
-			\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
-			
-			\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
-			
-			\legend{x, y, z}
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/None.csv};
+
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Quaternions]{Quaternions.}
-	\label{EulerAnglesNoneNone}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy None}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Reference Satellite Attitude]
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/None.csv};
 			
-			\addplot[line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
-			
-			\addplot[line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
-			
-			\legend{x, y, z}
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Reference Quaternions]{Reference Quaternions.}
-	\label{EulerAnglesReferenceNoneNone}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy None}
+\end{figure}
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy with Reflection and no recovery}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Estimated Satellite Attitude]
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
 			
-			\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
 			
-			\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
-			
-			\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterNone.csv};
-			
-			\legend{x, y, z}
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Estimated Quaternions]{Estimated Quaternions.}
-	\label{EulerAnglesEstimated}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy with Reflection and no recovery}
 \end{figure}
-
-\subsection{Reflection without any recovery}
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
 			
-			\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
 			
-			\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\legend{x, y, z}
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Quaternions]{Quaternions.}
-	\label{EulerAnglesNone}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy with PERFECT recovery}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Reference Satellite Attitude]
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
 			
-			\addplot[line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\legend{x, y, z}
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Reference Quaternions]{Reference Quaternions.}
-	\label{QuaternionsReferenceNone}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Estimation Accuracy with PERFECT recovery}
+\end{figure}
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy Proposed Method}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Estimated Satellite Attitude]
-			\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
 			
-			\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
 			
-			\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			\legend{x, y, z}
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Estimated Quaternions]{Estimated Quaternions.}
-	\label{QuaternionsEstimatedNone}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Estimation Accuracy Proposed Method}
 \end{figure}
 
-\subsection{Recovery with Perfect fault prediction}
-\begin{figure}[!htb]
-	\centering
-	\begin{tikzpicture}
-	\centering
-	\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-			anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
-		
-		\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-		
-		\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-		
-		\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-		
-		\legend{x, y, z}
-	\end{axis}
-\end{tikzpicture}
-\caption[Quaternions]{Quaternions.}
-\label{EulerAngles}
-\end{figure}
+%\csvautotabular{/home/ulrich/Documents/Masters thesis/Satellite/Data files/Summary/Reflection.csv}
 
-\begin{figure}[!htb]
-	\centering
-	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Reference Satellite Attitude]
-			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\legend{x, y, z}
-		\end{axis}
-	\end{tikzpicture}
-	\caption[Reference Quaternions]{Reference Quaternions.}
-	\label{EulerAnglesReferece}
-\end{figure}
-
-\begin{figure}[!htb]
-	\centering
-	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Estimated Satellite Attitude]
-			
-			\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			\legend{x, y, z}
-		\end{axis}
-	\end{tikzpicture}
-	\caption[Estimated Quaternions]{Estimated Quaternions.}
-	\label{QuaternionsEstimated}
-\end{figure}
-
-\subsection{Fault Prediction Isolation and Recovery of Proposed Method}
-\begin{figure}[!htb]
-	\centering
-	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Satellite Attitude]
-			
-			\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Actual_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\legend{x, y, z}
-		\end{axis}
-	\end{tikzpicture}
-	\caption[Quaternions]{Quaternions.}
-	\label{EulerAnglesFDIR}
-\end{figure}
-
-\begin{figure}[!htb]
-	\centering
-	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm,xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Reference Satellite Attitude]
-			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Reference_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\legend{x, y, z}
-		\end{axis}
-	\end{tikzpicture}
-	\caption[Reference Quaternions]{Reference Quaternions.}
-	\label{EulerAnglesReferecneFDIR}
-\end{figure}
-
-\begin{figure}[!htb]
-	\centering
-	\begin{tikzpicture}
-	\centering
-		\begin{axis}[width = 7cm,xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-				anchor=north}, forget plot style={opacity=0.2}, title = Estimated Satellite Attitude]
-			
-			\addplot[smooth, line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[smooth, line width=1pt,color=red, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\addplot[smooth, line width=1pt,color=green, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Quaternions Estimated_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/KalmanFilter-EKF/EARTH_SUN/KalmanFilterReflection.csv};
-			
-			\legend{x, y, z}
-		\end{axis}
-	\end{tikzpicture}
-	\caption[Estimated Quaternions]{Estimated Quaternions.}
-	\label{EulerAnglesEstimatedFDIR}
-\end{figure}
+Insert a table to compare random orbit parameters. The mean, standard deviation of each orbit 0-20 for each of the different strategies of reflection.
 
 \section{CONCLUSIONS}
 Results from kalman filter and attitude determination as well as control compared for EKF with and without FDIR.

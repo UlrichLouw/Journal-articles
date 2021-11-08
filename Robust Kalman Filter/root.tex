@@ -34,10 +34,19 @@
 \usepackage{biblatex}
 \usepackage{csvsimple}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.7}
+\usepackage{pgfplotstable}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{rotating}
+\usepackage{gensymb}
+%\pgfplotsset{compat=1.7}
 \usepackage{graphicx}
 \usepackage{import}
 \usepackage{placeins}
+\usepgfplotslibrary{external} 
+\tikzexternalize
+
 
 \title{\LARGE \bf
 Fault Detection to Increase Reliability of Kalman Filter for Satellite Attitude Determination
@@ -77,13 +86,57 @@ The Extended Kalman filter... Various prediction methodologies... Various sensor
 
 
 \subsection{Extended Kalman Filter}
-Explanation of EKF for attitude estimation.
+The implementation of the estimated kalman filter \emph{EKF} is for estimation of the current satellite attitude with sensor fusion of the magnetometer, star tracker, sun sensor and nadir sensor to accurately estimate the attitude and rotation rate of the satellite. The EKF will be used due to the non-linear nature of the system. The EKF consists of two fundamental parts, the model update and the measurement update. The general form for a system model can be expressed as
+
+\begin{equation}
+	\dot{x_t} = \mathbf{f}(x_t) + s_t
+\end{equation}
+
+where $\mathbf{f}(x_t)$ is a non-linear function of $x_t$. The state vector, $x$, for the full 7-state EKF consists of the quaternion vector, $q$ and the inertial-referenced angular velocity, $\omega_B^I$.
+
+\begin{equation}
+x = [q, \omega_B^I]^T
+\end{equation}
+
+The estimated state vector $x$ will be denoted as $\hat{x}$ and the estimated vector before and after the measurement update will be indicated with a superscript $'-'$ and $'+'$ respectively. To calculate the model update the dynamics and kinematics of the system model is used to calculate both $\omega_B^I$ and $q$. Where the euler dynamic equation for $\dot{\omega}_B^I$ and the known torques of the system can be expressed as
+
+\begin{equation}
+\delta \hat{\omega}_B^I = \mathbf{J^{-1}}\big((N_m)_{k-1} - (N_w)_{k-1} - (N_{gg})_{k-1} - (N_{gyro})_{k-1} \big)
+\end{equation}
+
+The integration method used in the simulation is the 4th order Rungka-Kutta method to solve the differential equations.
+
+\begin{algorithm}
+	\caption[Multi-variate Guassian Distribution]{Multi-variate Guassian Distribution Algorithm}
+	\label{alg}
+\begin{algorithmic}[1]
+	\State Timestep ($T_s$) $= 1s$
+	\State Number of iterations ($h$) $= 10$
+	\State $N = \frac{T_s}{h}$
+	\For{\texttt{$n \in N$}}
+	\State \texttt{$k_1 = hf(x_n, y_n)$}
+	\State \texttt{$k_2 = hf(x_n + \frac{h}{2}, y_n + \frac{k_1}{2})$}
+	\State \texttt{$k_3 = hf(x_n + \frac{h}{2}, y_n + \frac{k_2}{2})$}
+	\State \texttt{$k_4 = hf(x_n + h, y_n + k_3)$}
+	\State \texttt{$y_{n+1}=y_n + \frac{k_1}{6} + \frac{k_2}{3} + \frac{k_3}{3} + \frac{k_4}{6}$}
+	\EndFor
+	\State \textbf{return} $y_{n+1}$
+
+\end{algorithmic}
+
+\end{algorithm}
+
+where h is the step height, which is set to $T_s/10$, $T_s = 1$. 
+
+
 
 \subsection{Sensitivity of Kalman Filter}
 The effect of sensor anomalies on kalman filter.
 
 \section{Simulation}
-Proof of simulation validity, use actual data and simulated data to plot comparative graphs.
+Proof of simulation validity, use actual data and simulated data to plot comparative graphs. 
+
+\subsection{Dimensions of Satellite}
 
 \section{Sensors}
 
@@ -156,36 +209,40 @@ The results for the sun vector with and without reflection is shown in Figure...
 	\centering
 	\begin{tikzpicture}
 	\centering
-	\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+	\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s),  legend style={draw = none, at={(1.35,0.65)},
+			anchor=north}, forget plot style={opacity=0.2}, title = Sun vector with reflection]
 		
-		\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/All_Sensors/Reflection.csv};
-		\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/All_Sensors/Reflection.csv};
-		\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/All_Sensors/Reflection.csv};
+		\addplot[line width=1pt,color=blue, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
+		\addplot[line width=1pt,color=red, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
+		\addplot[line width=1pt,color=green, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
+		\legend{x, y, z}
 	\end{axis}
 	\end{tikzpicture}
 	\caption[Sun vector]{Sun vector.}
-	\label{fig:Sun Vector without Reflection}
+	\label{fig:Sun Vector with Reflection}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), legend style={draw = none, at={(1.35,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Sun vector without reflection]
 			
-			\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv};
-			\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv};
-			\addplot[line width=1pt,color=blue, each nth point=50, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/All_Sensors/None.csv};
+			\addplot[line width=1pt,color=blue, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
+			\addplot[line width=1pt,color=red, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
+			\addplot[line width=1pt,color=green, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
+			\legend{x, y, z}
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Pointing Accuracy]{Pointing Accuracy.}
-	\label{fig:Sun Vector with Reflection}
+	\caption[Sun vector]{Sun vector.}
+	\label{fig:Sun Vector without Reflection}
 \end{figure}
 
 \section{Anomaly Detection}
 To be able to recover from sensor anomalies or to exclude the sensor from the kalman filter, the anomaly must be detected and the sensor from which the anomaly in the data occurs must be classified.
 
-\subsection{Detection}
+\subsection{Feature Extraction}
 The first step to implementing a FDIR for kalman filter robustness is to detect whether an anomaly has occured on one of the filters. There are various different methods for fault detection, with both supervised and unsupervised methods. However this study will only focus on a single method proposed by \textcite{DeSilva2020} to detect failures in sensors.
 
 The proposed method by \textcite{DeSilva2020} uses Dynamic Mode Decomposition (DMD), which was originally developed by \textcite{schmid2011applications} and further expanded to include control by \textcite{proctor2016dynamic}, to provide an estimation of a sensor vector based on the previous measurement fo the sensor as well as the measurements of the other sensors in the system. DMD was first developed in the fluids community and constructs a matrix $\mathbf{A}$ to relate the state vector $x$ with the following time step of the state vector, $x_{k+1}$. The state vector in our case will be the measurement vector of the specific sensor that we want to monitor.
@@ -212,23 +269,22 @@ After  the calculation of $\hat{x}_{k+1}$ \textcite{DeSilva2020} proposes a movi
 \begin{equation}
 	\boldsymbol{V}_k = \frac{1}{N} \sum_{i=k-N}^k (x_i - \hat{x}_i)(x_i - \hat{x}_i)^T
 \end{equation}
-The moving average is used as an additional input parameter to a decision tree that classifies binary anomalies based on the $\boldsymbol{x_k}$. According to
+The moving average is used as an additional input parameter for the classification of anomalies based on the $\boldsymbol{x_k}$.
 
-Decision Tree (Discuss gini index). Gini index is the measure of the probability of a particle variable being wrongly chosen when it is randomly chosen.
+\subsection{Classification}
+The first step of FDIR is to classify whether an anomaly exists in the current sensor data. For the proposed method, decision trees will be implemented to classify anomalies. A decision tree is a classification method that splits data samples based on a threshold of a specific input parameter. For instance to split a data samples from both a satellite orbit based on being in an eclipse or not, would be simply to measure whether the sun vector is $0$. With the assumption that the sun sensor has no anomalous behaviour.
+
+However to split the data for the anomalies we need to decide which input parameter will be used to make the first split, root node. The Gini index provides a measure of the probability of a data sample being being wrongly classified at a given node. This can be calculated with Eq~\ref{eq:Gini index}.
 
 \begin{equation}
 GI = 1 - \sum_{i = 1}^{n}{(P_i)^2}
+\label{eq:Gini index}
 \end{equation}
 
-\begin{figure}[!htb]
-\includegraphics[width = 7cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
-\end{figure}
-
-\subsection{Isolation}
-Decision tree or any other multi-classifying method.
+The operator split that produces the lowest Gini index, provides the most pure split and will therefore be used as the root node. For our use case the CART algorithm will be used to optimize the decision tree, which also takes into account the largest information gain to construct the decision tree. Figure
 
 \begin{figure}[!htb]
-\includegraphics[width = 7cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeMultiClass.png}
+\includegraphics[width = 10cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
 \end{figure}
 
 
@@ -236,9 +292,11 @@ Decision tree or any other multi-classifying method.
 Backtracking on kalman filter... Removing sensor measurement update... If a fault is predicted, the estimated vector model from the kalman filter is used to to determine the reference position for the control as well as the calculations for the control.
 
 \section{Testing methodology}
-Simulation... Induce anomalies based on physical models or at a specified timestamp.
+Simulation... Induce anomalies based on physical models or at a specified timestamp. J
 
 \section{Results}
+If sun sensor is the last sensor to be updated in the measurement then a singular matrix error occurs.
+
 Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the possibilities of the recovery method.
 
 The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a fault is induced, it is induced after the first two orbits and the specific anomaly then occurs for the following 18 orbits.
@@ -354,6 +412,17 @@ The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a f
 	\caption[Pointing Accuracy]{Pointing Accuracy.}
 	\label{fig:Estimation Accuracy Proposed Method}
 \end{figure}
+
+\begin{table}[]
+	\begin{tabular}{|l|l|l|ll}
+		\cline{1-3}
+		\multicolumn{1}{|c|}{\textbf{Orbits}} & \textbf{1}         & \textbf{1}         &  &  \\ \cline{1-3}
+		\multicolumn{1}{|c|}{Metric}          & Mean               & Std                &  &  \\ \cline{1-3}
+		DecisionTrees                         & 18.292514745477845 & 28.632580144211847 &  &  \\ \cline{1-3}
+		Perfect                               & 16.472394692952275 & 25.782235910658237 &  &  \\ \cline{1-3}
+		None                                  & 16.472394692952275 & 25.782235910658237 &  &  \\ \cline{1-3}
+	\end{tabular}
+\end{table}
 
 %\csvautotabular{/home/ulrich/Documents/Masters thesis/Satellite/Data files/Summary/Reflection.csv}
 

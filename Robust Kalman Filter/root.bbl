@@ -68,6 +68,32 @@
       \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Attitude estimation with albedo interference on sun sensor measurements.pdf:pdf
       \endverb
     \endentry
+    \entry{JansevanVuuren2015}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3481a3d176239ecde9d14f4fa8bdac8a}{%
+           family={{Janse van Vuuren}},
+           familyi={J\bibinitperiod},
+           given={Gerhard\bibnamedelima Hermann},
+           giveni={G\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{3481a3d176239ecde9d14f4fa8bdac8a}
+      \strng{fullhash}{3481a3d176239ecde9d14f4fa8bdac8a}
+      \strng{bibnamehash}{3481a3d176239ecde9d14f4fa8bdac8a}
+      \strng{authorbibnamehash}{3481a3d176239ecde9d14f4fa8bdac8a}
+      \strng{authornamehash}{3481a3d176239ecde9d14f4fa8bdac8a}
+      \strng{authorfullhash}{3481a3d176239ecde9d14f4fa8bdac8a}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{March}
+      \field{title}{{the Design and Simulation Analysis of an Attitude Determination and Control System for a Small}}
+      \field{year}{2015}
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/Satellites/jansevanvuuren{\_}attitude{\_}2015.pdf:pdf
+      \endverb
+      \keyw{ADCS,MATLAB,Simulink}
+    \endentry
     \entry{proctor2016dynamic}{article}{}
       \name{author}{3}{}{%
         {{hash=6a40787d40e2987796669ac5bec77021}{%

@@ -98,36 +98,57 @@ where $\mathbf{f}(x_t)$ is a non-linear function of $x_t$. The state vector, $x$
 x = [q, \omega_B^I]^T
 \end{equation}
 
-The estimated state vector $x$ will be denoted as $\hat{x}$ and the estimated vector before and after the measurement update will be indicated with a superscript $'-'$ and $'+'$ respectively. To calculate the model update the dynamics and kinematics of the system model is used to calculate both $\omega_B^I$ and $q$. Where the euler dynamic equation for $\dot{\omega}_B^I$ and the known torques of the system can be expressed as
+The estimated state vector $x$ will be denoted as $\hat{x}$ and the estimated vector before and after the measurement update will be indicated with a superscript $'-'$ and $'+'$ respectively. To calculate the model update the dynamics and kinematics of the system model is used to calculate both $\omega_B^I$ and $q$. The integration method used in the simulation is the 4th order Rungka-Kutta method to solve the differential equations. The integration method is shown in \ref{alg: Rungka-Kutta} where $(\hat{\omega}_B^I)_k^-$ is calculated for the first step of the model update.
+
+\begin{algorithm}[!htb]
+	\caption[Rungka-Kutta]{Rungka-Kutta 4th order Algorithm at time $k$}
+	\label{alg: Rungka-Kutta}
+	\begin{algorithmic}[1]
+		\State Satellite Body Inertia $\mathbf{J} = \begin{bmatrix}
+						0.4 & 0 & 0\\
+						0 & 0.45 & 0 \\
+						0 & 0 & 0.3
+						\end{bmatrix}$
+		\State Timestep ($T_s$) $= 1s$
+		\State Number of iterations ($I$) $= 10$
+		\State Step size $h = \frac{T_s}{h}$
+		\State Disturbance torques $N_d = N_{gg} + N_{aero} + N_{rw} - N_{gyro}$
+		\State Control torques $N_c = N_m - N_w$
+		\State $\mathbf{N} = N_c + N_d$
+		\For{\texttt{$n \in I$}}
+		\State \texttt{$k_1 = h(\mathbf{J^{-1}}\mathbf{N})$}
+		\State \texttt{$k_2 = h(\mathbf{J^{-1}}\mathbf{N} + \frac{k1}{2})$}
+		\State \texttt{$k_3 = h(\mathbf{J^{-1}}\mathbf{N} + \frac{k_2}{2})$}
+		\State \texttt{$k_4 = h(\mathbf{J^{-1}}\mathbf{N} + k_3)$}
+		\State \texttt{$\omega_{n+1}=\omega_n + \frac{k_1}{6} + \frac{k_2}{3} + \frac{k_3}{3} + \frac{k_4}{6}$}
+		\EndFor
+		\State $(\hat{\omega}_B^I)_k^- = \omega_{n+1}$
+		\State \textbf{return} $\hat{\omega}_B^I)_k^-$
+	\end{algorithmic}
+\end{algorithm}
+where $N_{gg}$, gravity gradient disturbance torque, $N_{aero}$, aerodynamic disturbance torque, $N_{rw}$, reaction wheel disturbance torque, $N_{gyro}$, gyroscopic torque, $N_m$, magnetic control torque and $N_w$, reaction wheel control torque, are modelled according to \textcite{JansevanVuuren2015}. 
+
+%\begin{equation}
+%	f(x,y) = \mathbf{J^{-1}}\big((N_m)_{k-1} - (N_w)_{k-1} - (N_{gg})_{k-1} - (N_{gyro})_{k-1} \big)
+%\end{equation}
+The calculation for the $\hat{q}_k^-$ is done with Eq~\ref{eq:q-propagation}
 
 \begin{equation}
-\delta \hat{\omega}_B^I = \mathbf{J^{-1}}\big((N_m)_{k-1} - (N_w)_{k-1} - (N_{gg})_{k-1} - (N_{gyro})_{k-1} \big)
+\begin{aligned}
+	\hat{q}_k^- &= \left[cos(k_q)\mathbf{I}_{4x4} + \frac{1}{\lVert (\hat{\omega}_B^O)_k^- \rVert} sin(k_q) \mathbf{\Omega}_k^- \right] \hat{q}_{k-1}^+ \\
+	\text{where } k_q &= \frac{Ts}{2} \lVert (\hat{\omega}_B^O)_k^- \rVert \\
+	(\hat{\omega}_B^O)_k^- &= (\hat{\omega}_B^I)_k^- - \hat{\mathbf{A}} \begin{bmatrix} 0 & -(\omega_k) & 0\end{bmatrix}^T \\
+	&= \begin{bmatrix} \hat{\omega}_{ox} & \hat{\omega}_{oy}  & \hat{\omega}_{oz} \end{bmatrix}^T \\
+	\lVert (\hat{\omega}_B^O)_k^- \rVert &= \sqrt{\hat{\omega}_{ox}^2 + \hat{\omega}_{oy}^2 + \hat{\omega}_{oz}^2} \\
+	\text{and} \mathbf{\Omega}_k^- &= \begin{bmatrix} 
+										0 & \hat{\omega}_{oz} & -\hat{\omega}_{oy} & \hat{\omega}_{ox} \\
+										-\hat{\omega}_{oz} & 0 & \hat{\omega}_{ox} & \hat{\omega}_{oy}			\\
+										\hat{\omega}_{oy} & -\hat{\omega}_{ox} & 0 & \hat{\omega}_{oz}			\\
+										-\hat{\omega}_{ox} & -\hat{\omega}_{oy} & -\hat{\omega}_{oz} & 0			\\
+										\end{bmatrix}
+\end{aligned}
+\label{eq:q-propagation}
 \end{equation}
-
-The integration method used in the simulation is the 4th order Rungka-Kutta method to solve the differential equations.
-
-\begin{algorithm}
-	\caption[Multi-variate Guassian Distribution]{Multi-variate Guassian Distribution Algorithm}
-	\label{alg}
-\begin{algorithmic}[1]
-	\State Timestep ($T_s$) $= 1s$
-	\State Number of iterations ($h$) $= 10$
-	\State $N = \frac{T_s}{h}$
-	\For{\texttt{$n \in N$}}
-	\State \texttt{$k_1 = hf(x_n, y_n)$}
-	\State \texttt{$k_2 = hf(x_n + \frac{h}{2}, y_n + \frac{k_1}{2})$}
-	\State \texttt{$k_3 = hf(x_n + \frac{h}{2}, y_n + \frac{k_2}{2})$}
-	\State \texttt{$k_4 = hf(x_n + h, y_n + k_3)$}
-	\State \texttt{$y_{n+1}=y_n + \frac{k_1}{6} + \frac{k_2}{3} + \frac{k_3}{3} + \frac{k_4}{6}$}
-	\EndFor
-	\State \textbf{return} $y_{n+1}$
-
-\end{algorithmic}
-
-\end{algorithm}
-
-where h is the step height, which is set to $T_s/10$, $T_s = 1$. 
-
 
 
 \subsection{Sensitivity of Kalman Filter}

@@ -44,8 +44,8 @@
 \usepackage{graphicx}
 \usepackage{import}
 \usepackage{placeins}
-\usepgfplotslibrary{external} 
-\tikzexternalize
+%\usepgfplotslibrary{external} 
+%\tikzexternalize
 
 
 \title{\LARGE \bf
@@ -80,10 +80,60 @@ The Kalman Filter is a state estimator that is often used in attitude determinat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
-The Extended Kalman filter... Various prediction methodologies... Various sensor anomalies... (specific anomalies such as solar reflection).
+For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. An Extended Kalman Filter (\emph{EKF}) is a common estimator used in satellite missions. The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. 
 
-\section{Related Work}
+\subsection{Related Work}
+Previous work done by \textcite{Cilden-Guler2021} provides models that determine albedo effects from the earth and adjust the CSS measurements to improve accuracy.
 
+\section{Simulation Environment}
+sgp4 simulation environment. Disturbances.
+
+\subsection{Dimensions of Satellite}
+The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}.
+
+\begin{table}[!htb]
+	\caption{\label{Table:Dimensions}Dimensions of Cubesat}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Dimensions} & \textbf{Satellite (m)} & \textbf{Solar Panels (m)} & \textbf{Sun Sensor (m)} \\ \hline
+		\textbf{x}          & $0.3$                    & $0.3$                       & $0.028$                   \\ \hline
+		\textbf{y}          & $0.3$                    & $0.3$                       & $0.023$                   \\ \hline
+		\textbf{z}          & $0.4$                    & $0.002$                     & N/A                     \\ \hline
+	\end{tabular}
+\end{table}
+The Sputnix dimensions for the sun sensor are used.
+% https://sputnix.ru/en/equipment/cubesat-devices/sun-sensor-flight-proof-1
+% https://www.cubesatshop.com/product/nss-cubesat-sun-sensor/
+\begin{figure}[!htb]
+	\centering
+	\def\svgwidth{7cm}
+	\import{Figures/}{ReflectionModel.pdf_tex}
+	\caption{Cube Sat}
+	\label{fig:CubeSat}
+\end{figure}
+
+\subsection{Orbit Parameters}
+Low earth orbiting ($500$km)
+
+\subsection{Validation}
+Proof of simulation validity, use actual data and simulated data to plot comparative graphs. 
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s),  legend style={draw = none, at={(1.15,0.65)},
+				anchor=north}, forget plot style={opacity=0.2}, title = Sun vector of orbiting cubesat]
+			
+			\addplot[line width=1pt,color=blue, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun X, col sep=comma]{/home/ulrich/Documents/Masters thesis/Real_Data/CubeADCS In-Orbit Logs/CubeADCS_Log_02.csv};
+			\addplot[line width=1pt,color=red, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun Y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Real_Data/CubeADCS In-Orbit Logs/CubeADCS_Log_02.csv};
+			\addplot[line width=1pt,color=green, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun Z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Real_Data/CubeADCS In-Orbit Logs/CubeADCS_Log_02.csv};
+			\legend{x, y, z}
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Sun vector]{Sun vector.}
+	\label{fig:Sun Vector real data}
+\end{figure}
 
 \subsection{Extended Kalman Filter}
 The implementation of the estimated kalman filter \emph{EKF} is for estimation of the current satellite attitude with sensor fusion of the magnetometer, star tracker, sun sensor and nadir sensor to accurately estimate the attitude and rotation rate of the satellite. The EKF will be used due to the non-linear nature of the system. The EKF consists of two fundamental parts, the model update and the measurement update. The general form for a system model can be expressed as
@@ -123,7 +173,7 @@ The estimated state vector $x$ will be denoted as $\hat{x}$ and the estimated ve
 		\State \texttt{$\omega_{n+1}=\omega_n + \frac{k_1}{6} + \frac{k_2}{3} + \frac{k_3}{3} + \frac{k_4}{6}$}
 		\EndFor
 		\State $(\hat{\omega}_B^I)_k^- = \omega_{n+1}$
-		\State \textbf{return} $\hat{\omega}_B^I)_k^-$
+		\State \textbf{return} $(\hat{\omega}_B^I)_k^-$
 	\end{algorithmic}
 \end{algorithm}
 where $N_{gg}$, gravity gradient disturbance torque, $N_{aero}$, aerodynamic disturbance torque, $N_{rw}$, reaction wheel disturbance torque, $N_{gyro}$, gyroscopic torque, $N_m$, magnetic control torque and $N_w$, reaction wheel control torque, are modelled according to \textcite{JansevanVuuren2015}. 
@@ -131,16 +181,16 @@ where $N_{gg}$, gravity gradient disturbance torque, $N_{aero}$, aerodynamic dis
 %\begin{equation}
 %	f(x,y) = \mathbf{J^{-1}}\big((N_m)_{k-1} - (N_w)_{k-1} - (N_{gg})_{k-1} - (N_{gyro})_{k-1} \big)
 %\end{equation}
-The calculation for the $\hat{q}_k^-$ is done with Eq~\ref{eq:q-propagation}
+The calculation for the $\hat{q}_k^-$ is done with Eq~\ref{eq:q-propagation} \cite{JansevanVuuren2015}
 
 \begin{equation}
 \begin{aligned}
-	\hat{q}_k^- &= \left[cos(k_q)\mathbf{I}_{4x4} + \frac{1}{\lVert (\hat{\omega}_B^O)_k^- \rVert} sin(k_q) \mathbf{\Omega}_k^- \right] \hat{q}_{k-1}^+ \\
-	\text{where } k_q &= \frac{Ts}{2} \lVert (\hat{\omega}_B^O)_k^- \rVert \\
+	\hat{q}_k^- &= \left[cos(k_q)\mathbf{I}_{4x4} + \frac{1}{\lVert (\hat{\omega}_B^O)_k^- \rVert} sin(k_q) \mathbf{\Omega}_k^- \right] \hat{q}_{k-1}^+ \\ \\
+	\text{where } k_q &= \frac{Ts}{2} \lVert (\hat{\omega}_B^O)_k^- \rVert \\ \\
 	(\hat{\omega}_B^O)_k^- &= (\hat{\omega}_B^I)_k^- - \hat{\mathbf{A}} \begin{bmatrix} 0 & -(\omega_k) & 0\end{bmatrix}^T \\
-	&= \begin{bmatrix} \hat{\omega}_{ox} & \hat{\omega}_{oy}  & \hat{\omega}_{oz} \end{bmatrix}^T \\
-	\lVert (\hat{\omega}_B^O)_k^- \rVert &= \sqrt{\hat{\omega}_{ox}^2 + \hat{\omega}_{oy}^2 + \hat{\omega}_{oz}^2} \\
-	\text{and} \mathbf{\Omega}_k^- &= \begin{bmatrix} 
+	&= \begin{bmatrix} \hat{\omega}_{ox} & \hat{\omega}_{oy}  & \hat{\omega}_{oz} \end{bmatrix}^T \\ \\
+	\lVert (\hat{\omega}_B^O)_k^- \rVert &= \sqrt{\hat{\omega}_{ox}^2 + \hat{\omega}_{oy}^2 + \hat{\omega}_{oz}^2} \\ \\
+	\text{and } \mathbf{\Omega}_k^- &= \begin{bmatrix} 
 										0 & \hat{\omega}_{oz} & -\hat{\omega}_{oy} & \hat{\omega}_{ox} \\
 										-\hat{\omega}_{oz} & 0 & \hat{\omega}_{ox} & \hat{\omega}_{oy}			\\
 										\hat{\omega}_{oy} & -\hat{\omega}_{ox} & 0 & \hat{\omega}_{oz}			\\
@@ -150,23 +200,72 @@ The calculation for the $\hat{q}_k^-$ is done with Eq~\ref{eq:q-propagation}
 \label{eq:q-propagation}
 \end{equation}
 
+The estimated state vector, $\hat{x}_k^-$ can now be expressed as 
+
+\begin{equation}
+\hat{x}_k^- = \begin{bmatrix} (\hat{\omega}_B^I)_k^- & \hat{q}_k^-\end{bmatrix}
+\end{equation}
+
+$Q_k$ is the covariance matrix representing the discrete system noise and is assumed to be zero-mean and Guassian. $\Phi_k$ is the discrete system perturbation model. $H_k$ is the discrete measurement perturbation Jacobian Matrix. $\mathbf{R}_k$ is the measurement noise covariance matrix. The state covariance matrix $P_k$ can be propagated with Eq~\ref{eq:P_k}.
+
+\begin{equation}
+	\mathbf{P}_k^- = \Phi_k \mathbf{P}_{k-1}^+ \Phi_k ^T
+	\label{eq:P_k}
+\end{equation}
+The $\mathbf{e}_k$ calculated with Eq~\ref{eq:errorVector}
+
+\begin{equation}
+\mathbf{e}_k = v_{meas,k} - \hat{\mathbf{A}}_k^- v_{model,k}
+\label{eq:errorVector}
+\end{equation}
+
+where $v_{meas,k}$ is the measured vector in $\mathbf{SBC}$ and $v_{model,k}$ is the modelled $\mathbf{ORC}$ vector. The gain matrix $\mathbf{K}_k$ is used to determine the the influence of $\mathbf{e}_k$ on updated state vector, $\hat{x}_k^+$. $\mathbf{K}_k$ can be calculated as 
+
+\begin{equation}
+\mathbf{K}_k = \mathbf{P}_k^- (\mathbf{H}_k^-)^T \left[\mathbf{H}_k^- \mathbf{P}_k^- (\mathbf{H}_k^-)^T + \mathbf{R}_k \right]^{-1}
+\end{equation}
+ after which the updated state vector can be calculated with Eq~\ref{eq:UpdatedStateVector}
+\begin{equation}
+\hat{x}_k^+ = \hat{x}_k^- + \mathbf{K}_k \mathbf{e}_k
+\label{eq:UpdatedStateVector}
+\end{equation}
+
+The state covariance matric can then be updated as
+
+\begin{equation}
+	\mathbf{P}_k^+ = \left[\mathbf{I}_{7 \times 7} - \mathbf{K}_k \mathbf{H}_k^+ \right]\mathbf{P}_k \left[\mathbf{I}_{7 \times 7} - \mathbf{K}_k \mathbf{H}_k^+ \right] + \mathbf{K}_k \mathbf{R}_k \mathbf{K}_k^T
+	\label{eq:Updated_P_k}
+\end{equation}
+
+During the measurement update of $\hat{x}_k^-$ with the error of $v_{meas,k}$ and $v_{model,k}$, the $\hat{x}_k^+$ is largely affected by anomalous behaviour in the sensor measurements. The sensitivity of the Kalman filter to this behaviour as well as related work will be discussed in section~\ref{subsection:SensitivityOfKalmanFilter}.
 
 \subsection{Sensitivity of Kalman Filter}
+\label{subsection:SensitivityOfKalmanFilter}
 The effect of sensor anomalies on kalman filter.
 
-\section{Simulation}
-Proof of simulation validity, use actual data and simulated data to plot comparative graphs. 
-
-\subsection{Dimensions of Satellite}
 
 \section{Sensors}
+The sensors used for the measurement update of the Kalman filter is a magnetometer, nadir sensor, sun sensor and star tracker and the measurement update is also done in the order as listed. This is due to the noise models of the sensors, as all the sensor noise models are based on zero-mean Guassian random noise. There are two sun sensors, a coarse and fine sun sensor and both of them can experience sun reflection.
 
 \section{Sensor anomalies}
-List of sensor anomalies and a model of specific anomalies. (solar panel reflection)
+To test the various methods proposed, the common sun sensor anomaly of reflection is implemented. The sun sensor's interpreted vector in the SBC frame changes due to reflection from the deployed solar panels that reflects the sun light. The reflection is modelled according to Figure~\ref{fig:LineIntersection} and discussed in section~\ref{section:Reflection}.
 
-\subsection{Reflection}`
-Previous work done by \textcite{Cilden-Guler2021} provides models that determine albedo effects from the earth and adjust the CSS measurements to improve accuracy.
-he assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. The reflected sun vector, $R$, can be calculated as
+\subsection{Reflection}
+\label{section:Reflection}
+The reflection anomaly is modelled for a any dimensions but with the specific shape of and design of the cubesat as shown in Figure~\ref{fig:CubeSat}.
+
+\begin{figure*}[!hbt]
+	\centering
+	\def\svgwidth{7cm}
+	\import{Figures/}{ReflectionModelPoint.pdf_tex}
+	\centering
+	\def\svgwidth{7cm}
+	\import{Figures/}{LineIntersection.pdf_tex}
+	\caption{Reflection}
+	\label{fig:LineIntersection}
+\end{figure*}
+
+The assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. The reflected sun vector, $R$, can be calculated as
 \begin{equation}
 	R = V - 2N^T(V \cdot N)
 \end{equation}
@@ -196,58 +295,39 @@ Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the re
 \end{equation}
 where $o_1, o_2, o_3$ is the points of origin, in this case the points on the solar panel.
 
-\begin{figure}[!htb]
-	\centering
-	\def\svgwidth{7cm}
-	\import{Figures/}{ReflectionModel.pdf_tex}
-	\caption{Cube Sat}
-	\label{fig:CubeSat}
-\end{figure}
-
-\begin{figure}[!htb]
-	\centering
-	\def\svgwidth{7cm}
-	\import{Figures/}{ReflectionModelPoint.pdf_tex}
-	\caption{Reflection}
-	\label{fig:ReflectionPoints}
-\end{figure}
+%\begin{figure}[!htb]
+%	\centering
+%	\def\svgwidth{7cm}
+%	\import{Figures/}{ReflectionModelPoint.pdf_tex}
+%	\caption{Reflection}
+%	\label{fig:ReflectionPoints}
+%\end{figure}
 
 To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor can be taken into account. From Figure~\ref{fig:ReflectionPoints} it is evident that if the solar panel reflects on corner $y$ that corner $x$ will also receive light from the reflection. The same is true for corner $z$ and $w$. Since $C'$ will be at the exact same position as $C$, the reflection from the sun does not need to be calculated for $C$, this is also true for $D$. Therefore it is only necessary to calculate the reflected positions $A'$ and $B'$.
 
 The reflected position $A'$ can be calculated as the intersection of the reflected vector $RR'$ with plane $xyzw$ with Eq~\ref{eq:Intersection}. We also know the position of $A$, based pon the dimensions of the solar panel, consequently we can calculate $A'$. The same applies to $B$ and $B'$. To then determine whether $y$ or $x$ is within the region of reflection, we calculate whether $x$ is between the lines of $A'D'$ and $B'C$ as well as between the lines $ACD$ and $A'B'$. This is done by calculating the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ to determine if $X$ is in the reflection zone, which can be done with logical if statements.
 
-\begin{figure}[!htb]
-	\centering
-	\def\svgwidth{7cm}
-	\import{Figures/}{LineIntersection.pdf_tex}
-	\caption{Reflection}
-	\label{fig:LineIntersection}
-\end{figure}
-
 The results for the sun vector with and without reflection is shown in Figure... For modelling purposes, the reflection in this example has no influence on the estimation and control of the satellite.
 
-\begin{figure}[!htb]
-	\centering
+\begin{figure*}[!htb]
+	\hspace{1cm}
 	\begin{tikzpicture}
-	\centering
-	\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s),  legend style={draw = none, at={(1.35,0.65)},
-			anchor=north}, forget plot style={opacity=0.2}, title = Sun vector with reflection]
+	%\centering
+	\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), y label style = {at={(0,0.5)},
+			anchor=north}, xlabel = Time (s), forget plot style={opacity=0.2}, title = Sun vector with reflection]
 		
 		\addplot[line width=1pt,color=blue, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
 		\addplot[line width=1pt,color=red, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
 		\addplot[line width=1pt,color=green, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
-		\legend{x, y, z}
 	\end{axis}
-	\end{tikzpicture}
-	\caption[Sun vector]{Sun vector.}
-	\label{fig:Sun Vector with Reflection}
-\end{figure}
-
-\begin{figure}[!htb]
-	\centering
-	\begin{tikzpicture}
-		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), legend style={draw = none, at={(1.35,0.65)},
+	%\end{tikzpicture}
+%	\caption[Sun vector]{Sun vector  with reflection.}
+%	\label{fig:Sun Vector with Reflection}
+	%\centering
+	%\begin{tikzpicture}
+		%\centering
+		\hspace{7cm}
+		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
 				anchor=north}, forget plot style={opacity=0.2}, title = Sun vector without reflection]
 			
 			\addplot[line width=1pt,color=blue, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
@@ -256,9 +336,26 @@ The results for the sun vector with and without reflection is shown in Figure...
 			\legend{x, y, z}
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Sun vector]{Sun vector.}
-	\label{fig:Sun Vector without Reflection}
-\end{figure}
+\caption[Sun vector]{Sun vector without reflection.}
+\label{fig:Sun Vector without Reflection}
+\end{figure*}
+
+%\begin{figure}[!htb]
+%	\centering
+%	\begin{tikzpicture}
+%		\centering
+%		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
+%				anchor=north}, forget plot style={opacity=0.2}, title = Sun vector without reflection]
+%			
+%			\addplot[line width=1pt,color=blue, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
+%			\addplot[line width=1pt,color=red, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
+%			\addplot[line width=1pt,color=green, each nth point=10, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
+%			\legend{x, y, z}
+%		\end{axis}
+%	\end{tikzpicture}
+%	\caption[Sun vector]{Sun vector.}
+%	\label{fig:Sun Vector without Reflection}
+%\end{figure}
 
 \section{Anomaly Detection}
 To be able to recover from sensor anomalies or to exclude the sensor from the kalman filter, the anomaly must be detected and the sensor from which the anomaly in the data occurs must be classified.
@@ -304,18 +401,46 @@ GI = 1 - \sum_{i = 1}^{n}{(P_i)^2}
 
 The operator split that produces the lowest Gini index, provides the most pure split and will therefore be used as the root node. For our use case the CART algorithm will be used to optimize the decision tree, which also takes into account the largest information gain to construct the decision tree. Figure
 
-\begin{figure}[!htb]
-\includegraphics[width = 10cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
-\end{figure}
+\begin{figure*}[!htb]
+	\centering
+	\includegraphics[trim = {3cm 7cm 3cm 7cm},clip, width = 15cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
+	\caption{fig:DecisionTree}
+\end{figure*}
+
+It is also possible to discuss random forests if it ends up being used in the results, because it is already implemented.
 
 
 \subsection{Recovery}
-Backtracking on kalman filter... Removing sensor measurement update... If a fault is predicted, the estimated vector model from the kalman filter is used to to determine the reference position for the control as well as the calculations for the control.
+Three different methods of recovery are compared. The methods are name Ignore, Backtrack and Replacement. 
+
+The ignore method uses the detected sensor that has failed and ignores the sensor measurement from the EKF measurement update. This method is based on the assumption that the EKF estimation is correct up until the moment where the sensor failure is detected. This method can also have variations, such as the change of the measurement noise covariance matrix $R_k$. This however will dramatically change $K_k$ and will destabilize the EKF rather than stabilizing it. Both methods results however will be discussed in section~\ref{section:Results}.
+
+The backtrack method uses a buffer of $v_{meas,k}$, $v_{model,k}$ and $\hat{x}_k^+$ and other parameters that are used to update the EKF. If a sensor failure is detected, the sensor is excluded from the EKF and the EKF is updated with the sensor data in the buffer excluding the sensor that has failed. The EKF is therefore \emph{reset} and updated from timestep $t_{k-N}$ to $t_k$, where $N$ is the size of the number of timesteps in the buffer. $N$ however must be optimized based on the computational time used to reset the EKF, but still ensure convergence of the EKF. If the sensor that was detected to have anomalous behaviour changes back to normal again, the EKF will be reset once again and the sensor will only be included in the measurement update of $t_k$ since it was anomalous for timesteps before $t_k$.
+
+The replacement methodology changes $v_{meas,k}$ to $v_{est,k}$ at the timestep when the failure is detected. This method depends on the stability and accuracy of the EKF when the failure is detected and highly depends on the accuracy of the detection method. Although this seems to bypass the entire purpose of a measurement update, and might change the change the EKF's dependency to be more on the sensor than the model, even though the sensor measurement might not be accurate. The EKF will remain stable due to the other measurements being accurate and will save computation time. The EKF will not require any reset and the same number of measurements updates will still occur during a sensor's anomalous behaviour.
+%
+%\begin{figure}[h]
+%	\centering
+%	\begin{minipage}{0.48\textwidth}
+%		\centering
+%		\includegraphics[width=0.8\textwidth]{figs/roborace.jpg}
+%		
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{0.48\textwidth}
+%		\centering
+%		\includegraphics[width=0.8\textwidth]{figs/KukuMobileRobot.jpg}
+%	\end{minipage}
+%	
+%	\caption{An Autonomous Race Car and Mobile Factory Robot}
+%	\label{fig:roborace}
+%\end{figure}
 
 \section{Testing methodology}
-Simulation... Induce anomalies based on physical models or at a specified timestamp. J
+The testing for the FDIR methods is done by implementing a reflection model on a cubesat from the moment of launching the satellite. Therefore the recovery methods are also implemented from the beginning of the satellite orbit. 
 
 \section{Results}
+\label{section:Results}
 If sun sensor is the last sensor to be updated in the measurement then a singular matrix error occurs.
 
 Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the possibilities of the recovery method.

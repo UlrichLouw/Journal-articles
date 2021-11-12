@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  9 NOV 2021 17:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  12 NOV 2021 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1023,14 +1023,6 @@ Package: import 2009/03/23  v 5.1
 (/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.ex
-ternal.code.tex
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/libraries/tikzlibrar
-yexternal.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zexternalshared.code.tex)))
-\openout5 = `root.auxlock'.
-
 \@quotelevel=\count434
 \@quotereset=\count435
 
@@ -1153,77 +1145,80 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 104.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-] (./Figures/ReflectionModel.pdf_tex
-<Figures/ReflectionModel.pdf, id=110, page=1, 777.90771pt x 594.69492pt>
+(./Figures/ReflectionModel.pdf_tex
+<Figures/ReflectionModel.pdf, id=85, page=1, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page1 used on input line
  56.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=111, page=2, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=86, page=2, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page2 used on input line
- 61.
+ 60.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=112, page=3, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=87, page=3, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 3>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page3 used on input line
- 64.
+ 65.
+(pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
+<Figures/ReflectionModel.pdf, id=88, page=4, 777.90771pt x 594.69492pt>
+File: Figures/ReflectionModel.pdf Graphic file (type pdf)
+<use Figures/ReflectionModel.pdf, page 4>
+Package pdftex.def Info: Figures/ReflectionModel.pdf , page4 used on input line
+ 68.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
 )
-(./Figures/ReflectionModelPoint.pdf_tex
-<Figures/ReflectionModelPoint.pdf, id=113, page=1, 404.11502pt x 361.23102pt>
-File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
-<use Figures/ReflectionModelPoint.pdf, page 1>
-Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page1 used on input
- line 56.
-(pdftex.def)             Requested size: 199.16928pt x 178.03548pt.
-<Figures/ReflectionModelPoint.pdf, id=114, page=2, 404.11502pt x 361.23102pt>
-File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
-<use Figures/ReflectionModelPoint.pdf, page 2>
-Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page2 used on input
- line 77.
-(pdftex.def)             Requested size: 199.16928pt x 178.03548pt.
-) (./Figures/LineIntersection.pdf_tex
-<Figures/LineIntersection.pdf, id=117, page=1, 355.26335pt x 207.5424pt>
-File: Figures/LineIntersection.pdf Graphic file (type pdf)
-<use Figures/LineIntersection.pdf, page 1>
-Package pdftex.def Info: Figures/LineIntersection.pdf , page1 used on input lin
-e 56.
-(pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
-<Figures/LineIntersection.pdf, id=118, page=2, 355.26335pt x 207.5424pt>
-File: Figures/LineIntersection.pdf Graphic file (type pdf)
-<use Figures/LineIntersection.pdf, page 2>
-Package pdftex.def Info: Figures/LineIntersection.pdf , page2 used on input lin
-e 63.
-(pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
-)
-[2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
-has been already used, duplicate ignored
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Real_Data/CubeADCS In
+-Orbit Logs/CubeADCS_Log_02.csv"}
+
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Real_Da
+ta/CubeADCS In-Orbit Logs/CubeADCS_Log_02.csv"' has an empty column name; repla
+cing it by '69'' on input line 128.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Real_Data/CubeADCS In
+-Orbit Logs/CubeADCS_Log_02.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Real_Da
+ta/CubeADCS In-Orbit Logs/CubeADCS_Log_02.csv"' has an empty column name; repla
+cing it by '69'' on input line 129.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Real_Data/CubeADCS In
+-Orbit Logs/CubeADCS_Log_02.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Real_Da
+ta/CubeADCS In-Orbit Logs/CubeADCS_Log_02.csv"' has an empty column name; repla
+cing it by '69'' on input line 130.
+
+ [warning /pgfplots/warning/empty column name]
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
+ been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.228 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2}) has been already used, duplicate ignored
+l.147 \begin{equation}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{figure.1}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.228 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-3}) has been already used, duplicate ignored
+l.147 \begin{equation}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{figure.2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.228 
-       <./Figures/ReflectionModel.pdf> <./Figures/ReflectionModel.pdf
+l.147 \begin{equation}
+                       <./Figures/ReflectionModel.pdf> <./Figures/ReflectionMod
+el.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
@@ -1231,11 +1226,122 @@ lusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModelPoint.pdf
+> <./Figures/ReflectionModel.pdf
 
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoint.pdf): PD
-F inclusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModelPoint.pdf
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 154.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
+(./Figures/ReflectionModelPoint.pdf_tex
+<Figures/ReflectionModelPoint.pdf, id=198, page=1, 404.11502pt x 361.23102pt>
+File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
+<use Figures/ReflectionModelPoint.pdf, page 1>
+Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page1 used on input
+ line 56.
+(pdftex.def)             Requested size: 199.16928pt x 178.03548pt.
+<Figures/ReflectionModelPoint.pdf, id=199, page=2, 404.11502pt x 361.23102pt>
+File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
+<use Figures/ReflectionModelPoint.pdf, page 2>
+Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page2 used on input
+ line 77.
+(pdftex.def)             Requested size: 199.16928pt x 178.03548pt.
+) (./Figures/LineIntersection.pdf_tex
+<Figures/LineIntersection.pdf, id=200, page=1, 355.26335pt x 207.5424pt>
+File: Figures/LineIntersection.pdf Graphic file (type pdf)
+<use Figures/LineIntersection.pdf, page 1>
+Package pdftex.def Info: Figures/LineIntersection.pdf , page1 used on input lin
+e 56.
+(pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
+<Figures/LineIntersection.pdf, id=201, page=2, 355.26335pt x 207.5424pt>
+File: Figures/LineIntersection.pdf Graphic file (type pdf)
+<use Figures/LineIntersection.pdf, page 2>
+Package pdftex.def Info: Figures/LineIntersection.pdf , page2 used on input lin
+e 63.
+(pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
+)
+
+LaTeX Warning: Reference `fig:ReflectionPoints' on page 3 undefined on input li
+ne 306.
+
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/2Sensors/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/2Sensors/Reflection.csv"' has an empty column name; rep
+lacing it by '0'' on input line 319.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/2Sensors/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/2Sensors/Reflection.csv"' has an empty column name; rep
+lacing it by '0'' on input line 320.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/2Sensors/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/2Sensors/Reflection.csv"' has an empty column name; rep
+lacing it by '0'' on input line 321.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/2Sensors/None.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
+eral CubeSat Model/2Sensors/None.csv"' has an empty column name; replacing it b
+y '0'' on input line 333.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/2Sensors/None.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
+eral CubeSat Model/2Sensors/None.csv"' has an empty column name; replacing it b
+y '0'' on input line 334.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/2Sensors/None.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
+eral CubeSat Model/2Sensors/None.csv"' has an empty column name; replacing it b
+y '0'' on input line 335.
+
+ [warning /pgfplots/warning/empty column name]
+[3] [4pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.396 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+4}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.396 
+       <./Figures/ReflectionModelPoint.pdf> <./Figures/ReflectionModelPoint.pdf
+
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoint.pdf): PD
 F inclusion: multiple pdfs with page group included in a single page
@@ -1248,105 +1354,111 @@ clusion: multiple pdfs with page group included in a single page
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/LineIntersection.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
-===== Image 'root-figure0' is up-to-date. ======
-
-Overfull \hbox (21.83447pt too wide) in paragraph at lines 231--242
- [][] 
- []
-
-===== Image 'root-figure1' is up-to-date. ======
-
-Overfull \hbox (21.84048pt too wide) in paragraph at lines 248--259
- [][] 
- []
-
-[3pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
-has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.298 H
-       owever to split the data for the anomalies we need to decide which in...
-pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
-s been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.298 H
-       owever to split the data for the anomalies we need to decide which in...
- <./root-figure0.pdf> <./root-figure1.pdf>]
 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabled
-DMDMethod/DecisionTreeBinaryClass.png, id=276, 1806.75pt x 1445.4pt>
+DMDMethod/DecisionTreeBinaryClass.png, id=261, 1806.75pt x 1445.4pt>
 File: /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEn
 abledDMDMethod/DecisionTreeBinaryClass.png Graphic file (type png)
 <use /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEna
 bledDMDMethod/DecisionTreeBinaryClass.png>
 Package pdftex.def Info: /home/ulrich/Documents/Masters thesis/Satellite/Hyperp
 arameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png  used on input li
-ne 308.
-(pdftex.def)             Requested size: 284.52756pt x 227.60759pt.
+ne 406.
+(pdftex.def)             Requested size: 426.79134pt x 273.14024pt.
+ [5]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/Metric/None.csv"}
 
-Overfull \hbox (38.80945pt too wide) in paragraph at lines 308--309
-[][] 
- []
 
-[4 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnab
-ledDMDMethod/DecisionTreeBinaryClass.png>]
-===== Image 'root-figure2' is up-to-date. ======
-===== Image 'root-figure3' is up-to-date. ======
-===== Image 'root-figure4' is up-to-date. ======
-===== Image 'root-figure5' is up-to-date. ======
-===== Image 'root-figure6' is up-to-date. ======
-===== Image 'root-figure7' is up-to-date. ======
-===== Image 'root-figure8' is up-to-date. ======
-===== Image 'root-figure9' is up-to-date. ======
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
+eral CubeSat Model/Metric/None.csv"' has an empty column name; replacing it by 
+'0'' on input line 459.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/Metric/None.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
+eral CubeSat Model/Metric/None.csv"' has an empty column name; replacing it by 
+'0'' on input line 473.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/Metric/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
+eral CubeSat Model/Metric/Reflection.csv"' has an empty column name; replacing 
+it by '0'' on input line 486.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
+odel/Metric/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
+eral CubeSat Model/Metric/Reflection.csv"' has an empty column name; replacing 
+it by '0'' on input line 500.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/Metric/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/Metric/Reflection.csv"' has an empty column name; repla
+cing it by '0'' on input line 513.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
+Sat Model/Metric/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
+N/General CubeSat Model/Metric/Reflection.csv"' has an empty column name; repla
+cing it by '0'' on input line 527.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/EARTH_SUN/
+General CubeSat Model/Metric/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-
+EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv"' has an empty column
+ name; replacing it by '0'' on input line 540.
+
+ [warning /pgfplots/warning/empty column name]
+PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
+pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/EARTH_SUN/
+General CubeSat Model/Metric/Reflection.csv"}
+
+Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
+te/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-
+EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv"' has an empty column
+ name; replacing it by '0'' on input line 554.
+
+ [warning /pgfplots/warning/empty column name]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 437.
+               Default added (so using `tbp') on input line 562.
 
 
-Overfull \hbox (1.80937pt too wide) in paragraph at lines 438--446
+Overfull \hbox (1.80937pt too wide) in paragraph at lines 563--571
 [][] 
  []
 
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) 
-has been already used, duplicate ignored
 
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.471 \section
-              *{APPENDIX}pdfTeX warning (ext4): destination with the same ident
-ifier (name{figure.7}) has been already used, duplicate ignored
+Underfull \vbox (badness 3646) has occurred while \output is active []
 
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.471 \section
-              *{APPENDIX}pdfTeX warning (ext4): destination with the same ident
-ifier (name{figure.8}) has been already used, duplicate ignored
 
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.471 \section
-              *{APPENDIX}pdfTeX warning (ext4): destination with the same ident
-ifier (name{figure.9}) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.471 \section
-              *{APPENDIX}pdfTeX warning (ext4): destination with the same ident
-ifier (name{figure.10}) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.471 \section
-              *{APPENDIX}pdfTeX warning (ext4): destination with the same ident
-ifier (name{figure.11}) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.471 \section
-              *{APPENDIX} <./root-figure2.pdf> <./root-figure3.pdf> <./root-fig
-ure4.pdf> <./root-figure5.pdf> <./root-figure6.pdf> <./root-figure7.pdf>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1358,40 +1470,90 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[6pdfTeX warning (ext4): destination with the same identifier (name{figure.12})
- has been already used, duplicate ignored
+
+Overfull \vbox (336.63315pt too high) has occurred while \output is active []
+
+
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
+has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.496 \end{document}
+l.621 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.6}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.621 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.7}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.621 \end{document}
+                     </home/ulrich/Documents/Masters thesis/Satellite/Hyperpara
+meters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png>] [7pdfTeX warning (
+ext4): destination with the same identifier (name{figure.8}) has been already u
+sed, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.621 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.9}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.621 \end{document}
+                    ] [8pdfTeX warning (ext4): destination with the same identi
+fier (name{figure.10}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.621 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.11}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.621 \end{document}
+                    ] [9pdfTeX warning (ext4): destination with the same identi
+fier (name{figure.12}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.621 \end{document}
                     pdfTeX warning (ext4): destination with the same identifier
  (name{figure.13}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.496 \end{document}
-                     <./root-figure8.pdf> <./root-figure9.pdf>] [7
-
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 496.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 496.
+l.621 \end{document}
+                    ]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 621.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 621.
  (./root.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 496.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 496.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 621.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 621.
 Package rerunfilecheck Info: File `root.out' has not changed.
-(rerunfilecheck)             Checksum: 363A697388769BCCC0DFCEB3C88C9FDC;994.
+(rerunfilecheck)             Checksum: FFC27EB093AB6A9472EECB6E19E005B0;1146.
+
+
+LaTeX Warning: There were undefined references.
+
 Package logreq Info: Writing requests to 'root.run.xml'.
 \openout1 = `root.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36116 strings out of 483107
- 844387 string characters out of 5964630
- 1572549 words of memory out of 5000000
- 50462 multiletter control sequences out of 15000+600000
- 576414 words of font info for 122 fonts, out of 8000000 for 9000
+ 36580 strings out of 483107
+ 859992 string characters out of 5964630
+ 1937038 words of memory out of 5000000
+ 50924 multiletter control sequences out of 15000+600000
+ 578138 words of font info for 124 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 66i,16n,98p,1261b,1584s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,20n,98p,1993b,2167s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{cite.0@proctor2016dynamic} has been referenced bu
 t does not exist, replaced by a fixed one
 
@@ -1401,11 +1563,11 @@ but does not exist, replaced by a fixed one
 pdfTeX warning (dest): name{cite.0@DeSilva2020} has been referenced but does no
 t exist, replaced by a fixed one
 
-pdfTeX warning (dest): name{cite.0@Cilden-Guler2021} has been referenced but do
-es not exist, replaced by a fixed one
-
 pdfTeX warning (dest): name{cite.0@JansevanVuuren2015} has been referenced but 
 does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{cite.0@Cilden-Guler2021} has been referenced but do
+es not exist, replaced by a fixed one
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-
@@ -1414,23 +1576,24 @@ nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmext
-ra/cmmib7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (7 pages, 969220 bytes).
+cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+b10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmi
+b7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/couri
+er/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/urw/times/utmri8a.pfb>
+Output written on root.pdf (9 pages, 877924 bytes).
 PDF statistics:
- 474 PDF objects out of 1000 (max. 8388607)
- 391 compressed objects within 4 object streams
- 59 named destinations out of 1000 (max. 500000)
- 239 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 389 PDF objects out of 1000 (max. 8388607)
+ 311 compressed objects within 4 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 

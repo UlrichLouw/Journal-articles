@@ -1,0 +1,87 @@
+%% Creator: Inkscape 1.1.1 (1:1.1+202109281949+c3084ef5ed), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Control_Diagram.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{911.24206599bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.50873219)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Control_Diagram.pdf}}%
+    \put(0.54976954,0.4944494){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}System\\\end{tabular}}}}%
+    \put(0.38351301,0.19931347){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Estimator\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Control_Diagram.pdf}}%
+    \put(0.23032442,0.49539189){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Controller\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Control_Diagram.pdf}}%
+    \put(0.00674231,0.46835764){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}References \\\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Control_Diagram.pdf}}%
+    \put(0.72042732,0.2478174){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Sigma$\end{tabular}}}}%
+    \put(0.74453762,0.15832787){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Noise\\\end{tabular}}}}%
+    \put(0.7943483,0.2228407){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Measurements\\\end{tabular}}}}%
+    \put(0.43110186,0.36346585){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Control\\Inputs\end{tabular}}}}%
+    \put(0.14026965,0.30570062){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Estimates\end{tabular}}}}%
+    \put(-0.00145749,0.43527928){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{R}_{k}$\end{tabular}}}}%
+    \put(0.25440967,0.43912326){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{D}_{k}$\end{tabular}}}}%
+    \put(0.55126452,0.43907599){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{G}_k$\end{tabular}}}}%
+    \put(0.39204267,0.25257191){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{E}_k$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Control_Diagram.pdf}}%
+    \put(0.25955273,0.00365229){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Fault Detection, Isolation and Recovery\end{tabular}}}}%
+    \put(0.40037433,0.06420563){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{FDIR}_k$\end{tabular}}}}%
+    \put(0.23613626,0.22858193){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{x}_k$\end{tabular}}}}%
+    \put(0.56196807,0.2668724){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_{sbc,k}$\end{tabular}}}}%
+    \put(0.70488378,0.44765884){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_k$\end{tabular}}}}%
+    \put(0.67351498,0.38654628){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}State vector\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Control_Diagram.pdf}}%
+    \put(0.84064936,0.4865386){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensors\\\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Control_Diagram.pdf}}%
+    \put(0.8575606,0.43739355){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{S_k}$\end{tabular}}}}%
+    \put(0.69892363,0.08907102){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{W}_k$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Control_Diagram.pdf}}%
+  \end{picture}%
+\endgroup%

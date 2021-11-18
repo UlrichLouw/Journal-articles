@@ -19,6 +19,40 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{chen2000ground}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=380c49395293074c7302a362bae865ff}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Xiaojiang},
+           giveni={X\bibinitperiod}}}%
+        {{hash=5bcbec1aaa836ed61674246c45f5ea06}{%
+           family={Steyn},
+           familyi={S\bibinitperiod},
+           given={Willem},
+           giveni={W\bibinitperiod}}}%
+        {{hash=06f7ed9cd6bc5fd6315d038052b8dbf6}{%
+           family={Hashida},
+           familyi={H\bibinitperiod},
+           given={Yoshi},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{c220f2f866927b83395323fadf4a8b1d}
+      \strng{fullhash}{c220f2f866927b83395323fadf4a8b1d}
+      \strng{bibnamehash}{c220f2f866927b83395323fadf4a8b1d}
+      \strng{authorbibnamehash}{c220f2f866927b83395323fadf4a8b1d}
+      \strng{authornamehash}{c220f2f866927b83395323fadf4a8b1d}
+      \strng{authorfullhash}{c220f2f866927b83395323fadf4a8b1d}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AIAA Guidance, Navigation, and Control Conference and Exhibit}
+      \field{title}{Ground-target tracking control of earth-pointing satellites}
+      \field{year}{2000}
+      \field{pages}{4547}
+      \range{pages}{1}
+    \endentry
     \entry{Cilden-Guler2021}{article}{}
       \name{author}{4}{}{%
         {{hash=acac05371f61d3f4c1b8d69055c2be0d}{%

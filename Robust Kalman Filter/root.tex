@@ -83,13 +83,16 @@ The Kalman Filter is a state estimator that is often used in attitude determinat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
-For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. An Extended Kalman Filter (\emph{EKF}) is a common estimator used in satellite missions. The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. Therefore, the EKF is very susceptible for changes in sensor measurements. The sensor measurements that are used for the measurement update, are the sensors that provide an modelled ORC vector and a measured SBC vector. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliability measurements. The EKF and the specific configuration thereof for satellites can be researched further from \textcite{JansevanVuuren2015}. 
+
+For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. The focus of this article is the attitude determination and control system \emph{ADCS} of the satellite. This system is demonstrated in Figure~\ref{fig:System_Diagram}. The current state vector of the system can not be determined with only the use of models or sensors. Since the sensors contains noise and the mathematical model does not include certain disturbances in the actual system. Therefore a probabilistic approach can be used to determine the state vector with the highest probability. 
+
+An Extended Kalman Filter (\emph{EKF}) is a common estimator used in satellite missions. The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. The sensor measurements that are used for the measurement update, are the sensors that provide a modelled ORC vector as well as measured SBC vector, such as the magnetometer, sun sensor, nadir sensor and star tracker. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliability measurements. The error between the modelled and measured vectors are used to update the EKF estimation. The EKF and the specific configuration thereof for satellites can be researched further from \textcite{JansevanVuuren2015}. 
 
 The problem with an EKF is when the sensors do not follow their modelled vector. Slight deviations thereof won't have significant effects, but anomalies such as failed sensors can cause the EKF to become unstable. Consequently, we want to be able to recover from failed sensors. The frequency of the anomaly occurrence can also determine the stability of the Kalman filter. Therefore we opted to use sun reflection from solar panel on sun sensors as our modelled anomaly. This is a real problem in the satellite industry which can be isolated with changes in the satellite design. However, with an inadequate design the problem can manifold when the satellite design is used on a satellite constellation. 
 
 This anomaly also requires autonomous decision making, since the control of the satellite to be sun facing cannot be done by the ground station during orbit and is highly determined by the sun vector. Therefore we aim to design a fault detection, isolation and recovery system specifically for the sensor anomalies and the testing thereof will be done on the solar reflection anomaly. The specific use case will be a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
 
-\begin{figure*}[!hbt]
+\begin{figure*}[h!b!t]
 	\centering
 	\def\svgwidth{12cm}
 	\import{Figures/}{Control_Diagram.pdf_tex}
@@ -98,14 +101,24 @@ This anomaly also requires autonomous decision making, since the control of the 
 \end{figure*}
 
 \subsection{Related Work}
-Previous work done by \textcite{Cilden-Guler2021} provides models that determine albedo effects from the earth and adjust the CSS measurements to improve accuracy.
+Sun failures are not a new problem and has consequently been researched thoroughly. Hardware solutions to sun reflection have been developed with the use of digital sun sensors that can discriminate between direct sunlight and reflected sunlight. These digital sun sensors however, are not as accurate as many other analog sun sensors. There is also a long list of research that has been done with regards to sensor fault detection (as seen in \cite{wang2019adaptive}). One of the most relevant articles is done by \textcite{wang2019adaptive}, and proposed a adaptive unscented Kalman filter for sensor fault estimation and isolation. The results thereof seems promising and is based on dramatical changes in the measurements. However, even for sun reflection, the measurement change occurs often and the control of the satellite also changes with it. Therefore future work might be to use the algorithm developed by \textcite{wang2019adaptive} to test the response thereof on sun reflection.
+
+Other research that is used for feature extraction in this article is based on research done by \textcite{DeSilva2020}. Fault prediction is done by implementing an innovative moving average, determined by the error estimated by a dynamic mode decomposition and a kalman filter, as a input to a predictive model --- decision tree. The method is tested on various physics based models.
 
 \subsection{Preliminaries}
-The details of satellite dynamics will not be discussed in this article, however it must be noted that orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article will be matrices, as a upper-case letter in bold, $\mathbf{A}$, vectors, as lower case letters in bold, $\mathbf{a}$ and scalar values as lower case letters, $a$. All vectors values will be in the order of $[x, y, z]$ for dimensions in axis.
+The details of satellite dynamics will not be discussed in this article, however it must be noted that orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article will be matrices, as a upper-case letter in bold, $\mathbf{A}$, vectors, as lower case letters in bold, $\mathbf{a}$ and scalar values as lower case letters, $a$. All vectors values will be given in the order $[x, y, z]$.
 
 \section{Reflection}
 \label{section:Reflection}
-The reflection anomaly is modelled for a any dimensions but with the specific shape of and design of the cubesat as shown in Figure~\ref{fig:CubeSat}.
+The reflection anomaly is modelled for any dimensions but with the specific shape and design of the cubesat as shown in Figure~\ref{fig:CubeSat}.
+
+\begin{figure}[!htb]
+	\centering
+	\def\svgwidth{7cm}
+	\import{Figures/}{ReflectionModel.pdf_tex}
+	\caption{Cube Sat}
+	\label{fig:CubeSat}
+\end{figure}
 
 \begin{figure*}[!hbt]
 	\centering
@@ -118,18 +131,17 @@ The reflection anomaly is modelled for a any dimensions but with the specific sh
 	\label{fig:LineIntersection}
 \end{figure*}
 
-The assumption is made that the solar panel can be modelled as a simple plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. The reflected sun vector, $R$, can be calculated as
+The assumption is made that the solar panel can be modelled as a plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. The reflected sun vector, $R$, can be calculated as
 \begin{equation}
 	R = V - 2N^T(V \cdot N)
 \end{equation}
-Where $V$ is the incoming sun vector and $N$ is the normal vector to the plan $ABCD$ of the solar panel as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $xwyz$ of the sun sensor the intersecting point the equation of the plane, reflected vector and the point of origin is required. The equation for a plane can be denoted as 
+Where $V$ is the incoming sun vector and $N$ is the normal vector to the plane $ABCD$ of the solar panel as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $XWYZ$ of the sun sensor the intersecting point the equation of the plane, reflected vector and the point of origin is required. The equation for a plane can be denoted as 
 
 \begin{equation}
 	P = ax + by + cz = d
 	\label{eq:Plane}
 \end{equation}
-
-The reflected vector can also be translated to equations of 
+where $x, y and z$ are the dimensions in the SBC frame. The reflected unit vector can also be translated to 
 
 \begin{equation}
 	\begin{aligned}
@@ -139,26 +151,27 @@ The reflected vector can also be translated to equations of
 	\end{aligned}
 \label{eq:LineOfVector}
 \end{equation}
-
-Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the reflected vector, we can calculate $t$, by substituting $x, y \& z$ into Eq~\ref{eq:Plane}. Consequently the intersecting points $x$, $y$ and $z$ can be calculated as
+where the coefficients, $\alpha$, $\beta$ and $\zeta$ are the values of the reflected unit vector in each respective dimension. Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the reflected vector, we can calculate $t$, by substituting $x, y \& z$ into Eq~\ref{eq:Plane}. This can be done since we determine the equation of the plane for the surface $XYZW$ based on our design. Thereafter, the intersecting point with the plane $XYZW$ can be calculated as
 
 \begin{equation}
 	P(x, y, z) = (o_1 + \alpha t, o_2 + \beta t, o_3 + \zeta t)
 	\label{eq:Intersection}
 \end{equation}
-where $o_1, o_2, o_3$ is the points of origin, in this case the points on the solar panel.
+where $o_1, o_2, o_3$ is the position of origin. Which in this case is the position of reflection from the solar panel. Therefore, if the sun vector $\mathbf{v}$ reflected from the solar panel as $\mathbf{r}$, the point of intersection $Q'$ can be calculated as
 
-%\begin{figure}[!htb]
-%	\centering
-%	\def\svgwidth{7cm}
-%	\import{Figures/}{ReflectionModelPoint.pdf_tex}
-%	\caption{Reflection}
-%	\label{fig:ReflectionPoints}
-%\end{figure}
+\begin{equation}
+	Q'(x, y, z) = (Q_x + \alpha t, Q_y + \beta t, Q_z + \zeta t)
+	\label{eq:SpecificIntersection}
+\end{equation}
 
-To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor can be taken into account. From Figure~\ref{fig:ReflectionPoints} it is evident that if the solar panel reflects on corner $y$ that corner $x$ will also receive light from the reflection. The same is true for corner $z$ and $w$. Since $C'$ will be at the exact same position as $C$, the reflection from the sun does not need to be calculated for $C$, this is also true for $D$. Therefore it is only necessary to calculate the reflected positions $A'$ and $B'$.
+To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor are to be taken into account. From Figure~\ref{fig:ReflectionPoints} it is evident that if the solar panel reflects on $Y$ that the reflection will also cover $X$. The same is true for corner $Z$ and $W$. Since $C'$ will be at the exact same position as $C$, which is also true for $D'$ and $D$, the calculation thereof can be omitted. Therefore it is only necessary to calculate the reflected positions $A'$ and $B'$. This simplifies the reflection model significantly.
 
-The reflected position $A'$ can be calculated as the intersection of the reflected vector $R$ with plane $xyzw$ with Eq~\ref{eq:Intersection}. We also know the position of $A$, based on the dimensions of the solar panel, consequently we can calculate $A'$. The same applies to $B$ and $B'$. To then determine whether $y$ or $x$ is within the region of reflection, we calculate whether $x$ is between the lines of $A'D'$ and $B'C$ as well as between the lines $ACD$ and $A'B'$. This is done by calculating the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ to determine if $X$ is in the reflection zone, which can be done with logical if statements.
+The reflected position $A'$ can be calculated as the intersection of the reflected vector $R$ with plane $XYZW$ using Eq~\ref{eq:Intersection}. We also know the position of $A$, based on the satellite design and can therefore calculate $A'$. The same applies to $B$ and $B'$. To then determine whether $Y$ or $X$ is within the region of reflection, we assume that the plane $XYWZ$ is a 2D plane and we omit the third dimension. Therefore, the axis changes from $x, y, z$ to only $x, y$. We calculate whether $x$ is between the lines of $A'D'$ and $B'C$ as well as between the lines $ACD$ and $A'B'$. By determining the line equation between reflected points in the form 
+
+\begin{equation}
+y_{A'B'} = mx_{A'B'} + c
+\end{equation}
+the corresponding $x$ or $y$ coordinate can be calculated by substituting either $X_y$ or $X_x$ in the line equation. With this the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ can be determined. Thereafter with logical if statements it can be determined whether $X$ is in the reflection zone. This is demonstrated with the logical that if $X_x$ is to the right of $X_{B'C,x}$ and to the left of $X_{A'D,x}$, as well as $X_y$ is to the above of $X_{A'B',y}$ and below of $X_{CD,y}$ then $X$ is within the reflection zone. 
 
 The results for the sun vector with and without reflection is shown in Figure~\ref{fig:Sun Vector comparison}. For modelling purposes, the reflection in this example has no influence on the estimation and control of the satellite.
 
@@ -260,41 +273,25 @@ The operator split that produces the lowest Gini index, provides the most pure s
 	\label{fig:DecisionTree}
 \end{figure*}
 
-It is also possible to discuss random forests if it ends up being used in the results, because it is already implemented.
+Random Forests, an method of using the prediction average of randomly sampled decision trees, is also tested and the results thereof shown in section~\ref{section:Results}.  
 
 
 \subsection{Recovery}
-Three different methods of recovery are compared. The methods are name Ignore, Backtrack and Replacement. 
+Three different methods of recovery are compared. These methods are all focused on ensuring that the sun reflection does not change the reliability and stability of the EKF.
 
 The ignore method uses the detected sensor that has failed and ignores the sensor measurement from the EKF measurement update. This method is based on the assumption that the EKF estimation is correct up until the moment where the sensor failure is detected. This method can also have variations, such as the change of the measurement noise covariance matrix $R_k$. This however will dramatically change $K_k$ and will destabilize the EKF rather than stabilizing it. Both methods results however will be discussed in section~\ref{section:Results}.
 
+The replacement methodology changes $v_{meas,k}$ to $v_{est,k}$ at the timestep when the failure is detected. This method depends on the stability and accuracy of the EKF when the failure is detected and highly depends on the accuracy of the detection method. Although this seems to bypass the entire purpose of a measurement update, and might change the change the EKF's dependency to be more on the sensor than the model, even though the sensor measurement might not be accurate. The EKF will remain stable due to the other measurements being accurate and will save computation time. The EKF will not require any reset and the same number of measurements updates will still occur during a sensor's anomalous behaviour.
+
 The backtrack method uses a buffer of $v_{meas,k}$, $v_{model,k}$ and $\hat{x}_k^+$ and other parameters that are used to update the EKF. If a sensor failure is detected, the sensor is excluded from the EKF and the EKF is updated with the sensor data in the buffer excluding the sensor that has failed. The EKF is therefore \emph{reset} and updated from timestep $t_{k-N}$ to $t_k$, where $N$ is the size of the number of timesteps in the buffer. $N$ however must be optimized based on the computational time used to reset the EKF, but still ensure convergence of the EKF. If the sensor that was detected to have anomalous behaviour changes back to normal again, the EKF will be reset once again and the sensor will only be included in the measurement update of $t_k$ since it was anomalous for timesteps before $t_k$.
 
-The replacement methodology changes $v_{meas,k}$ to $v_{est,k}$ at the timestep when the failure is detected. This method depends on the stability and accuracy of the EKF when the failure is detected and highly depends on the accuracy of the detection method. Although this seems to bypass the entire purpose of a measurement update, and might change the change the EKF's dependency to be more on the sensor than the model, even though the sensor measurement might not be accurate. The EKF will remain stable due to the other measurements being accurate and will save computation time. The EKF will not require any reset and the same number of measurements updates will still occur during a sensor's anomalous behaviour.
-%
-%\begin{figure}[h]
-%	\centering
-%	\begin{minipage}{0.48\textwidth}
-%		\centering
-%		\includegraphics[width=0.8\textwidth]{figs/roborace.jpg}
-%		
-%	\end{minipage}
-%	\hfill
-%	\begin{minipage}{0.48\textwidth}
-%		\centering
-%		\includegraphics[width=0.8\textwidth]{figs/KukuMobileRobot.jpg}
-%	\end{minipage}
-%	
-%	\caption{An Autonomous Race Car and Mobile Factory Robot}
-%	\label{fig:roborace}
-%\end{figure}
+A backtrack method can be combined with both the replacement and ignore method. Where the backtrack method is implemented only after a specified number of sun reflections are predicted.
 
 \section{Testing Setup}
 To ensure repeatability of the tests conducted in this article, the github repo is provided ...
-sgp4 simulation environment. Disturbances. The testing for the FDIR methods is done by implementing a reflection model on a cubesat from the moment of launching the satellite. Therefore the recovery methods are also implemented from the beginning of the satellite orbit. 
+sgp4 simulation environment. Disturbances. The testing for the FDIR methods is done by implementing a reflection model on a cubesat from the moment of launching the satellite. Therefore the recovery methods are also implemented from the beginning of the satellite orbit. The mission of the ADCS of this specific satellite is to be nadir pointing during eclipse and sun following otherwise.
 
-\subsection{Mission}
-
+The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a fault is induced, it is induced after the first two orbits and the specific anomaly then occurs for the following 18 orbits.
 
 \subsection{Control}
 Quaternion-feedback control with momentum dumping only during eclipse. The attitude command vector during nadir-pointing in the SBC frame is $\mathbf{u}_c = [0, 0, 1]$, since the SBC frame $z$ coordinate should line up with the ORC frame. During the sun following phase, the attitude command according to \textcite{chen2000ground} can be calculated as 
@@ -311,7 +308,7 @@ where $\mathbf{s}_o$ is the measured unit sun vector in ORC, and the main solar 
 	cos(\frac{\delta}{2})
 \end{bmatrix}
 \end{equation}
-
+This can then be used as the reference for the control. The reference $\omega_b^I$ is always $[0, 0, 0]$.
 
 \subsection{Dimensions of Satellite}
 The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}.
@@ -329,13 +326,6 @@ The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}.
 The Sputnix dimensions for the sun sensor are used.
 % https://sputnix.ru/en/equipment/cubesat-devices/sun-sensor-flight-proof-1
 % https://www.cubesatshop.com/product/nss-cubesat-sun-sensor/
-\begin{figure}[!htb]
-	\centering
-	\def\svgwidth{7cm}
-	\import{Figures/}{ReflectionModel.pdf_tex}
-	\caption{Cube Sat}
-	\label{fig:CubeSat}
-\end{figure}
 
 \subsection{Orbit Parameters}
 Low earth orbiting ($500$km)
@@ -345,11 +335,9 @@ The sensors used for the measurement update of the Kalman filter is a magnetomet
 
 \section{Results}
 \label{section:Results}
-If sun sensor is the last sensor to be updated in the measurement then a singular matrix error occurs.
-
 Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the possibilities of the recovery method.
 
-The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a fault is induced, it is induced after the first two orbits and the specific anomaly then occurs for the following 18 orbits.
+
 
 \newpage
 

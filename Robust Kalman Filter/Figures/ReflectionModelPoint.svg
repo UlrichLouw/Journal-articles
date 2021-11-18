@@ -33,7 +33,50 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
-     id="defs191252" />
+     id="defs191252">
+    <marker
+       style="overflow:visible"
+       id="marker1796"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1794" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1501"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1499" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1226" />
+    </marker>
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -371,5 +414,47 @@
        d="m 70.101777,158.4119 c 0,0.72347 -0.498602,1.33371 -1.159838,1.42004 -0.659762,0.086 -1.276376,-0.37957 -1.433113,-1.08417 -0.157104,-0.7032 0.195826,-1.42388 0.819449,-1.67657 0.623988,-0.25234 1.322475,0.0409 1.62783,0.68538"
        style="opacity:0.531277;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000d68;stroke-width:0.35904;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0;paint-order:stroke fill markers"
        id="path1711-5-4-0-9" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker1796);marker-end:url(#marker1501)"
+       d="m 29.228572,73.453239 v 23.59309 2.86524 l -10.58333,15.875001"
+       id="path1139"
+       sodipodi:nodetypes="cccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.295813px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 29.228572,99.911569 h 26.45834"
+       id="path1141" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="40.720707"
+       y="97.447075"
+       id="text32848"><tspan
+         sodipodi:role="line"
+         id="tspan32846"
+         style="stroke-width:0.264583"
+         x="40.720707"
+         y="97.447075">$x$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="19.988924"
+       y="87.06617"
+       id="text37358"><tspan
+         sodipodi:role="line"
+         id="tspan37356"
+         style="stroke-width:0.264583"
+         x="19.988924"
+         y="87.06617">$z$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';stroke-width:0.264583"
+       x="14.123369"
+       y="108.42393"
+       id="text41850"><tspan
+         sodipodi:role="line"
+         id="tspan41848"
+         style="stroke-width:0.264583"
+         x="14.123369"
+         y="108.42393">$y$</tspan></text>
   </g>
 </svg>

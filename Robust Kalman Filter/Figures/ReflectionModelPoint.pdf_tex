@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{402.60524826bp}%
+    \setlength{\unitlength}{404.28997277bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,30 +50,33 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.89388173)%
+  \begin{picture}(1,0.89015681)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ReflectionModelPoint.pdf}}%
-    \put(0.84963314,0.86964483){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
-    \put(0.43340044,0.87215313){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
-    \put(0.43142979,0.48891162){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
-    \put(0.84212741,0.49184407){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D\end{tabular}}}}%
-    \put(0.82628775,0.41415843){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D'\end{tabular}}}}%
-    \put(0.40283536,0.44150958){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C'\end{tabular}}}}%
-    \put(0.66366706,0.2411731){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}W\end{tabular}}}}%
-    \put(0.49782053,0.24052861){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
-    \put(0.58439054,0.08183043){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Z\end{tabular}}}}%
-    \put(0.46923443,0.08325779){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Y\end{tabular}}}}%
-    \put(-0.00292528,0.00129575){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B'\end{tabular}}}}%
-    \put(0.36497502,-0){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A'\end{tabular}}}}%
-    \put(0.1546944,0.08727719){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Reflection\end{tabular}}}}%
-    \put(0.64156317,0.16494168){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sun Sensor\end{tabular}}}}%
-    \put(0.23825909,0.68583677){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Solar Panel\end{tabular}}}}%
-    \put(0.84976936,0.68461804){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V$\end{tabular}}}}%
-    \put(0.57185414,0.41602884){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R$\end{tabular}}}}%
-    \put(0.83884747,0.58757811){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sun Vector\end{tabular}}}}%
-    \put(0.69486057,0.53160508){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Q\end{tabular}}}}%
-    \put(0.48127836,0.32016267){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Q'\end{tabular}}}}%
+    \put(0.85025974,0.86602092){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A\end{tabular}}}}%
+    \put(0.43576153,0.86851876){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B\end{tabular}}}}%
+    \put(0.43379909,0.48687427){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
+    \put(0.84278528,0.4897945){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D\end{tabular}}}}%
+    \put(0.82701163,0.41243258){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D'\end{tabular}}}}%
+    \put(0.40532382,0.43966976){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C'\end{tabular}}}}%
+    \put(0.6650686,0.24016811){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}W\end{tabular}}}}%
+    \put(0.49991317,0.2395263){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
+    \put(0.58612244,0.08148943){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Z\end{tabular}}}}%
+    \put(0.47144619,0.08291084){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Y\end{tabular}}}}%
+    \put(0.00125403,0.00129035){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B'\end{tabular}}}}%
+    \put(0.36762124,-0){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A'\end{tabular}}}}%
+    \put(0.15821689,0.0869135){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Reflection\end{tabular}}}}%
+    \put(0.64305682,0.16425434){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sun Sensor\end{tabular}}}}%
+    \put(0.24143336,0.68297881){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Solar Panel\end{tabular}}}}%
+    \put(0.85039539,0.68176516){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V$\end{tabular}}}}%
+    \put(0.57363827,0.4142952){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$R$\end{tabular}}}}%
+    \put(0.83951901,0.5851296){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sun Vector\end{tabular}}}}%
+    \put(0.69613213,0.52938981){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Q\end{tabular}}}}%
+    \put(0.48343994,0.31882851){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Q'\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ReflectionModelPoint.pdf}}%
+    \put(0.18319995,0.47602153){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0.03784077,0.54880639){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$z$\end{tabular}}}}%
+    \put(-0.00328508,0.39905824){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

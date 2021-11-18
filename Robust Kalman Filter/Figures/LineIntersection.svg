@@ -22,18 +22,79 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
-     showgrid="false"
-     inkscape:zoom="2.0334082"
-     inkscape:cx="426.37775"
-     inkscape:cy="421.70579"
+     showgrid="true"
+     inkscape:zoom="0.50835205"
+     inkscape:cx="263.59685"
+     inkscape:cy="543.9144"
      inkscape:window-width="1848"
      inkscape:window-height="1016"
      inkscape:window-x="1992"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid7100" />
+  </sodipodi:namedview>
   <defs
-     id="defs1272" />
+     id="defs1272">
+    <marker
+       style="overflow:visible"
+       id="marker1796"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1794" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1501"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1499" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1226" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-5"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1226-4" />
+    </marker>
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -42,10 +103,10 @@
        id="g1601"
        transform="matrix(0.35443175,0,0,0.35277776,53.643549,20.020407)">
       <path
-         d="M 205.109,188.496 25.77,355.719 H 163.723 L 343.066,188.496 m -137.957,0 h 137.957"
+         d="M 205.109,188.496 161.22502,229.41521 25.77,355.719 H 163.723 L 343.066,188.496 m -137.957,0 h 137.957"
          style="fill:#fff6d5;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.14799;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.29596, 2.14799;stroke-dashoffset:0;stroke-opacity:1"
          id="path1603"
-         sodipodi:nodetypes="cccccc" />
+         sodipodi:nodetypes="ccccccc" />
     </g>
     <text
        xml:space="preserve"

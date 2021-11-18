@@ -53,55 +53,6 @@
       \field{pages}{4547}
       \range{pages}{1}
     \endentry
-    \entry{Cilden-Guler2021}{article}{}
-      \name{author}{4}{}{%
-        {{hash=acac05371f61d3f4c1b8d69055c2be0d}{%
-           family={Cilden-Guler},
-           familyi={C\bibinithyphendelim G\bibinitperiod},
-           given={Demet},
-           giveni={D\bibinitperiod}}}%
-        {{hash=5d9753c98d823c83966f248dbe18f6fd}{%
-           family={Schaub},
-           familyi={S\bibinitperiod},
-           given={Hanspeter},
-           giveni={H\bibinitperiod}}}%
-        {{hash=c5977a7575abf6d5c4d428284686447d}{%
-           family={Hajiyev},
-           familyi={H\bibinitperiod},
-           given={Chingiz},
-           giveni={C\bibinitperiod}}}%
-        {{hash=5f3013ec8c03b047d041a95ef959f246}{%
-           family={Kaymaz},
-           familyi={K\bibinitperiod},
-           given={Zerefsan},
-           giveni={Z\bibinitperiod}}}%
-      }
-      \strng{namehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
-      \strng{fullhash}{5bcb2204afe913f053dd90080165a2e0}
-      \strng{bibnamehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
-      \strng{authorbibnamehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
-      \strng{authornamehash}{040a8dd9eba9f5f86ff8b9788ec60f9e}
-      \strng{authorfullhash}{5bcb2204afe913f053dd90080165a2e0}
-      \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{A three-axis attitude estimation scheme is presented using a set of albedo interfered coarse sun sensors (CSSs) of Earth, which are inexpensive, small in size, and light in power consumption. For modeling the interference, a two-stage albedo estimation algorithm based on autoregressive model is proposed. The algorithm does not require any data, such as albedo coefficients, spacecraft position, sky condition, or ground coverage, other than albedo measurements. The results are compared with five albedo models on the basis of two reference conditions. The estimated albedo is fed to the CSS measurements for correction. The corrected CSS measurements are processed under three estimation techniques with two different sensor configurations. The relative performance of the attitude estimation schemes when using different albedo models is examined.}
-      \field{issn}{15336794}
-      \field{journaltitle}{Journal of Spacecraft and Rockets}
-      \field{number}{1}
-      \field{title}{{Attitude estimation with albedo interference on sun sensor measurements}}
-      \field{volume}{58}
-      \field{year}{2021}
-      \field{pages}{148\bibrangedash 163}
-      \range{pages}{16}
-      \verb{doi}
-      \verb 10.2514/1.A34814
-      \endverb
-      \verb{file}
-      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Attitude estimation with albedo interference on sun sensor measurements.pdf:pdf
-      \endverb
-    \endentry
     \entry{JansevanVuuren2015}{article}{}
       \name{author}{1}{}{%
         {{hash=3481a3d176239ecde9d14f4fa8bdac8a}{%
@@ -295,6 +246,40 @@
       \verb http://arxiv.org/abs/2006.13380
       \endverb
       \keyw{anomaly detection,dynamic mode decomposition,kalman filter,machine learning}
+    \endentry
+    \entry{wang2019adaptive}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b23e194fcc5da1e448e948e4035d9e32}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Mao},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ae91a012c031a60ec2e8d9446373847e}{%
+           family={Liang},
+           familyi={L\bibinitperiod},
+           given={Tiantian},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Sage UK: London, England}%
+      }
+      \strng{namehash}{17838fb3a058d08651c1772fac0c3db3}
+      \strng{fullhash}{17838fb3a058d08651c1772fac0c3db3}
+      \strng{bibnamehash}{17838fb3a058d08651c1772fac0c3db3}
+      \strng{authorbibnamehash}{17838fb3a058d08651c1772fac0c3db3}
+      \strng{authornamehash}{17838fb3a058d08651c1772fac0c3db3}
+      \strng{authorfullhash}{17838fb3a058d08651c1772fac0c3db3}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transactions of the Institute of Measurement and Control}
+      \field{number}{6}
+      \field{title}{Adaptive Kalman filtering for sensor fault estimation and isolation of satellite attitude control based on descriptor systems}
+      \field{volume}{41}
+      \field{year}{2019}
+      \field{pages}{1686\bibrangedash 1698}
+      \range{pages}{13}
     \endentry
   \enddatalist
 \endrefsection

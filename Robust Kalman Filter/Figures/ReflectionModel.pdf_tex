@@ -54,9 +54,9 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ReflectionModel.pdf}}%
-    \put(0.81690881,0.11880898){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
-    \put(0.74108024,0.15677818){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
-    \put(0.71962638,0.07866004){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$z$\end{tabular}}}}%
+    \put(0.79755399,0.11880898){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0.72172541,0.15677818){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$z$\end{tabular}}}}%
+    \put(0.70027156,0.07866004){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ReflectionModel.pdf}}%
     \put(0.39792614,0.39639854){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
     \put(0.37038272,0.29589704){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Y\end{tabular}}}}%

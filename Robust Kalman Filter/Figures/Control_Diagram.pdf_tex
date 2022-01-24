@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{911.24206599bp}%
+    \setlength{\unitlength}{903.52787795bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,38 +50,39 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.50873219)%
+  \begin{picture}(1,0.47877467)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{Control_Diagram.pdf}}%
-    \put(0.54976954,0.4944494){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}System\\\end{tabular}}}}%
-    \put(0.38351301,0.19931347){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Estimator\end{tabular}}}}%
+    \put(0.54592554,0.46436994){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}System\\\end{tabular}}}}%
+    \put(0.37824953,0.16671418){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Estimator\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{Control_Diagram.pdf}}%
-    \put(0.23032442,0.49539189){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Controller\end{tabular}}}}%
+    \put(0.22375305,0.46532048){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Controller\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{Control_Diagram.pdf}}%
-    \put(0.00674231,0.46835764){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}References \\\end{tabular}}}}%
+    \put(-0.00173798,0.43805541){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}References \\\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{Control_Diagram.pdf}}%
-    \put(0.72042732,0.2478174){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Sigma$\end{tabular}}}}%
-    \put(0.74453762,0.15832787){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Noise\\\end{tabular}}}}%
-    \put(0.7943483,0.2228407){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Measurements\\\end{tabular}}}}%
-    \put(0.43110186,0.36346585){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Control\\Inputs\end{tabular}}}}%
-    \put(0.14026965,0.30570062){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Estimates\end{tabular}}}}%
-    \put(-0.00145749,0.43527928){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{R}_{k}$\end{tabular}}}}%
-    \put(0.25440967,0.43912326){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{D}_{k}$\end{tabular}}}}%
-    \put(0.55126452,0.43907599){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{G}_k$\end{tabular}}}}%
-    \put(0.39204267,0.25257191){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{E}_k$\end{tabular}}}}%
+    \put(0.85574957,0.21512853){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Sigma$\end{tabular}}}}%
+    \put(0.88521124,0.11886223){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Noise\\\end{tabular}}}}%
+    \put(0.62726154,0.23598601){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Measurements\\\end{tabular}}}}%
+    \put(0.37400519,0.4562453){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Control\\Inputs\end{tabular}}}}%
+    \put(0.1329294,0.27400964){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Estimates\end{tabular}}}}%
+    \put(0.0252764,0.37865422){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{R}_{k}$\end{tabular}}}}%
+    \put(0.24804393,0.40857144){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{D}_{k}$\end{tabular}}}}%
+    \put(0.54743328,0.40852376){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{G}_k$\end{tabular}}}}%
+    \put(0.38685202,0.22042733){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{E}_k$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{Control_Diagram.pdf}}%
-    \put(0.25955273,0.00365229){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Fault Detection, Isolation and Recovery\end{tabular}}}}%
-    \put(0.40037433,0.06420563){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{FDIR}_k$\end{tabular}}}}%
-    \put(0.23613626,0.22858193){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{x}_k$\end{tabular}}}}%
-    \put(0.56196807,0.2668724){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_{sbc,k}$\end{tabular}}}}%
-    \put(0.70488378,0.44765884){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_k$\end{tabular}}}}%
-    \put(0.67351498,0.38654628){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}State vector\end{tabular}}}}%
+    \put(0.18289651,0.03745952){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Fault Detection, \\Isolation and Recovery\end{tabular}}}}%
+    \put(0.33107076,0.03045281){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{FDIR}_k$\end{tabular}}}}%
+    \put(0.2296145,0.19623253){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\hat{x}_k$\end{tabular}}}}%
+    \put(0.57820208,0.18941223){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_{sbc,k}$\end{tabular}}}}%
+    \put(0.70236412,0.41717989){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_k$\end{tabular}}}}%
+    \put(0.6707275,0.35554556){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}State vector\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{Control_Diagram.pdf}}%
-    \put(0.84064936,0.4865386){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensors\\\end{tabular}}}}%
+    \put(0.83928885,0.4563916){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Sensors\\\end{tabular}}}}%
+    \put(0.85634447,0.40682695){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{S_k}$\end{tabular}}}}%
+    \put(0.8392078,0.04901408){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{W}_k$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{Control_Diagram.pdf}}%
-    \put(0.8575606,0.43739355){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{S_k}$\end{tabular}}}}%
-    \put(0.69892363,0.08907102){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{W}_k$\end{tabular}}}}%
+    \put(0.70477703,0.04041119){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Feature \\Extraction\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{Control_Diagram.pdf}}%
   \end{picture}%
 \endgroup%

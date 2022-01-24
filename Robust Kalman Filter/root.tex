@@ -44,8 +44,8 @@
 \usepackage{graphicx}
 \usepackage{import}
 \usepackage{placeins}
-\usepgfplotslibrary{external} 
-\tikzexternalize
+%\usepgfplotslibrary{external} 
+%\tikzexternalize
 
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 
@@ -83,30 +83,38 @@ The Kalman Filter is a state estimator that is often used in attitude determinat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
+For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. The current state vector of the system can not be determined with only the use of models or sensors. Since the sensors contains noise and the mathematical model does not include certain disturbances in the actual system. Therefore a probabilistic approach can be used to determine the state vector from both the model and the sensor. The focus of this article is the attitude determination and control system, \emph{ADCS}, of the satellite. This system is demonstrated in Figure~\ref{fig:System_Diagram}, where the basic ADCS excludes the fault detection, isolation and recovery, \emph{FDIR}, and feature extraction. The FDIR for sensors receive the sensor measurements and the feature extractions as inputs and outputs the recovery method if it is required. 
 
-For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. The focus of this article is the attitude determination and control system \emph{ADCS} of the satellite. This system is demonstrated in Figure~\ref{fig:System_Diagram}. The current state vector of the system can not be determined with only the use of models or sensors. Since the sensors contains noise and the mathematical model does not include certain disturbances in the actual system. Therefore a probabilistic approach can be used to determine the state vector with the highest probability. 
+An Extended Kalman Filter (\emph{EKF}) is a common estimator used in satellite missions. The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. The sensor measurements that are used for the measurement update, are the sensors that provide a modelled ORC vector as well as measured SBC vector, such as the magnetometer, sun sensor, nadir sensor and star tracker. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliable measurements. The error between the modelled and measured vectors are used to update the EKF estimation. The EKF and the specific configuration thereof for satellites can be researched further, \textcite{JansevanVuuren2015}. 
 
-An Extended Kalman Filter (\emph{EKF}) is a common estimator used in satellite missions. The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. The sensor measurements that are used for the measurement update, are the sensors that provide a modelled ORC vector as well as measured SBC vector, such as the magnetometer, sun sensor, nadir sensor and star tracker. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliability measurements. The error between the modelled and measured vectors are used to update the EKF estimation. The EKF and the specific configuration thereof for satellites can be researched further from \textcite{JansevanVuuren2015}. 
+The problem with an EKF is when the sensors do not follow their modelled vector. Slight deviations thereof won't have significant effects, but anomalies such as failed sensors can cause the EKF to become unstable. Consequently, we want to be able to recover from failed sensors. The frequency of the anomaly occurrence can also determine the stability of the Kalman filter. Therefore we opted to use sun reflection from the solar panel on sun sensors as our modelled anomaly. This is because of the accurate modelling for sun reflection. This is a real problem in the satellite industry that can be isolated with changes in the satellite design.
 
-The problem with an EKF is when the sensors do not follow their modelled vector. Slight deviations thereof won't have significant effects, but anomalies such as failed sensors can cause the EKF to become unstable. Consequently, we want to be able to recover from failed sensors. The frequency of the anomaly occurrence can also determine the stability of the Kalman filter. Therefore we opted to use sun reflection from solar panel on sun sensors as our modelled anomaly. This is a real problem in the satellite industry which can be isolated with changes in the satellite design. However, with an inadequate design the problem can manifold when the satellite design is used on a satellite constellation. 
-
-This anomaly also requires autonomous decision making, since the control of the satellite to be sun facing cannot be done by the ground station during orbit and is highly determined by the sun vector. Therefore we aim to design a fault detection, isolation and recovery system specifically for the sensor anomalies and the testing thereof will be done on the solar reflection anomaly. The specific use case will be a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
+This anomaly also requires autonomous decision making to ensure sun facing control. This cannot be done by the ground station during orbit, unless the control system is dramatically changed if the anomaly is detected by the ground station. Therefore we aim to design a fault detection, isolation and recovery system specifically for the sensor anomalies and the testing thereof will be done on the solar reflection anomaly. The specific use case will be a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
 
 \begin{figure*}[h!b!t]
 	\centering
-	\def\svgwidth{12cm}
+	\def\svgwidth{14cm}
 	\import{Figures/}{Control_Diagram.pdf_tex}
 	\caption{System Diagram}
 	\label{fig:System_Diagram}
 \end{figure*}
 
 \subsection{Related Work}
-Sun failures are not a new problem and has consequently been researched thoroughly. Hardware solutions to sun reflection have been developed with the use of digital sun sensors that can discriminate between direct sunlight and reflected sunlight. These digital sun sensors however, are not as accurate as many other analog sun sensors. There is also a long list of research that has been done with regards to sensor fault detection (as seen in \cite{wang2019adaptive}). One of the most relevant articles is done by \textcite{wang2019adaptive}, and proposed a adaptive unscented Kalman filter for sensor fault estimation and isolation. The results thereof seems promising and is based on dramatical changes in the measurements. However, even for sun reflection, the measurement change occurs often and the control of the satellite also changes with it. Therefore future work might be to use the algorithm developed by \textcite{wang2019adaptive} to test the response thereof on sun reflection.
+Sun reflection is not a new problem and has consequently been researched thoroughly. Hardware solutions to sun reflection have been developed with the use of digital sun sensors that can discriminate between direct sunlight and reflected sunlight. These digital sun sensors however, are not as accurate as many other analog sun sensors. There is also a long list of research that has been done with regards to sensor fault detection (as seen in \cite{wang2019adaptive}). One of the most relevant articles is done by \textcite{wang2019adaptive}, and proposed a adaptive unscented Kalman filter for sensor fault estimation and isolation. The results thereof seems promising and are based on dramatical changes in the measurements. However, the research does not seem to include sensor fusion, but only requires the true estimation from the single occurence of an anomaly in a sensor measurement. Therefore, future work might be to use the algorithm developed by \textcite{wang2019adaptive} to test the response thereof on sun reflection, noting that sun reflection occurs regularly during the sunlight phase of the orbit as well as the fact that normal satellite operations use sensor fusion to create an accurate estimation.
 
-Other research that is used for feature extraction in this article is based on research done by \textcite{DeSilva2020}. Fault prediction is done by implementing an innovative moving average, determined by the error estimated by a dynamic mode decomposition and a kalman filter, as a input to a predictive model --- decision tree. The method is tested on various physics based models.
+Other research that is used for feature extraction in this article is based on research done by \textcite{DeSilva2020}. Fault prediction is done by implementing an innovative moving average, determined by the error estimated with dynamic mode decomposition, \emph{DMD}, and a kalman filter, as a input to a predictive model --- decision tree. The method however is adjusted for our use case to be a linear regression model instead of DMD.
 
 \subsection{Preliminaries}
-The details of satellite dynamics will not be discussed in this article, however it must be noted that orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article will be matrices, as a upper-case letter in bold, $\mathbf{A}$, vectors, as lower case letters in bold, $\mathbf{a}$ and scalar values as lower case letters, $a$. All vectors values will be given in the order $[x, y, z]$.
+The details of satellite dynamics will not be discussed in this article, however it must be noted that orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article is matrices in upper case and bold, vectors in lower case and bold and scalars as lower or upper case but not in bold as illustrated below.
+\begin{itemize}
+	\item{\makebox[1.5cm]{Matrix\hfill} $\mathbf{A}$}
+	\item{\makebox[1.5cm]{Vector\hfill} $\mathbf{a} = \begin{bmatrix} 
+			x & y & z
+		\end{bmatrix}$}
+	\item{\makebox[1.5cm]{Scalar\hfill} $a$ or $A$}
+\end{itemize}
+
+This will be the notation throughout this article unless specified otherwise. 
 
 \section{Reflection}
 \label{section:Reflection}
@@ -131,14 +139,14 @@ The reflection anomaly is modelled for any dimensions but with the specific shap
 	\label{fig:LineIntersection}
 \end{figure*}
 
-The assumption is made that the solar panel can be modelled as a plane. Therefore light that hits the solar panel will reflect as if it hits a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel hits the sun sensor, the sun sensor will then default to the reflection ray instead of the modelled sun vector. The reflected sun vector, $R$, can be calculated as
+The assumption is made that the solar panel can be modelled as a plane. Therefore light from the solar panel will reflect similarly to a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel is detected by the sun sensor, the measured sun vector will default to the reflection ray instead of the direct sun vector. Therefore the intensity of the light vector is disregarded. The reflected sun vector, $r$, can be calculated as
 \begin{equation}
-	R = V - 2N^T(V \cdot N)
+	\mathbf{r} = \mathbf{v} - 2\mathbf{n}^T(\mathbf{v} \cdot \mathbf{n})
 \end{equation}
-Where $V$ is the incoming sun vector and $N$ is the normal vector to the plane $ABCD$ of the solar panel as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $XWYZ$ of the sun sensor the intersecting point the equation of the plane, reflected vector and the point of origin is required. The equation for a plane can be denoted as 
+Where $\mathbf{v}$ is the incoming sun vector and $\mathbf{n}$ is the normal vector to the plane $ABCD$ of the solar panel as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $XWYZ$ of the sun sensor the intersecting point the equation of the plane, reflected vector and the point of origin is required. The equation for a plane can be denoted as 
 
 \begin{equation}
-	P = ax + by + cz = d
+	\mathbf{p} = ax + by + cz + d
 	\label{eq:Plane}
 \end{equation}
 where $x, y and z$ are the dimensions in the SBC frame. The reflected unit vector can also be translated to 
@@ -151,7 +159,7 @@ where $x, y and z$ are the dimensions in the SBC frame. The reflected unit vecto
 	\end{aligned}
 \label{eq:LineOfVector}
 \end{equation}
-where the coefficients, $\alpha$, $\beta$ and $\zeta$ are the values of the reflected unit vector in each respective dimension. Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the reflected vector, we can calculate $t$, by substituting $x, y \& z$ into Eq~\ref{eq:Plane}. This can be done since we determine the equation of the plane for the surface $XYZW$ based on our design. Thereafter, the intersecting point with the plane $XYZW$ can be calculated as
+where the coefficients, $\alpha$, $\beta$ and $\zeta$ are the values of the reflected unit vector in each respective dimension. Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the reflected vector, we can calculate $t$, by substituting $x$, $y$ and $z$ into Eq~\ref{eq:Plane}. This is possible, because we determine the equation of the plane for the surface $XYZW$ based on our design. Thereafter, the intersecting point with the plane $XYZW$ can be calculated as
 
 \begin{equation}
 	P(x, y, z) = (o_1 + \alpha t, o_2 + \beta t, o_3 + \zeta t)
@@ -164,14 +172,15 @@ where $o_1, o_2, o_3$ is the position of origin. Which in this case is the posit
 	\label{eq:SpecificIntersection}
 \end{equation}
 
-To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor are to be taken into account. From Figure~\ref{fig:ReflectionPoints} it is evident that if the solar panel reflects on $Y$ that the reflection will also cover $X$. The same is true for corner $Z$ and $W$. Since $C'$ will be at the exact same position as $C$, which is also true for $D'$ and $D$, the calculation thereof can be omitted. Therefore it is only necessary to calculate the reflected positions $A'$ and $B'$. This simplifies the reflection model significantly.
+To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor are to be taken into account. From Figure~\ref{fig:LineIntersection} it is evident that if the solar panel reflects on $Y$ that the reflection will also cover $X$. The same is true for corner $Z$ and $W$. Since $C'$ will be at the exact same position as $C$, which is also true for $D'$ and $D$, the calculation thereof can be omitted. Therefore it is only necessary to calculate the reflected positions $A'$ and $B'$. This simplifies the reflection model significantly.
 
-The reflected position $A'$ can be calculated as the intersection of the reflected vector $R$ with plane $XYZW$ using Eq~\ref{eq:Intersection}. We also know the position of $A$, based on the satellite design and can therefore calculate $A'$. The same applies to $B$ and $B'$. To then determine whether $Y$ or $X$ is within the region of reflection, we assume that the plane $XYWZ$ is a 2D plane and we omit the third dimension. Therefore, the axis changes from $x, y, z$ to only $x, y$. We calculate whether $x$ is between the lines of $A'D'$ and $B'C$ as well as between the lines $ACD$ and $A'B'$. By determining the line equation between reflected points in the form 
+The reflected position $A'$ can be calculated as the intersection of the reflected vector $R$ with plane $XYZW$ using Eq~\ref{eq:Intersection}. We also know the position of $A$, based on the satellite design and can therefore calculate $A'$. The same applies to $B$ and $B'$. To then determine whether $Y$ or $X$ is within the region of reflection, we assume that the plane $XYWZ$ is a 2D plane and we omit the third dimension. Therefore, the axis changes from $x, y, z$ to only $x, y$. We calculate whether $x$ is between the lines of $A'D'$ and $B'C$ as well as between the lines $CD$ and $A'B'$. By determining the line equation between reflected points in the form 
 
 \begin{equation}
 y_{A'B'} = mx_{A'B'} + c
+\label{eq:line equation}
 \end{equation}
-the corresponding $x$ or $y$ coordinate can be calculated by substituting either $X_y$ or $X_x$ in the line equation. With this the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ can be determined. Thereafter with logical if statements it can be determined whether $X$ is in the reflection zone. This is demonstrated with the logical that if $X_x$ is to the right of $X_{B'C,x}$ and to the left of $X_{A'D,x}$, as well as $X_y$ is to the above of $X_{A'B',y}$ and below of $X_{CD,y}$ then $X$ is within the reflection zone. 
+the corresponding $x$ or $y$ coordinate can be calculated by substituting either $X_y$ or $X_x$ in Eq~\ref{eq:line equation}. With this the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ can be determined. Thereafter with logical if statements it can be determined whether $X$ is in the reflection zone. This is demonstrated with the position $X$. If $X_x$ is to the right of $X_{B'C,x}$ and to the left of $X_{A'D,x}$, as well as $X_y$ is above $X_{A'B',y}$ and below $X_{CD,y}$ then $X$ is within the reflection zone. 
 
 The results for the sun vector with and without reflection is shown in Figure~\ref{fig:Sun Vector comparison}. For modelling purposes, the reflection in this example has no influence on the estimation and control of the satellite.
 
@@ -231,32 +240,32 @@ The first step to implementing a FDIR for kalman filter robustness is to detect 
 
 The proposed method by \textcite{DeSilva2020} uses Dynamic Mode Decomposition (DMD), which was originally developed by \textcite{schmid2011applications} and further expanded to include control by \textcite{proctor2016dynamic}, to provide an estimation of a sensor vector based on the previous measurement fo the sensor as well as the measurements of the other sensors in the system. DMD was first developed in the fluids community and constructs a matrix $\mathbf{A}$ to relate the state vector $x$ with the following time step of the state vector, $x_{k+1}$. The state vector in our case will be the measurement vector of the specific sensor that we want to monitor.
 \begin{equation}
-	x_{k+1} = \mathbf{A}x_k
+	\mathbf{x}_{k+1} = \mathbf{Ax}_k
 \end{equation}
-Where $x_k$ and $x_{k+1}$ over a time period will be denoted as $\mathbf{X}$ and $\mathbf{X'}$ respectively.
+Where $\mathbf{x}_k$ and $\mathbf{x}_{k+1}$ over a time period will be denoted as $\mathbf{X}$ and $\mathbf{X'}$ respectively.
 
-The method of DMD however is useful for high order systems where the calculation of $\mathbf{A}$ is computation intensive. This is not the case for our system and using DMD is not justifiable. Therefore we calculate the pseudo-inverse of $\mathbf{X}$, denote it as $\mathbf{X^{\dagger}}$, and $\mathbf{A}$ can be calculate as
+The method of DMD however is useful for high order systems where the calculation of $\mathbf{A}$ is computationally intensive. This is not the case for our system and using DMD is not justifiable. Therefore with the pseudo-inverse of $\mathbf{X}$, denote it as $\mathbf{X^{\dagger}}$, we calculate $\mathbf{A}$ as
 \begin{equation}
 	\mathbf{A} = \mathbf{X}\mathbf{X^{\dagger}}
 \end{equation}
-This necessitates the required data for the state vector. The article by \textcite{DeSilva2020} however includes the $\mathbf{B}$ to relate the vector measurements of the other sensors to adjust the predicted state, $x_{k+1}$ of the monitored sensor. 
+This necessitates the required data for the state vector. The article by \textcite{DeSilva2020} however includes the $\mathbf{B}$ to relate the vector measurements of the other sensors to adjust the predicted state, $X_{k+1}$ of the monitored sensor. 
 \begin{equation}
-	x_{k+1} = \boldsymbol{A}x_k + \boldsymbol{B}y_k
+	\mathbf{X}_{k+1} = \mathbf{AX}_k + \mathbf{BY}_k
 	\label{control DMD}
 \end{equation}
-Where $y_k$ is the other sensor measurements. This is adjusted for our use case, where $y_k$ is the control inputs for the magnetotorquers and reaction wheels and $x_k$ is all of the sensor measurements. Consequently, the model of \ref{control DMD} denotes the prediction of the sensor measurements in time step $k+1$ based on the current sensor measurements and control inputs.
-Thereafter, as implemented by \textcite{DeSilva2020} the model is adjusted by with a Kalman Filter. From $\boldsymbol{A}$ and $\boldsymbol{B}$ the Kalman filter can be implemented to predict $x_{k+1}$
+Where $\mathbf{Y}_k$ is the other sensor measurements. This is adjusted for our use case, where $\mathbf{Y}_k$ is the control torques for the magnetorquers and reaction wheels, while $\mathbf{X}_k$ is all of the sensor measurements. Consequently, the model of \ref{control DMD} denotes the prediction of the sensor measurements at time step $k+1$ based on the current sensor measurements and control inputs.
+Thereafter, as implemented by \textcite{DeSilva2020} the model is adjusted with a Kalman Filter. From $\mathbf{A}$ and $\mathbf{B}$ the Kalman filter can be implemented to predict $\mathbf{X}_{k+1}$
 \begin{equation}
-	\hat{x}_{k+1} = A\hat{x}_k + By_k + K(x_k - \hat{x}_k)
+	\hat{\mathbf{X}}_{k+1} = \mathbf{A}\hat{\mathbf{X}}_k + \mathbf{B}\mathbf{Y}_k + K(\mathbf{X}_k - \hat{\mathbf{X}}_k)
 \end{equation}
-After  the calculation of $\hat{x}_{k+1}$ \textcite{DeSilva2020} proposes a moving average of the innovation covariance
+where $K = 0.001$. After the calculation of $\hat{\mathbf{X}}_{k+1}$ \textcite{DeSilva2020} proposes a moving average of the innovation covariance
 \begin{equation}
-	\boldsymbol{V}_k = \frac{1}{N} \sum_{i=k-N}^k (x_i - \hat{x}_i)(x_i - \hat{x}_i)^T
+	\mathbf{V}_k = \frac{1}{N} \sum_{i=k-N}^k (\mathbf{X}_i - \hat{\mathbf{X}}_i)(\mathbf{X}_i - \hat{\mathbf{X}}_i)^T
 \end{equation}
-The moving average is used as an additional input parameter for the classification of anomalies based on the $\boldsymbol{x_k}$.
+where $N$ is the number of timesteps to account for. The moving average is used as an additional input parameter for the classification of anomalies based on $\mathbf{X}$.
 
 \subsection{Classification}
-The first step of FDIR is to classify whether an anomaly exists in the current sensor data. For the proposed method, decision trees will be implemented to classify anomalies. A decision tree is a classification method that splits data samples based on a threshold of a specific input parameter. For instance to split a data samples from both a satellite orbit based on being in an eclipse or not, would be simply to measure whether the sun vector is $0$. With the assumption that the sun sensor has no anomalous behaviour.
+The first step of FDIR is to detect whether an anomaly exists in the current sensor data with binary classification. For the proposed method, decision trees and random forests will be implemented to classify anomalies. A decision tree is a classification method that splits data samples based on a threshold of a specific input parameter. For instance binary classification can be performed on data samples from a satellite orbit to determine whether the satellite was in an eclipse or not. This would simple be done by determine whether the magnitude of the sun vector is equal to $0$. The decision tree determines this split with the CART algorithm.
 
 However to split the data for the anomalies we need to decide which input parameter will be used to make the first split, root node. The Gini index provides a measure of the probability of a data sample being being wrongly classified at a given node. This can be calculated with Eq~\ref{eq:Gini index}.
 
@@ -271,7 +280,10 @@ The operator split that produces the lowest Gini index, provides the most pure s
 	\centering
 	\includegraphics[trim = {3cm 7cm 3cm 7cm},clip, width = 15cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
 	\label{fig:DecisionTree}
+	\caption{Decision Tree}
 \end{figure*}
+
+It is evident in Figure~\ref{fig:DecisionTree} that the best splits at the beginning of the tree is the sun sensor measurements as well as the moving average from the feature extraction. This makes logical sense, since the sun reflection should firstly be detected on the sun sensor measurements and the moving average indicates the changes in the linear regression model that correlates the sensors measurements.
 
 Random Forests, an method of using the prediction average of randomly sampled decision trees, is also tested and the results thereof shown in section~\ref{section:Results}.  
 
@@ -289,9 +301,7 @@ A backtrack method can be combined with both the replacement and ignore method. 
 
 \section{Testing Setup}
 To ensure repeatability of the tests conducted in this article, the github repo is provided ...
-sgp4 simulation environment. Disturbances. The testing for the FDIR methods is done by implementing a reflection model on a cubesat from the moment of launching the satellite. Therefore the recovery methods are also implemented from the beginning of the satellite orbit. The mission of the ADCS of this specific satellite is to be nadir pointing during eclipse and sun following otherwise.
-
-The simulation is run for 20 orbits, with each orbit running for 5700$s$. If a fault is induced, it is induced after the first two orbits and the specific anomaly then occurs for the following 18 orbits.
+sgp4 simulation environment is used for the position in orbit of the satellite. The disturbance torques modelled in this simulation is the aerodynamic disturbances, static and dynamic wheel disturbances, gravity gradient disturbances, and gyroscopic disturbances. The testing for the FDIR methods is done by implementing a reflection model on a cubesat from the moment of launching the satellite. Therefore the recovery methods are also implemented from the beginning of the satellite orbit. The mission of the ADCS of this specific satellite is to be nadir pointing during eclipse and sun following otherwise.
 
 \subsection{Control}
 Quaternion-feedback control with momentum dumping only during eclipse. The attitude command vector during nadir-pointing in the SBC frame is $\mathbf{u}_c = [0, 0, 1]$, since the SBC frame $z$ coordinate should line up with the ORC frame. During the sun following phase, the attitude command according to \textcite{chen2000ground} can be calculated as 
@@ -311,7 +321,7 @@ where $\mathbf{s}_o$ is the measured unit sun vector in ORC, and the main solar 
 This can then be used as the reference for the control. The reference $\omega_b^I$ is always $[0, 0, 0]$.
 
 \subsection{Dimensions of Satellite}
-The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}.
+The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}. The dimensions are shown to ensure the repeatability of the results in this article.
 
 \begin{table}[!htb]
 	\caption{\label{Table:Dimensions}Dimensions of Cubesat}
@@ -323,32 +333,43 @@ The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}.
 		\textbf{z}          & $0.4$                    & $0.002$                     & N/A                     \\ \hline
 	\end{tabular}
 \end{table}
-The Sputnix dimensions for the sun sensor are used.
+
 % https://sputnix.ru/en/equipment/cubesat-devices/sun-sensor-flight-proof-1
 % https://www.cubesatshop.com/product/nss-cubesat-sun-sensor/
 
 \subsection{Orbit Parameters}
-Low earth orbiting ($500$km)
+For Table~\ref{Unknown} the orbit parameters were randomized the ensure that the results are not for a isolated case. However, for the rest of the results and testing, the orbit parameters are given in Table~\ref{Table:OrbitParameters}. 
+	
+\begin{table}[!htb]
+	\caption{\label{Table:OrbitParameters}Parameters for Cubesat Orbit}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Revolutions per day}          & $15.2355$                    \\ \hline
+		\textbf{Inclination}          & $97.4^o$                    \\ \hline
+		\textbf{Right ascension of the ascending node} & $275^o$ \\ \hline
+	\end{tabular}
+\end{table}
 
 \subsection{Sensors}
-The sensors used for the measurement update of the Kalman filter is a magnetometer, nadir sensor, sun sensor and star tracker and the measurement update is also done in the order as listed. This is due to the noise models of the sensors, as all the sensor noise models are based on zero-mean Guassian random noise. There are two sun sensors, a coarse and fine sun sensor and both of them can experience sun reflection.
+The sensors used for the measurement update of the Kalman filter is a magnetometer, nadir sensor, sun sensor and star tracker and the measurement update is also done in the order as listed. This is due to the noise models of the sensors, as all the sensor noise models are based on zero-mean Guassian random noise. There are two sun sensors, a coarse and fine sun sensor and both of them can experience sun reflection. The field of view \emph{FOV} of the sun sensors and the nadir sensor are both $180^o$. There is however only a single nadir sensor used in the simulation.
 
 \section{Results}
 \label{section:Results}
-Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the possibilities of the recovery method.
+Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the theoretical possibilities of the recovery method.
 
 
 
 \newpage
 
 \subsection{Perfect Designed Satellite Without Reflection}
+This test is implemented for the current design with the assumption that the sun sensor will never experience sun reflection. This also indicates the best scenario for the EKF.
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/None.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC/General CubeSat Model/2Metric/None.csv};
 
 		\end{axis}
 	\end{tikzpicture}
@@ -360,108 +381,347 @@ Three scenarios are implemented, a satellite that never experiences reflection, 
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/None.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC/General CubeSat Model/2Metric/None.csv};
 			
 		\end{axis}
 	\end{tikzpicture}
 	\caption[Estimation Accuracy]{Estimation Accuracy.}
 	\label{fig:Estimation Accuracy None}
 \end{figure}
+
+\newpage
+
+\subsection{Satellite With Reflection}
+If no recovery strategy is implemented for the reflection anomaly, the EKF produces a singular matrix. Therefore there are no results for the satellite with reflection, without any recovery strategy.
+\newpage
+
+\subsection{Perfect Prediction}
+This section indicates the results for each recovery method, with the assumption that the detection method is perfect. This means that the prediction methodology will produce an accuracy of 100\%.
+
+\subsubsection{Satellite With Recovery Ignore}
+For the recovery method where the sun sensor is ignored when a failure is detected, the results are very promising. This indicates that if the prediction methodology is very accurate then the EKF will be stable and the influence of the sun reflection will be minor, and will only change the vector which the control system will follow for the sun following part of the orbit.
+
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-ignore/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
 			
 		\end{axis}
 	\end{tikzpicture}
 	\caption[Pointing Accuracy]{Pointing Accuracy.}
-	\label{fig:Pointing Accuracy with Reflection and no recovery}
+	\label{fig:Pointing Accuracy EKF-reset}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-ignore/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
 			
 		\end{axis}
 	\end{tikzpicture}
 	\caption[Estimation Accuracy]{Estimation Accuracy.}
-	\label{fig:Estimation Accuracy with Reflection and no recovery}
+	\label{fig:Estimation Accuracy EKF-reset}
 \end{figure}
+
+\newpage
+
+\subsubsection{Satellite With Recovery Reset}
+From these results it is quite clear that just resetting and backtracking the EKF when a failure is detected will not stabilize the EKF.
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-reset/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
 			
 		\end{axis}
 	\end{tikzpicture}
 	\caption[Pointing Accuracy]{Pointing Accuracy.}
-	\label{fig:Pointing Accuracy with PERFECT recovery}
+	\label{fig:Pointing Accuracy EKF-ignore}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-reset/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
 			
 		\end{axis}
 	\end{tikzpicture}
-	\caption[Pointing Accuracy]{Pointing Accuracy.}
-	\label{fig:Estimation Accuracy with PERFECT recovery}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy EKF-ignore}
 \end{figure}
+
+\newpage
+
+\subsubsection{Satellite With Recovery Combination}
+The combination of ignoring the sensor measurement and resetting the EKF does not produce satisfactory results.
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-combination/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
 			
 		\end{axis}
 	\end{tikzpicture}
 	\caption[Pointing Accuracy]{Pointing Accuracy.}
-	\label{fig:Pointing Accuracy Proposed Method}
+	\label{fig:Pointing Accuracy Recovery combination}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\centering
-		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude]
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
 			
-			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF/EARTH_SUN/General CubeSat Model/Metric/Reflection.csv};
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-combination/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy Recovery combination}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beginning of decision trees
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\subsection{Decision Tree Prediction}
+Using a decision tree that is trained on data produced by a perfect satellite and a satellite with sun reflection, but with a star tracker as the last sensor in the measurement update is used to predict an anomaly.
+\subsubsection{Satellite With Recovery Ignore}
+It is evident that with a decision tree model, the recovery method of ignoring the sun sensor when an anomaly is detected works very well.
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF-ignore/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
 			
 		\end{axis}
 	\end{tikzpicture}
 	\caption[Pointing Accuracy]{Pointing Accuracy.}
-	\label{fig:Estimation Accuracy Proposed Method}
+	\label{fig:Pointing Accuracy DecisionTree EKF-reset}
 \end{figure}
 
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF-ignore/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy DecisionTree EKF-reset}
+\end{figure}
+
+\newpage
+
+\subsubsection{Satellite With Recovery Reset}
+Not satisfactory
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF-reset/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy DecisionTree EKF-ignore}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF-reset/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy DecisionTree EKF-ignore}
+\end{figure}
+
+\newpage
+
+\subsubsection{Satellite With Recovery Combination}
+Not satisfactory
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF-combination/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy DecisionTree Recovery combination}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-DecisionTrees/Isolator-DecisionTrees/Recovery-EKF-combination/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy DecisionTree Recovery combination}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beginning of Random Forest
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\subsection{Random Forest Prediction}
+Using a random forest that is trained on data produced by a perfect satellite and a satellite with sun reflection, but with a star tracker as the last sensor in the measurement update is used to predict an anomaly.
+\subsubsection{Satellite With Recovery Ignore}
+It is evident that with a random forest model, the recovery method of ignoring the sun sensor when an anomaly is detected works very well.
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-RandomForest/Isolator-RandomForest/Recovery-EKF-ignore/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy RandomForest EKF-reset}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-RandomForest/Isolator-RandomForest/Recovery-EKF-ignore/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy RandomForest EKF-reset}
+\end{figure}
+
+\newpage
+
+\subsubsection{Satellite With Recovery Reset}
+not satisfactory
+\begin{figure}[h!tb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-RandomForest/Isolator-RandomForest/Recovery-EKF-reset/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy RandomForest EKF-ignore}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-RandomForest/Isolator-RandomForest/Recovery-EKF-reset/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy RandomForest EKF-ignore}
+\end{figure}
+
+\newpage
+
+\subsubsection{Satellite With Recovery Combination}
+not satisfactory
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between reference and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Pointing Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-RandomForest/Isolator-RandomForest/Recovery-EKF-combination/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\label{fig:Pointing Accuracy RandomForest Recovery combination}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), xlabel = Time (s), forget plot style={opacity=0.2}, title = Degrees between estimated and actual attitude, ymin=0, ymax=180]
+			
+			\addplot[line width=1pt,color=blue, each nth point=5, draw opacity=0.7,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Estimation Metric, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-RandomForest/Isolator-RandomForest/Recovery-EKF-combination/EARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv};
+			
+		\end{axis}
+	\end{tikzpicture}
+	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\label{fig:Estimation Accuracy RandomForest Recovery combination}
+\end{figure}
+
+\newpage
 \begin{table}[]
-	\begin{tabular}{|l|l|l|ll}
-		\cline{1-3}
-		\multicolumn{1}{|c|}{\textbf{Orbits}} & \textbf{1}         & \textbf{1}         &  &  \\ \cline{1-3}
-		\multicolumn{1}{|c|}{Metric}          & Mean               & Std                &  &  \\ \cline{1-3}
-		DecisionTrees                         & 18.292514745477845 & 28.632580144211847 &  &  \\ \cline{1-3}
-		Perfect                               & 16.472394692952275 & 25.782235910658237 &  &  \\ \cline{1-3}
-		None                                  & 16.472394692952275 & 25.782235910658237 &  &  \\ \cline{1-3}
+	\begin{tabular}{|l|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|ll|}
+		\hline
+		\textbf{Orbits}                                       & \multicolumn{2}{c|}{\textbf{1}}                                                & \multicolumn{2}{c|}{\textbf{2}}                                                & \multicolumn{2}{c|}{\textbf{3}}                                                & \multicolumn{2}{c|}{\textbf{4}}                                                & \multicolumn{2}{c|}{\textbf{5}}                                                & \multicolumn{2}{c|}{\textbf{6}}                                                & \multicolumn{2}{c|}{\textbf{7}}                                                & \multicolumn{2}{c|}{\textbf{8}}                                                & \multicolumn{2}{c|}{\textbf{9}}                                                & \multicolumn{2}{c|}{\textbf{10}}                                               & \multicolumn{2}{c|}{\textbf{11}}                                               & \multicolumn{2}{c|}{\textbf{12}}                                               & \multicolumn{2}{c|}{\textbf{13}}                                               & \multicolumn{2}{c|}{\textbf{14}}                                               & \multicolumn{2}{c|}{\textbf{15}}                                               & \multicolumn{2}{c|}{\textbf{16}}                                               & \multicolumn{2}{c|}{\textbf{17}}                                               & \multicolumn{2}{c|}{\textbf{18}}                                               & \multicolumn{2}{c|}{\textbf{19}}                                               & \multicolumn{2}{c|}{\textbf{20}}                                              & \multicolumn{2}{c|}{\textbf{21}}                                               & \multicolumn{2}{c|}{\textbf{22}}                                               & \multicolumn{2}{c|}{\textbf{23}}                                               & \multicolumn{2}{c|}{\textbf{24}}                                               & \multicolumn{2}{c|}{\textbf{25}}                                               & \multicolumn{2}{c|}{\textbf{26}}                                               & \multicolumn{2}{c|}{\textbf{27}}                                               & \multicolumn{2}{c|}{\textbf{28}}                                               & \multicolumn{2}{c|}{\textbf{29}}                                               & \multicolumn{2}{c|}{\textbf{30}}                                               \\ \hline
+		\textbf{Metric}                                       & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}               & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                & \multicolumn{1}{l|}{\textbf{Mean}}               & \textbf{Std}                \\ \hline
+		\textbf{DMDDecisionTreesDecisionTreesEKF-ignore}      & \multicolumn{1}{l|}{\textbf{21.560363652145615}} & \textbf{32.975007904343414} & \multicolumn{1}{l|}{\textbf{17.143218590195218}} & \textbf{26.769946235771414} & \multicolumn{1}{l|}{\textbf{15.422151920121392}} & \textbf{24.66011865532134}  & \multicolumn{1}{l|}{\textbf{14.501991623015716}} & \textbf{23.575511782762216} & \multicolumn{1}{l|}{\textbf{14.02923697327258}}  & \textbf{22.87874111663558}  & \multicolumn{1}{l|}{\textbf{13.738326231247333}} & \textbf{22.398992631503713} & \multicolumn{1}{l|}{\textbf{13.543983797816953}} & \textbf{22.153089974154604} & \multicolumn{1}{l|}{\textbf{13.390669994684835}} & \textbf{21.951236010183784} & \multicolumn{1}{l|}{\textbf{13.241913273240172}} & \textbf{21.78834901900012}  & \multicolumn{1}{l|}{\textbf{13.129150755708693}} & \textbf{21.594862708057946} & \multicolumn{1}{l|}{\textbf{13.007564613955276}} & \textbf{21.496923686252877} & \multicolumn{1}{l|}{\textbf{12.95682585391886}}  & \textbf{21.400513111028157} & \multicolumn{1}{l|}{\textbf{12.917229955828507}} & \textbf{21.34925070192658}  & \multicolumn{1}{l|}{\textbf{12.829576401869868}} & \textbf{21.24953631805712}  & \multicolumn{1}{l|}{\textbf{12.7651485894751}}   & \textbf{21.203449405062397} & \multicolumn{1}{l|}{\textbf{12.735461438633248}} & \textbf{21.159203362609144} & \multicolumn{1}{l|}{\textbf{12.69024822134773}}  & \textbf{21.125976770364687} & \multicolumn{1}{l|}{\textbf{12.641633857417364}} & \textbf{21.10305204748836}  & \multicolumn{1}{l|}{\textbf{12.623685384274179}} & \textbf{21.076873064415494} & \multicolumn{1}{l|}{\textbf{12.60148680331333}}  & \textbf{21.06457575189244} & \multicolumn{1}{l|}{\textbf{12.598523495614446}} & \textbf{21.008035946821124} & \multicolumn{1}{l|}{\textbf{12.55961827270098}}  & \textbf{20.978710217703867} & \multicolumn{1}{l|}{\textbf{12.54104394462306}}  & \textbf{20.95652290951882}  & \multicolumn{1}{l|}{\textbf{12.500486822373205}} & \textbf{20.939953364596793} & \multicolumn{1}{l|}{\textbf{12.450826540403025}} & \textbf{20.912276815417666} & \multicolumn{1}{l|}{\textbf{12.454004226333165}} & \textbf{20.87456969668859}  & \multicolumn{1}{l|}{\textbf{12.457653257209786}} & \textbf{20.869550141522502} & \multicolumn{1}{l|}{\textbf{12.458669855738313}} & \textbf{20.852163769943697} & \multicolumn{1}{l|}{\textbf{12.452338952459765}} & \textbf{20.823865644641224} & \multicolumn{1}{l|}{\textbf{12.436880370032794}} & \textbf{20.787528413520285} \\ \hline
+		\textbf{DMDDecisionTreesDecisionTreesEKF-combination} & \multicolumn{1}{l|}{38.230819839577144}          & 39.694298828901395          & \multicolumn{1}{l|}{32.254398490017955}          & 33.63125702480157           & \multicolumn{1}{l|}{41.74375394964412}           & 39.030349827901965          & \multicolumn{1}{l|}{41.20714122375462}           & 39.402748592582206          & \multicolumn{1}{l|}{44.80655439120093}           & 39.304142271176524          & \multicolumn{1}{l|}{44.15404296328356}           & 37.309934962043805          & \multicolumn{1}{l|}{45.41328116588992}           & 36.724391909720744          & \multicolumn{1}{l|}{45.26122037901217}           & 36.969870855684285          & \multicolumn{1}{l|}{46.22920495762477}           & 36.72468412056229           & \multicolumn{1}{l|}{47.324861531154916}          & 37.14039943595239           & \multicolumn{1}{l|}{48.68130405969387}           & 37.16356987678761           & \multicolumn{1}{l|}{50.11198705996156}           & 37.28214842018171           & \multicolumn{1}{l|}{49.14104215449723}           & 37.38197671320729           & \multicolumn{1}{l|}{50.404315700898685}          & 38.23338890537973           & \multicolumn{1}{l|}{49.92292932993978}           & 38.186206702619984          & \multicolumn{1}{l|}{48.882720562743714}          & 37.782565899617325          & \multicolumn{1}{l|}{50.18514864126249}           & 38.320209325368566          & \multicolumn{1}{l|}{50.168504595832815}          & 38.563866159064716          & \multicolumn{1}{l|}{50.19268286356112}           & 38.72730450841125           & \multicolumn{1}{l|}{49.75141807192385}           & 38.935925394992246         & \multicolumn{1}{l|}{49.67181274783919}           & 39.14188184740399           & \multicolumn{1}{l|}{49.37551950860711}           & 39.15796589037953           & \multicolumn{1}{l|}{49.47852459713297}           & 39.31781747454955           & \multicolumn{1}{l|}{49.52470547780816}           & 39.459321855883225          & \multicolumn{1}{l|}{49.63936849887016}           & 39.517057493197704          & \multicolumn{1}{l|}{49.687080361021195}          & 39.69693299093254           & \multicolumn{1}{l|}{49.85074484607424}           & 39.890133845618585          & \multicolumn{1}{l|}{50.12673484870636}           & 39.91142771257736           & \multicolumn{1}{l|}{50.251868284642434}          & 40.12823510337048           & \multicolumn{1}{l|}{50.145415389106084}          & 39.87347299537521           \\ \hline
+		\textbf{DMDDecisionTreesDecisionTreesEKF-reset}       & \multicolumn{1}{l|}{59.99853420860456}           & 40.87417441723783           & \multicolumn{1}{l|}{62.01836969618728}           & 42.83484750145172           & \multicolumn{1}{l|}{62.53302738657396}           & 42.00411838492329           & \multicolumn{1}{l|}{63.303906382187535}          & 41.242601229450244          & \multicolumn{1}{l|}{61.20319463351734}           & 42.72513685612125           & \multicolumn{1}{l|}{59.88608587894628}           & 43.186451273080074          & \multicolumn{1}{l|}{57.65619049697601}           & 41.962604282450876          & \multicolumn{1}{l|}{58.74267073214323}           & 42.09946655387887           & \multicolumn{1}{l|}{58.801197526667615}          & 41.52282296286245           & \multicolumn{1}{l|}{59.67773375895871}           & 41.43892175026284           & \multicolumn{1}{l|}{59.523337639216386}          & 41.70381091331108           & \multicolumn{1}{l|}{61.082603889909166}          & 41.82929936774618           & \multicolumn{1}{l|}{62.86252780877938}           & 41.53859920816214           & \multicolumn{1}{l|}{63.920792018288395}          & 41.51884551575522           & \multicolumn{1}{l|}{64.31925027430279}           & 42.01374755286914           & \multicolumn{1}{l|}{65.16274072447835}           & 41.92176709170204           & \multicolumn{1}{l|}{66.28354526516863}           & 41.944195650200626          & \multicolumn{1}{l|}{65.322577175086}             & 41.71511575425011           & \multicolumn{1}{l|}{66.68099087200638}           & 41.693985997862036          & \multicolumn{1}{l|}{67.1300639912517}            & 41.550293497512904         & \multicolumn{1}{l|}{66.89539379633788}           & 41.584488177107154          & \multicolumn{1}{l|}{67.15591488809258}           & 41.41047292618804           & \multicolumn{1}{l|}{66.54924185487121}           & 41.437270184629796          & \multicolumn{1}{l|}{66.35371691491524}           & 41.48694239296814           & \multicolumn{1}{l|}{65.96901720012951}           & 41.45525933118566           & \multicolumn{1}{l|}{65.85756742232034}           & 41.592340130248935          & \multicolumn{1}{l|}{66.2577824492371}            & 41.80709237578987           & \multicolumn{1}{l|}{65.38690179365872}           & 41.65223715996395           & \multicolumn{1}{l|}{65.965157926472}             & 41.564044800333775          & \multicolumn{1}{l|}{65.6371192249475}            & 41.652765195630714          \\ \hline
+		\textbf{DMDDecisionTreesDecisionTreesEKF-replacement} & \multicolumn{1}{l|}{56.623204593573625}          & 45.46255873193577           & \multicolumn{1}{l|}{61.23408174861099}           & 48.411672648178886          & \multicolumn{1}{l|}{61.83504659092106}           & 47.14230423977127           & \multicolumn{1}{l|}{60.125294771236966}          & 46.56539375939362           & \multicolumn{1}{l|}{59.653315079476954}          & 46.59424744405997           & \multicolumn{1}{l|}{58.386190843909276}          & 45.48215930683964           & \multicolumn{1}{l|}{58.8555311616884}            & 45.7651087418641            & \multicolumn{1}{l|}{58.30675867646963}           & 45.11970778130342           & \multicolumn{1}{l|}{57.532778732850375}          & 44.716689720836946          & \multicolumn{1}{l|}{56.23470637140823}           & 44.611907046086934          & \multicolumn{1}{l|}{57.08257003269734}           & 44.56311059048978           & \multicolumn{1}{l|}{56.808979772787985}          & 44.53035181396418           & \multicolumn{1}{l|}{57.11564249049446}           & 44.89209350493458           & \multicolumn{1}{l|}{56.32299697532953}           & 44.79241228485028           & \multicolumn{1}{l|}{56.09520366070137}           & 44.78436307953219           & \multicolumn{1}{l|}{56.22380167996232}           & 44.899304719699565          & \multicolumn{1}{l|}{55.97735916677475}           & 44.84945226009582           & \multicolumn{1}{l|}{55.718892559248246}          & 44.88858339143191           & \multicolumn{1}{l|}{56.44533994844271}           & 45.25368417730444           & \multicolumn{1}{l|}{56.708676103882546}          & 45.57828491697155          & \multicolumn{1}{l|}{56.631766240809796}          & 45.66686434459124           & \multicolumn{1}{l|}{56.4448583295231}            & 45.45662765339965           & \multicolumn{1}{l|}{56.02396797448701}           & 45.359276610769534          & \multicolumn{1}{l|}{56.59594842960043}           & 45.60573318348378           & \multicolumn{1}{l|}{57.06741927903417}           & 45.681520408573114          & \multicolumn{1}{l|}{56.7520682022508}            & 45.58976691366949           & \multicolumn{1}{l|}{56.55082816476405}           & 45.59236979723286           & \multicolumn{1}{l|}{55.97445527919826}           & 45.30471890506163           & \multicolumn{1}{l|}{56.03541596356867}           & 45.38808338896709           & \multicolumn{1}{l|}{56.326738924277365}          & 45.455400083760956          \\ \hline
+		\textbf{DMDRandomForestRandomForestEKF-ignore}        & \multicolumn{1}{l|}{\textbf{16.04761072412793}}  & \textbf{25.963276422018534} & \multicolumn{1}{l|}{\textbf{13.92704343684344}}  & \textbf{23.154507180683254} & \multicolumn{1}{l|}{\textbf{13.342262617155333}} & \textbf{22.22938194441438}  & \multicolumn{1}{l|}{\textbf{13.0233733388191}}   & \textbf{21.900015848898484} & \multicolumn{1}{l|}{\textbf{12.909138192283214}} & \textbf{21.619858473388398} & \multicolumn{1}{l|}{\textbf{12.799082631665215}} & \textbf{21.336431274388072} & \multicolumn{1}{l|}{\textbf{12.783542303581536}} & \textbf{21.236258541259396} & \multicolumn{1}{l|}{\textbf{12.63120107989808}}  & \textbf{21.061601769460836} & \multicolumn{1}{l|}{\textbf{12.581904680528755}} & \textbf{21.018468610345145} & \multicolumn{1}{l|}{\textbf{12.451899695186537}} & \textbf{20.951205041890585} & \multicolumn{1}{l|}{\textbf{12.44395369842956}}  & \textbf{20.876389845482482} & \multicolumn{1}{l|}{\textbf{12.393500895245623}} & \textbf{20.83136000258273}  & \multicolumn{1}{l|}{\textbf{12.34222620940662}}  & \textbf{20.77809300198532}  & \multicolumn{1}{l|}{\textbf{12.314793382557014}} & \textbf{20.753185217862722} & \multicolumn{1}{l|}{\textbf{12.273136139013618}} & \textbf{20.742488549928623} & \multicolumn{1}{l|}{\textbf{12.238998964718359}} & \textbf{20.725724824826276} & \multicolumn{1}{l|}{\textbf{12.229969115117381}} & \textbf{20.701558931155052} & \multicolumn{1}{l|}{\textbf{12.230254743842089}} & \textbf{20.686035653407156} & \multicolumn{1}{l|}{\textbf{12.230826739808345}} & \textbf{20.70525372648898}  & \multicolumn{1}{l|}{\textbf{12.223660657995156}} & \textbf{20.67980787291267} & \multicolumn{1}{l|}{\textbf{12.238841375057529}} & \textbf{20.636572070607787} & \multicolumn{1}{l|}{\textbf{12.252479896582857}} & \textbf{20.625905186654204} & \multicolumn{1}{l|}{\textbf{12.268311095508468}} & \textbf{20.60162186534031}  & \multicolumn{1}{l|}{\textbf{12.271711524895549}} & \textbf{20.611437043287392} & \multicolumn{1}{l|}{\textbf{12.25262145001343}}  & \textbf{20.573422033433776} & \multicolumn{1}{l|}{\textbf{12.232642910358786}} & \textbf{20.561019657144584} & \multicolumn{1}{l|}{\textbf{12.214457820124855}} & \textbf{20.56406913483301}  & \multicolumn{1}{l|}{\textbf{12.20873177241771}}  & \textbf{20.532469123111422} & \multicolumn{1}{l|}{\textbf{12.210240792405703}} & \textbf{20.535801226840046} & \multicolumn{1}{l|}{\textbf{12.18640846755499}}  & \textbf{20.523028228114416} \\ \hline
+		\textbf{DMDRandomForestRandomForestEKF-combination}   & \multicolumn{1}{l|}{26.373562678136896}          & 34.948971895055934          & \multicolumn{1}{l|}{24.867985811906024}          & 30.30769127945974           & \multicolumn{1}{l|}{25.140562364966385}          & 29.39665503407416           & \multicolumn{1}{l|}{24.94337492945727}           & 29.465421451398846          & \multicolumn{1}{l|}{24.331071091251737}          & 28.975116354952398          & \multicolumn{1}{l|}{24.669562343388918}          & 29.976859452722778          & \multicolumn{1}{l|}{25.480225662348012}          & 30.996063466577898          & \multicolumn{1}{l|}{25.873276601253117}          & 31.333915220154495          & \multicolumn{1}{l|}{27.34575513289774}           & 32.03800677641676           & \multicolumn{1}{l|}{26.929120766747992}          & 31.50913564332749           & \multicolumn{1}{l|}{28.375529873715525}          & 32.97072745213296           & \multicolumn{1}{l|}{28.34999313518848}           & 32.7627784693791            & \multicolumn{1}{l|}{29.450680641472328}          & 33.5571736732396            & \multicolumn{1}{l|}{28.896762384806404}          & 33.342429107190625          & \multicolumn{1}{l|}{28.552019577506822}          & 32.88014500083854           & \multicolumn{1}{l|}{28.503418515687283}          & 32.808508172774225          & \multicolumn{1}{l|}{28.470302023175407}          & 32.96103815410401           & \multicolumn{1}{l|}{29.37180196556001}           & 33.41439699231901           & \multicolumn{1}{l|}{29.412482695807824}          & 33.66499678105873           & \multicolumn{1}{l|}{29.120586545767345}          & 33.515828576556075         & \multicolumn{1}{l|}{28.56038539230338}           & 32.97452503048856           & \multicolumn{1}{l|}{28.55996131337528}           & 32.90265066531289           & \multicolumn{1}{l|}{28.503128740019307}          & 32.945988125589054          & \multicolumn{1}{l|}{28.215013811182136}          & 32.68445520145274           & \multicolumn{1}{l|}{27.98146239774618}           & 32.38718334226112           & \multicolumn{1}{l|}{28.012641859980015}          & 32.62586712741108           & \multicolumn{1}{l|}{29.06796587897227}           & 32.993170474308165          & \multicolumn{1}{l|}{29.528180185726484}          & 33.27550599517855           & \multicolumn{1}{l|}{29.567948642167888}          & 33.367144498883995          & \multicolumn{1}{l|}{29.21463914514735}           & 33.11511993435806           \\ \hline
+		\textbf{DMDRandomForestRandomForestEKF-reset}         & \multicolumn{1}{l|}{37.673136753902355}          & 38.05514259127991           & \multicolumn{1}{l|}{33.23921278582331}           & 33.00064890463828           & \multicolumn{1}{l|}{34.06344411054207}           & 32.29346801910301           & \multicolumn{1}{l|}{32.498963147882364}          & 31.746923362051             & \multicolumn{1}{l|}{31.592471298332207}          & 31.501870733896816          & \multicolumn{1}{l|}{38.234861438486135}          & 33.9018833976626            & \multicolumn{1}{l|}{42.101732396229714}          & 34.117684244574626          & \multicolumn{1}{l|}{42.15361915515322}           & 34.305280360820056          & \multicolumn{1}{l|}{41.68999523636329}           & 35.48383960902251           & \multicolumn{1}{l|}{40.726843675660135}          & 35.8752043596712            & \multicolumn{1}{l|}{44.4137649437441}            & 36.361166955692504          & \multicolumn{1}{l|}{44.61860824832545}           & 37.012669618983644          & \multicolumn{1}{l|}{45.84231328734293}           & 37.21756024287485           & \multicolumn{1}{l|}{46.31296714147833}           & 37.565701852300315          & \multicolumn{1}{l|}{45.58252869162574}           & 37.850441361908786          & \multicolumn{1}{l|}{45.037362429053594}          & 38.046745836120024          & \multicolumn{1}{l|}{44.51492106197787}           & 38.27611362477208           & \multicolumn{1}{l|}{43.54656440583207}           & 37.81923650143947           & \multicolumn{1}{l|}{43.78789242055319}           & 37.493715865011175          & \multicolumn{1}{l|}{43.773662848872334}          & 37.63926648701134          & \multicolumn{1}{l|}{43.32634567626312}           & 37.64537815468969           & \multicolumn{1}{l|}{43.42309434066946}           & 37.95207424909412           & \multicolumn{1}{l|}{43.894821241226666}          & 38.01384388291181           & \multicolumn{1}{l|}{43.561633687606644}          & 38.15305673715153           & \multicolumn{1}{l|}{43.025600692053416}          & 37.96233323126149           & \multicolumn{1}{l|}{42.67104409920424}           & 37.9456037834819            & \multicolumn{1}{l|}{41.83742807214271}           & 37.432998983354096          & \multicolumn{1}{l|}{41.61253748691791}           & 37.114997413113414          & \multicolumn{1}{l|}{41.49815224476356}           & 37.288712148016735          & \multicolumn{1}{l|}{42.43144882849058}           & 37.32533598056077           \\ \hline
+		\textbf{DMDPERFECTPERFECTEKF-ignore}                  & \multicolumn{1}{l|}{\textbf{14.711911839265026}} & \textbf{25.84658595291393}  & \multicolumn{1}{l|}{\textbf{13.416681034800856}} & \textbf{23.172069448739414} & \multicolumn{1}{l|}{\textbf{12.885144835395856}} & \textbf{22.248908259826177} & \multicolumn{1}{l|}{\textbf{12.572511918786683}} & \textbf{21.591964887775024} & \multicolumn{1}{l|}{\textbf{12.452128535599638}} & \textbf{21.259430234691905} & \multicolumn{1}{l|}{\textbf{12.354301655849204}} & \textbf{21.021552353729046} & \multicolumn{1}{l|}{\textbf{12.395412273775898}} & \textbf{20.81222818630008}  & \multicolumn{1}{l|}{\textbf{12.483634639319114}} & \textbf{20.755329605983263} & \multicolumn{1}{l|}{\textbf{12.407204638313248}} & \textbf{20.703175392907625} & \multicolumn{1}{l|}{\textbf{12.369070163864727}} & \textbf{20.64761490827767}  & \multicolumn{1}{l|}{\textbf{12.322391215209207}} & \textbf{20.59592806941598}  & \multicolumn{1}{l|}{\textbf{12.314267061786424}} & \textbf{20.56002384296898}  & \multicolumn{1}{l|}{\textbf{12.335900597621402}} & \textbf{20.525442564284734} & \multicolumn{1}{l|}{\textbf{12.308610152167608}} & \textbf{20.49255677595437}  & \multicolumn{1}{l|}{\textbf{12.286241859653378}} & \textbf{20.48992319839236}  & \multicolumn{1}{l|}{\textbf{12.259953092600067}} & \textbf{20.440229404211006} & \multicolumn{1}{l|}{\textbf{12.247369039544614}} & \textbf{20.424374508149196} & \multicolumn{1}{l|}{\textbf{12.230325022761903}} & \textbf{20.3847818249572}   & \multicolumn{1}{l|}{\textbf{12.215314296433007}} & \textbf{20.38916891986327}  & \multicolumn{1}{l|}{\textbf{12.221248028830697}} & \textbf{20.41935651063136} & \multicolumn{1}{l|}{\textbf{12.22724853599613}}  & \textbf{20.390087966592038} & \multicolumn{1}{l|}{\textbf{12.218999706843531}} & \textbf{20.376165911404396} & \multicolumn{1}{l|}{\textbf{12.215962519929672}} & \textbf{20.366038725326792} & \multicolumn{1}{l|}{\textbf{12.231483724457163}} & \textbf{20.411788894428863} & \multicolumn{1}{l|}{\textbf{12.231145737128633}} & \textbf{20.42577330622155}  & \multicolumn{1}{l|}{\textbf{12.195460753690044}} & \textbf{20.40699506774672}  & \multicolumn{1}{l|}{\textbf{12.168679893530593}} & \textbf{20.396161712963337} & \multicolumn{1}{l|}{\textbf{12.174201166690336}} & \textbf{20.388037876430904} & \multicolumn{1}{l|}{\textbf{12.162951890633579}} & \textbf{20.384282880868838} & \multicolumn{1}{l|}{\textbf{12.187797554034171}} & \textbf{20.38222785386886}  \\ \hline
+		\textbf{DMDPERFECTPERFECTEKF-combination}             & \multicolumn{1}{l|}{57.83790364156211}           & 44.26026391922792           & \multicolumn{1}{l|}{55.27705977646197}           & 44.14273007622369           & \multicolumn{1}{l|}{53.83405549262458}           & 44.42951030822896           & \multicolumn{1}{l|}{52.66888727326446}           & 43.092179213207004          & \multicolumn{1}{l|}{52.85206827142762}           & 43.66267374134512           & \multicolumn{1}{l|}{52.729160339308756}          & 43.17770541787812           & \multicolumn{1}{l|}{55.6041025379462}            & 42.50308653150398           & \multicolumn{1}{l|}{54.63388545029889}           & 42.260366827266324          & \multicolumn{1}{l|}{54.76654400375113}           & 41.89650019407998           & \multicolumn{1}{l|}{55.820446523925774}          & 42.12532890863314           & \multicolumn{1}{l|}{55.24688939461878}           & 42.174287981457596          & \multicolumn{1}{l|}{55.39778546295674}           & 42.24315682735395           & \multicolumn{1}{l|}{53.90626868627126}           & 41.4654749376335            & \multicolumn{1}{l|}{54.67389854322609}           & 41.8878684656703            & \multicolumn{1}{l|}{54.76902469417742}           & 41.521271955187096          & \multicolumn{1}{l|}{54.81127155176425}           & 41.343331716175534          & \multicolumn{1}{l|}{54.93171683332973}           & 41.73048397212663           & \multicolumn{1}{l|}{55.4182324641282}            & 41.438671508188605          & \multicolumn{1}{l|}{54.77115868265129}           & 41.135417331788624          & \multicolumn{1}{l|}{53.80010231253696}           & 41.11840025554163          & \multicolumn{1}{l|}{54.67576280326435}           & 40.91642757555384           & \multicolumn{1}{l|}{54.45848102082528}           & 40.79864702478484           & \multicolumn{1}{l|}{54.43395470284225}           & 40.86647041506604           & \multicolumn{1}{l|}{53.89425761528326}           & 40.951746428902865          & \multicolumn{1}{l|}{54.263836717711804}          & 41.11805855401449           & \multicolumn{1}{l|}{54.87183014059493}           & 41.1534227408488            & \multicolumn{1}{l|}{54.47451735279696}           & 40.98792460078011           & \multicolumn{1}{l|}{55.39398748198222}           & 40.85139402745457           & \multicolumn{1}{l|}{55.6341735557738}            & 40.74136358118422           & \multicolumn{1}{l|}{55.5143663212193}            & 40.746170633005356          \\ \hline
+		\textbf{DMDPERFECTPERFECTEKF-reset}                   & \multicolumn{1}{l|}{56.53064156140815}           & 49.452615758180386          & \multicolumn{1}{l|}{61.10733715735}              & 48.079266253300986          & \multicolumn{1}{l|}{56.93112969543318}           & 46.10906043461338           & \multicolumn{1}{l|}{61.367607820434735}          & 44.34670065970314           & \multicolumn{1}{l|}{62.91941018312623}           & 42.485131359535096          & \multicolumn{1}{l|}{61.89378344093441}           & 42.916922309269104          & \multicolumn{1}{l|}{64.90659453884362}           & 42.45276892997664           & \multicolumn{1}{l|}{66.38683489204494}           & 41.77153452038281           & \multicolumn{1}{l|}{65.30971968211753}           & 42.08322719239038           & \multicolumn{1}{l|}{66.62917249499225}           & 41.300604339343316          & \multicolumn{1}{l|}{66.73805559241177}           & 41.51209063428143           & \multicolumn{1}{l|}{67.83661680925574}           & 41.34067224955969           & \multicolumn{1}{l|}{68.77088539510007}           & 41.28807183631347           & \multicolumn{1}{l|}{69.22604205495546}           & 41.0381893033935            & \multicolumn{1}{l|}{69.32470006025378}           & 40.92241343650416           & \multicolumn{1}{l|}{68.80287804181468}           & 41.03374571400185           & \multicolumn{1}{l|}{69.08985280166716}           & 40.65660085709578           & \multicolumn{1}{l|}{69.89978179223498}           & 40.31792460831548           & \multicolumn{1}{l|}{71.03008147149075}           & 40.161474263872755          & \multicolumn{1}{l|}{71.55446557752428}           & 40.19587988138365          & \multicolumn{1}{l|}{72.24295204082743}           & 40.22682585796984           & \multicolumn{1}{l|}{71.88478791538721}           & 40.49993851390595           & \multicolumn{1}{l|}{72.28838582221888}           & 40.488563395144325          & \multicolumn{1}{l|}{71.68851606151388}           & 40.15092076759769           & \multicolumn{1}{l|}{71.70293286631231}           & 39.97651931241279           & \multicolumn{1}{l|}{70.95019653392376}           & 39.83807726756371           & \multicolumn{1}{l|}{71.08696970543141}           & 39.761467015529746          & \multicolumn{1}{l|}{70.9023407213982}            & 40.005410211759205          & \multicolumn{1}{l|}{70.99063896641917}           & 39.92805252838035           & \multicolumn{1}{l|}{71.6064717162697}            & 39.96969865909947           \\ \hline
+		\textbf{DMDPERFECTPERFECTEKF-replacement}             & \multicolumn{1}{l|}{19.859304573319474}          & 28.906778192432306          & \multicolumn{1}{l|}{23.24194606458108}           & 28.360345612138588          & \multicolumn{1}{l|}{22.03959742563649}           & 26.72547309621562           & \multicolumn{1}{l|}{21.034766349549056}          & 27.162243065000084          & \multicolumn{1}{l|}{21.765818947096683}          & 27.343151433296036          & \multicolumn{1}{l|}{22.228758217157623}          & 26.764022769557798          & \multicolumn{1}{l|}{22.34361387202835}           & 26.56394313338961           & \multicolumn{1}{l|}{22.07582437565728}           & 26.138121309488167          & \multicolumn{1}{l|}{21.21064925045374}           & 25.318086627441403          & \multicolumn{1}{l|}{21.415576441797576}          & 25.765803174072165          & \multicolumn{1}{l|}{21.87131838317705}           & 26.17832696321778           & \multicolumn{1}{l|}{21.6750428070648}            & 25.961787255071723          & \multicolumn{1}{l|}{21.39102882303957}           & 25.71965641638172           & \multicolumn{1}{l|}{21.21592091594766}           & 25.5234455670517            & \multicolumn{1}{l|}{20.967946139631593}          & 25.237943754991292          & \multicolumn{1}{l|}{20.876523686054494}          & 25.137293409253086          & \multicolumn{1}{l|}{20.775078663570454}          & 25.095811211795148          & \multicolumn{1}{l|}{20.829660188429663}          & 24.97200061959457           & \multicolumn{1}{l|}{20.71515608262733}           & 24.878815759780345          & \multicolumn{1}{l|}{20.68454425791692}           & 24.804262908835604         & \multicolumn{1}{l|}{20.65345889119073}           & 24.749097418243352          & \multicolumn{1}{l|}{20.717681189025043}          & 24.704305087486524          & \multicolumn{1}{l|}{20.92767567594042}           & 25.002152591143894          & \multicolumn{1}{l|}{20.80465101210383}           & 24.87532727440322           & \multicolumn{1}{l|}{20.688843197398135}          & 24.789948885003497          & \multicolumn{1}{l|}{20.704222981901488}          & 24.915288105507166          & \multicolumn{1}{l|}{20.710758171279004}          & 24.888910594567164          & \multicolumn{1}{l|}{21.45242594399824}           & 25.397590202567272          & \multicolumn{1}{l|}{21.37523539428469}           & 25.29486475074513           & \multicolumn{1}{l|}{21.28688152607365}           & 25.254757720120967          \\ \hline
+		\textbf{DMDNoneNoneNone}                              & \multicolumn{1}{l|}{15.536886358729808}          & 26.745541216454935          & \multicolumn{1}{l|}{13.078754743189062}          & 23.182521224524656          & \multicolumn{1}{l|}{12.387589513118213}          & 22.129515788139226          & \multicolumn{1}{l|}{11.869383043914487}          & 21.609365801192453          & \multicolumn{1}{l|}{11.640672505882488}          & 21.395513763081205          & \multicolumn{1}{l|}{11.453024761656897}          & 21.165202155761367          & \multicolumn{1}{l|}{11.309771333711552}          & 20.985029359486987          & \multicolumn{1}{l|}{11.143627960596435}          & 20.859925256015032          & \multicolumn{1}{l|}{11.080500376337266}          & 20.846707126943816          & \multicolumn{1}{l|}{11.035060497606086}          & 20.768199411473407          & \multicolumn{1}{l|}{11.024112764254655}          & 20.6992222401451            & \multicolumn{1}{l|}{10.968167452406513}          & 20.631907107362313          & \multicolumn{1}{l|}{10.921174838788888}          & 20.62906611638334           & \multicolumn{1}{l|}{10.858307142495063}          & 20.58267919077918           & \multicolumn{1}{l|}{10.817155389442265}          & 20.551791661674656          & \multicolumn{1}{l|}{10.808453544298324}          & 20.53561654941255           & \multicolumn{1}{l|}{10.772669852344926}          & 20.535547427153645          & \multicolumn{1}{l|}{10.771105477230165}          & 20.509749561193228          & \multicolumn{1}{l|}{10.754772125313782}          & 20.526442671316737          & \multicolumn{1}{l|}{10.714835476960515}          & 20.510097578547363         & \multicolumn{1}{l|}{10.680128880795198}          & 20.49207533061872           & \multicolumn{1}{l|}{10.655661746962927}          & 20.47881455794996           & \multicolumn{1}{l|}{10.624932855463717}          & 20.46000463213133           & \multicolumn{1}{l|}{10.639414365133584}          & 20.44313079305215           & \multicolumn{1}{l|}{10.633314995839958}          & 20.44588312337542           & \multicolumn{1}{l|}{10.617757463661121}          & 20.43200531594962           & \multicolumn{1}{l|}{10.608679696744401}          & 20.413616513160076          & \multicolumn{1}{l|}{10.60398801728275}           & 20.40896971244238           & \multicolumn{1}{l|}{10.610976483482965}          & 20.39444013105072           & \multicolumn{1}{l|}{10.59406120929609}           & 20.384938524422726          \\ \hline
 	\end{tabular}
 \end{table}
 
+\newpage
 %\csvautotabular{/home/ulrich/Documents/Masters thesis/Satellite/Data files/Summary/Reflection.csv}
 
 Insert a table to compare random orbit parameters. The mean, standard deviation of each orbit 0-20 for each of the different strategies of reflection.
@@ -482,19 +742,6 @@ Results from kalman filter and attitude determination as well as control compare
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{APPENDIX}
-Table of anomalies
-
-\section*{ACKNOWLEDGMENT}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 References are important to the reader; therefore, each citation must be complete and correct. If at all possible, references should be commonly available publications.
 
 % \begin{thebibliography}{99}
@@ -502,7 +749,7 @@ References are important to the reader; therefore, each citation must be complet
 % \bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York:  % McGraw-Hill, 1964, pp. 15Ð64.
 % \bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
 
-
+\printbibliography[heading=bibintoc]
 
 
 

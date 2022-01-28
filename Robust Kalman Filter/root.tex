@@ -76,22 +76,24 @@ Fault Detection of Sun Reflection to Increase Estimation Accuracy of Satellite A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-The Kalman Filter is a state estimator that is often used in attitude determination of satellites. A Kalman filter is highly sensitive to anomalies that occur in sensors. A good example of this is the reflection of a solar panel on a sun sensor that changes the perceived sun vector. This in term influences the estimation of the attitude by the kalman filter and consequently the control of the satellite. Detecting anomalies in sensors and omitting the sensor reading from the measurement update of the Kalman Filter could increase the stability and reliability of the Kalman filter for satellite attitude determination.
+The Kalman Filter is a state estimator that is often used in attitude determination of satellites. A Kalman filter is highly sensitive to anomalies that occur in sensors. A good example of this is the reflection of a solar panel on a sun sensor that changes the perceived sun vector. This in term influences the estimation of the attitude by the kalman filter and consequently the control of the satellite. Detecting anomalies in sensors and omitting the sensor reading from the measurement update of the Kalman Filter increases the stability and reliability of the Kalman filter for satellite attitude determination.
 
-\emph{keywords} --- anomaly detection, Kalman filter, machine learning, sun reflection, satellites, sensors
+\emph{keywords} --- anomaly detection, Kalman filter, machine learning, sun reflection, satellites
 
 \end{abstract}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
-For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. The current state vector of the system can not be determined with only the use of models or sensors. Since the sensors contains noise and the mathematical model does not include certain disturbances in the actual system. Therefore a probabilistic approach can be used to determine the state vector from both the model and the sensor. The focus of this article is the attitude determination and control system, \emph{ADCS}, of the satellite. This system is demonstrated in Figure~\ref{fig:System_Diagram}, where the basic ADCS excludes the fault detection, isolation and recovery, \emph{FDIR}, and feature extraction. The FDIR for sensors receive the sensor measurements and the feature extractions as inputs and outputs the recovery method if it is required. 
+For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. The current state vector of the system can not be determined with only the use of models or sensors. Since the sensors contains noise and the mathematical model does not include certain disturbances in the actual system. Therefore a probabilistic approach can be used to determine the state vector from both the model and the sensor. This probabilistic approach is done with the use of an extended kalman filter (\emph{EKF}). 
 
-An Extended Kalman Filter (\emph{EKF}) is a common estimator used in satellite missions. The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. The sensor measurements that are used for the measurement update, are the sensors that provide a modelled ORC vector as well as measured SBC vector, such as the magnetometer, sun sensor, nadir sensor and star tracker. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliable measurements. The error between the modelled and measured vectors are used to update the EKF estimation. The EKF and the specific configuration thereof for satellites can be researched further, \textcite{JansevanVuuren2015}. 
+The focus of this article is the attitude determination and control system, \emph{ADCS}, of the satellite. This system is demonstrated in Figure~\ref{fig:System_Diagram}, where the basic ADCS excludes the fault detection, isolation and recovery, \emph{FDIR}, and feature extraction. The FDIR for sensors receive the sensor measurements and the feature extractions as inputs and outputs the recovery method if it is required. 
 
-The problem with an EKF is when the sensors do not follow their modelled vector. Slight deviations thereof won't have significant effects, but anomalies such as failed sensors can cause the EKF to become unstable. Consequently, we want to be able to recover from failed sensors. The frequency of the anomaly occurrence can also determine the stability of the Kalman filter. Therefore we opted to use sun reflection from the solar panel on sun sensors as our modelled anomaly. This is because of the accurate modelling for sun reflection. This is a real problem in the satellite industry that can be isolated with changes in the satellite design.
+The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. The sensor measurements that are used for the measurement update, are the sensors that provide a modelled ORC vector as well as measured SBC vector, such as the magnetometer, sun sensor and nadir sensor. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliable measurements. The error between the modelled and measured vectors are used to update the EKF estimation. The EKF and the specific configuration thereof for satellites can be researched further~\cite{JansevanVuuren2015}. 
 
-This anomaly also requires autonomous decision making to ensure sun facing control. This cannot be done by the ground station during orbit, unless the control system is dramatically changed if the anomaly is detected by the ground station. Therefore we aim to design a fault detection, isolation and recovery system specifically for the sensor anomalies and the testing thereof will be done on the solar reflection anomaly. The specific use case will be a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
+The problem with an EKF is when the sensors do not follow their modelled vector. Slight deviations thereof won't have significant effects, but anomalies such as failed sensors can cause the EKF to become unstable. Consequently, we want to be able to recover from failed sensors. The frequency of the anomaly occurrence can also determine the stability of the Kalman filter. Therefore we opted to use sun reflection from the solar panel on sun sensors as our modelled anomaly. This is because of the accurate modelling for sun reflection. This is a real problem in the satellite industry that can be isolated with changes in the satellite design to ensure that sun reflection does not occur on the sun sensor.
+
+This anomaly also requires autonomous decision making to ensure sun facing control. This cannot be done by the ground station during orbit, unless the control system is dramatically changed if the anomaly is detected by the ground station. Therefore we aim to design a fault detection, isolation and recovery system specifically. The specific use case will be a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
 
 \begin{figure*}[h!b!t]
 	\centering
@@ -291,15 +293,15 @@ Random Forests, an method of using the prediction average of randomly sampled de
 
 
 \subsection{Recovery}
-Three different methods of recovery are compared. These methods are all focused on ensuring that the sun reflection does not change the reliability and stability of the EKF.
+Four different methods of recovery are compared. These methods are all focused on ensuring that the sun reflection does not change the reliability and stability of the EKF.
 
-The ignore method uses the detected sensor that has failed and ignores the sensor measurement from the EKF measurement update. This method is based on the assumption that the EKF estimation is correct up until the moment where the sensor failure is detected. This method can also have variations, such as the change of the measurement noise covariance matrix $R_k$. This however will dramatically change $K_k$ and will destabilize the EKF rather than stabilizing it. Both methods results however will be discussed in section~\ref{section:Results}.
+The ignore method uses the detected sensor that has failed and ignores the sensor measurement from the EKF measurement update. This method is based on the assumption that the EKF estimation is correct up until the moment where the sensor failure is detected. This however will highly depend on the accuracy of the anomaly detection method. Since an detection method with low accuracy will create cause instability to the EKF, since many anomalous measurements will be included in the measurement update of the EKF.
 
-The replacement methodology changes $v_{meas,k}$ to $v_{est,k}$ at the timestep when the failure is detected. This method depends on the stability and accuracy of the EKF when the failure is detected and highly depends on the accuracy of the detection method. Although this seems to bypass the entire purpose of a measurement update, and might change the change the EKF's dependency to be more on the sensor than the model, even though the sensor measurement might not be accurate. The EKF will remain stable due to the other measurements being accurate and will save computation time. The EKF will not require any reset and the same number of measurements updates will still occur during a sensor's anomalous behaviour.
+The replacement methodology changes $v_{meas,k}$ to $v_{est,k}$ at the timestep when the failure is detected. This method depends on the stability and accuracy of the EKF when the failure is detected and highly depends on the accuracy of the detection method. Although this seems to bypass the entire purpose of a measurement update, and might change the EKF's dependency to be more on the sensor than the model, even though the sensor measurement might not be accurate. The EKF will remain stable due to the other measurements being accurate and will save computation time. The EKF will not require any reset and the same number of measurements updates will still occur during a sensor's anomalous behaviour.
 
 The backtrack method uses a buffer of $v_{meas,k}$, $v_{model,k}$ and $\hat{x}_k^+$ and other parameters that are used to update the EKF. If a sensor failure is detected, the sensor is excluded from the EKF and the EKF is updated with the sensor data in the buffer excluding the sensor that has failed. The EKF is therefore \emph{reset} and updated from timestep $t_{k-N}$ to $t_k$, where $N$ is the size of the number of timesteps in the buffer. $N$ however must be optimized based on the computational time used to reset the EKF, but still ensure convergence of the EKF. If the sensor that was detected to have anomalous behaviour changes back to normal again, the EKF will be reset once again and the sensor will only be included in the measurement update of $t_k$ since it was anomalous for timesteps before $t_k$.
 
-A backtrack method can be combined with both the replacement and ignore method. Where the backtrack method is implemented only after a specified number of sun reflections are predicted.
+A backtrack method can be combined with the ignore method. Where the backtrack method is implemented only after a specified number of sun reflections are predicted.
 
 \section{Testing Setup}
 To ensure repeatability of the tests conducted in this article, the github repo is provided ...
@@ -340,7 +342,7 @@ The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}. The d
 % https://www.cubesatshop.com/product/nss-cubesat-sun-sensor/
 
 \subsection{Orbit Parameters}
-For Table~\ref{Unknown} the orbit parameters were randomized the ensure that the results are not for a isolated case. However, for the rest of the results and testing, the orbit parameters are given in Table~\ref{Table:OrbitParameters}. 
+The orbit parameters will not significantly effect the results, however, for repeatability the general parameters for the orbit is given in Table~\ref{Table:OrbitParameters}. 
 	
 \begin{table}[!htb]
 	\caption{\label{Table:OrbitParameters}Parameters for Cubesat Orbit}
@@ -353,7 +355,7 @@ For Table~\ref{Unknown} the orbit parameters were randomized the ensure that the
 \end{table}
 
 \subsection{Sensors}
-The sensors used for the measurement update of the Kalman filter is a magnetometer, nadir sensor, sun sensor and star tracker and the measurement update is also done in the order as listed. This is due to the noise models of the sensors, as all the sensor noise models are based on zero-mean Guassian random noise. There are two sun sensors, a coarse and fine sun sensor and both of them can experience sun reflection. The field of view \emph{FOV} of the sun sensors and the nadir sensor are both $180^o$. There is however only a single nadir sensor used in the simulation.
+The measurement update of the Kalman filter firstly with a magnetometer, nadir sensor and lastly the sun sensor. This is due to the noise models of the sensors, as all the sensor noise models are based on zero-mean Guassian random noise and the magnetometer has the largest standard deviation and the sun sensor has the smallest standard deviation. There are two sun sensors, a coarse and fine sun sensor and both of them can experience sun reflection. The field of view \emph{FOV} of the sun sensors and the nadir sensor are both $180^o$. There is however only a single nadir sensor used in the simulation.
 
 \section{Results}
 \label{section:Results}
@@ -549,7 +551,294 @@ For the recovery method where the sun sensor is ignored when a failure is detect
 %\end{figure*}
 
 \begin{table*}[]
-\begin{tabular}{@{}llcccccccccccc@{}}
+	\label{Table: Point Metric for various methods}
+	\caption{Point Metric for various methods}
+	\begin{tabular}{@{}llllllllllllll@{}}
+		\toprule
+		\multicolumn{2}{l}{Orbits} &
+		\multicolumn{2}{c}{1} &
+		\multicolumn{2}{c}{2} &
+		\multicolumn{2}{c}{3} &
+		\multicolumn{2}{c}{4} &
+		\multicolumn{2}{c}{5} &
+		\multicolumn{2}{c}{30} \\ \midrule
+		\multicolumn{1}{|l|}{\multirow{2}{*}{Detection Strategy}} &
+		\multicolumn{1}{l|}{\multirow{2}{*}{Recovery Strategy}} &
+		\multicolumn{12}{c|}{Metric ($\theta$)} \\ \cmidrule(l){3-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{} &
+		\multicolumn{1}{l|}{Mean} &
+		\multicolumn{1}{l|}{Std} &
+		\multicolumn{1}{l|}{Mean} &
+		\multicolumn{1}{l|}{Std} &
+		\multicolumn{1}{l|}{Mean} &
+		\multicolumn{1}{l|}{Std} &
+		\multicolumn{1}{l|}{Mean} &
+		\multicolumn{1}{l|}{Std} &
+		\multicolumn{1}{l|}{Mean} &
+		\multicolumn{1}{l|}{Std} &
+		\multicolumn{1}{l|}{Mean} &
+		\multicolumn{1}{l|}{Std} \\ \midrule
+		\multicolumn{1}{|l|}{\multirow{4}{*}{Random Choice}} &
+		\multicolumn{1}{l|}{EKF-Ignore} &
+		\multicolumn{1}{l|}{15,38} &
+		\multicolumn{1}{l|}{25,92} &
+		\multicolumn{1}{l|}{13,92} &
+		\multicolumn{1}{l|}{23,50} &
+		\multicolumn{1}{l|}{13,27} &
+		\multicolumn{1}{l|}{22,39} &
+		\multicolumn{1}{l|}{13,18} &
+		\multicolumn{1}{l|}{21,86} &
+		\multicolumn{1}{l|}{13,01} &
+		\multicolumn{1}{l|}{21,42} &
+		\multicolumn{1}{l|}{12,23} &
+		\multicolumn{1}{l|}{20,47} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-combination} &
+		\multicolumn{1}{l|}{25,01} &
+		\multicolumn{1}{l|}{28,08} &
+		\multicolumn{1}{l|}{28,37} &
+		\multicolumn{1}{l|}{29,99} &
+		\multicolumn{1}{l|}{29,31} &
+		\multicolumn{1}{l|}{30,40} &
+		\multicolumn{1}{l|}{28,66} &
+		\multicolumn{1}{l|}{31,03} &
+		\multicolumn{1}{l|}{30,25} &
+		\multicolumn{1}{l|}{32,99} &
+		\multicolumn{1}{l|}{31,97} &
+		\multicolumn{1}{l|}{34,55} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-reset} &
+		\multicolumn{1}{l|}{92,61} &
+		\multicolumn{1}{l|}{34,38} &
+		\multicolumn{1}{l|}{87,20} &
+		\multicolumn{1}{l|}{38,33} &
+		\multicolumn{1}{l|}{81,89} &
+		\multicolumn{1}{l|}{37,87} &
+		\multicolumn{1}{l|}{79,54} &
+		\multicolumn{1}{l|}{36,59} &
+		\multicolumn{1}{l|}{79,42} &
+		\multicolumn{1}{l|}{38,40} &
+		\multicolumn{1}{l|}{88,96} &
+		\multicolumn{1}{l|}{36,74} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-replacement} &
+		\multicolumn{1}{l|}{61,97} &
+		\multicolumn{1}{l|}{48,24} &
+		\multicolumn{1}{l|}{54,56} &
+		\multicolumn{1}{l|}{45,60} &
+		\multicolumn{1}{l|}{59,89} &
+		\multicolumn{1}{l|}{47,24} &
+		\multicolumn{1}{l|}{58,61} &
+		\multicolumn{1}{l|}{47,75} &
+		\multicolumn{1}{l|}{59,22} &
+		\multicolumn{1}{l|}{47,47} &
+		\multicolumn{1}{l|}{59,02} &
+		\multicolumn{1}{l|}{46,89} \\ \midrule
+		\multicolumn{1}{|l|}{\multirow{4}{*}{Decision Trees}} &
+		\multicolumn{1}{l|}{EKF-Ignore} &
+		\multicolumn{1}{l|}{\textbf{21,56}} &
+		\multicolumn{1}{l|}{\textbf{32,98}} &
+		\multicolumn{1}{l|}{\textbf{17,14}} &
+		\multicolumn{1}{l|}{\textbf{26,77}} &
+		\multicolumn{1}{l|}{\textbf{15,42}} &
+		\multicolumn{1}{l|}{\textbf{24,66}} &
+		\multicolumn{1}{l|}{\textbf{14,50}} &
+		\multicolumn{1}{l|}{\textbf{23,58}} &
+		\multicolumn{1}{l|}{\textbf{14,03}} &
+		\multicolumn{1}{l|}{\textbf{22,88}} &
+		\multicolumn{1}{l|}{\textbf{12,44}} &
+		\multicolumn{1}{l|}{\textbf{20,79}} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-combination} &
+		\multicolumn{1}{l|}{21,56} &
+		\multicolumn{1}{l|}{32,98} &
+		\multicolumn{1}{l|}{17,14} &
+		\multicolumn{1}{l|}{26,77} &
+		\multicolumn{1}{l|}{15,42} &
+		\multicolumn{1}{l|}{24,66} &
+		\multicolumn{1}{l|}{14,50} &
+		\multicolumn{1}{l|}{23,58} &
+		\multicolumn{1}{l|}{14,12} &
+		\multicolumn{1}{l|}{22,89} &
+		\multicolumn{1}{l|}{13,20} &
+		\multicolumn{1}{l|}{21,61} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-reset} &
+		\multicolumn{1}{l|}{42,37} &
+		\multicolumn{1}{l|}{35,01} &
+		\multicolumn{1}{l|}{56,60} &
+		\multicolumn{1}{l|}{38,50} &
+		\multicolumn{1}{l|}{54,78} &
+		\multicolumn{1}{l|}{38,56} &
+		\multicolumn{1}{l|}{56,97} &
+		\multicolumn{1}{l|}{41,06} &
+		\multicolumn{1}{l|}{58,16} &
+		\multicolumn{1}{l|}{40,17} &
+		\multicolumn{1}{l|}{60,96} &
+		\multicolumn{1}{l|}{41,25} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-replacement} &
+		\multicolumn{1}{l|}{57,02} &
+		\multicolumn{1}{l|}{46,86} &
+		\multicolumn{1}{l|}{57,21} &
+		\multicolumn{1}{l|}{47,58} &
+		\multicolumn{1}{l|}{55,36} &
+		\multicolumn{1}{l|}{47,36} &
+		\multicolumn{1}{l|}{58,10} &
+		\multicolumn{1}{l|}{47,91} &
+		\multicolumn{1}{l|}{57,20} &
+		\multicolumn{1}{l|}{47,35} &
+		\multicolumn{1}{l|}{56,43} &
+		\multicolumn{1}{l|}{46,36} \\ \midrule
+		\multicolumn{1}{|l|}{\multirow{4}{*}{Random Forest}} &
+		\multicolumn{1}{l|}{EKF-Ignore} &
+		\multicolumn{1}{l|}{\textbf{16,05}} &
+		\multicolumn{1}{l|}{\textbf{25,96}} &
+		\multicolumn{1}{l|}{\textbf{13,93}} &
+		\multicolumn{1}{l|}{\textbf{23,15}} &
+		\multicolumn{1}{l|}{\textbf{13,34}} &
+		\multicolumn{1}{l|}{\textbf{22,23}} &
+		\multicolumn{1}{l|}{\textbf{13,02}} &
+		\multicolumn{1}{l|}{\textbf{21,90}} &
+		\multicolumn{1}{l|}{\textbf{12,91}} &
+		\multicolumn{1}{l|}{\textbf{21,62}} &
+		\multicolumn{1}{l|}{\textbf{12,19}} &
+		\multicolumn{1}{l|}{\textbf{20,52}} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-combination} &
+		\multicolumn{1}{l|}{16,05} &
+		\multicolumn{1}{l|}{25,96} &
+		\multicolumn{1}{l|}{13,93} &
+		\multicolumn{1}{l|}{23,15} &
+		\multicolumn{1}{l|}{13,34} &
+		\multicolumn{1}{l|}{22,23} &
+		\multicolumn{1}{l|}{13,02} &
+		\multicolumn{1}{l|}{21,90} &
+		\multicolumn{1}{l|}{12,91} &
+		\multicolumn{1}{l|}{21,62} &
+		\multicolumn{1}{l|}{12,95} &
+		\multicolumn{1}{l|}{21,37} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-reset} &
+		\multicolumn{1}{l|}{61,26} &
+		\multicolumn{1}{l|}{44,09} &
+		\multicolumn{1}{l|}{50,87} &
+		\multicolumn{1}{l|}{42,30} &
+		\multicolumn{1}{l|}{52,37} &
+		\multicolumn{1}{l|}{41,70} &
+		\multicolumn{1}{l|}{45,62} &
+		\multicolumn{1}{l|}{38,93} &
+		\multicolumn{1}{l|}{50,04} &
+		\multicolumn{1}{l|}{39,92} &
+		\multicolumn{1}{l|}{41,04} &
+		\multicolumn{1}{l|}{36,16} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-replacement} &
+		\multicolumn{1}{l|}{57,49} &
+		\multicolumn{1}{l|}{47,73} &
+		\multicolumn{1}{l|}{57,18} &
+		\multicolumn{1}{l|}{45,66} &
+		\multicolumn{1}{l|}{58,24} &
+		\multicolumn{1}{l|}{46,50} &
+		\multicolumn{1}{l|}{57,42} &
+		\multicolumn{1}{l|}{47,09} &
+		\multicolumn{1}{l|}{57,42} &
+		\multicolumn{1}{l|}{48,02} &
+		\multicolumn{1}{l|}{56,95} &
+		\multicolumn{1}{l|}{47,28} \\ \midrule
+		\multicolumn{1}{|l|}{\multirow{4}{*}{Perfect}} &
+		\multicolumn{1}{l|}{EKF-Ignore} &
+		\multicolumn{1}{c|}{\textbf{14,71}} &
+		\multicolumn{1}{c|}{\textbf{25,85}} &
+		\multicolumn{1}{c|}{\textbf{13,42}} &
+		\multicolumn{1}{c|}{\textbf{23,17}} &
+		\multicolumn{1}{c|}{\textbf{12,89}} &
+		\multicolumn{1}{c|}{\textbf{22,25}} &
+		\multicolumn{1}{c|}{\textbf{12,57}} &
+		\multicolumn{1}{c|}{\textbf{21,59}} &
+		\multicolumn{1}{c|}{\textbf{12,45}} &
+		\multicolumn{1}{c|}{\textbf{21,26}} &
+		\multicolumn{1}{c|}{\textbf{12,19}} &
+		\multicolumn{1}{c|}{\textbf{20,38}} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-combination} &
+		\multicolumn{1}{l|}{14,71} &
+		\multicolumn{1}{l|}{25,85} &
+		\multicolumn{1}{l|}{13,42} &
+		\multicolumn{1}{l|}{23,17} &
+		\multicolumn{1}{l|}{12,89} &
+		\multicolumn{1}{l|}{22,25} &
+		\multicolumn{1}{l|}{12,57} &
+		\multicolumn{1}{l|}{21,59} &
+		\multicolumn{1}{l|}{12,66} &
+		\multicolumn{1}{l|}{21,47} &
+		\multicolumn{1}{l|}{12,90} &
+		\multicolumn{1}{l|}{21,11} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-reset} &
+		\multicolumn{1}{l|}{48,61} &
+		\multicolumn{1}{l|}{39,05} &
+		\multicolumn{1}{l|}{67,01} &
+		\multicolumn{1}{l|}{38,87} &
+		\multicolumn{1}{l|}{65,83} &
+		\multicolumn{1}{l|}{37,91} &
+		\multicolumn{1}{l|}{70,21} &
+		\multicolumn{1}{l|}{37,00} &
+		\multicolumn{1}{l|}{68,01} &
+		\multicolumn{1}{l|}{36,89} &
+		\multicolumn{1}{l|}{68,89} &
+		\multicolumn{1}{l|}{40,58} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{EKF-replacement} &
+		\multicolumn{1}{l|}{26,76} &
+		\multicolumn{1}{l|}{28,44} &
+		\multicolumn{1}{l|}{24,25} &
+		\multicolumn{1}{l|}{26,90} &
+		\multicolumn{1}{l|}{24,23} &
+		\multicolumn{1}{l|}{27,60} &
+		\multicolumn{1}{l|}{24,04} &
+		\multicolumn{1}{l|}{27,66} &
+		\multicolumn{1}{l|}{22,81} &
+		\multicolumn{1}{l|}{26,40} &
+		\multicolumn{1}{l|}{22,86} &
+		\multicolumn{1}{l|}{27,47} \\ \midrule
+		\multicolumn{1}{|l|}{\multirow{2}{*}{None}} &
+		\multicolumn{1}{l|}{Perfect Design} &
+		\multicolumn{1}{c|}{\textbf{15,54}} &
+		\multicolumn{1}{c|}{\textbf{26,75}} &
+		\multicolumn{1}{c|}{\textbf{13,08}} &
+		\multicolumn{1}{c|}{\textbf{23,18}} &
+		\multicolumn{1}{c|}{\textbf{12,39}} &
+		\multicolumn{1}{c|}{\textbf{22,13}} &
+		\multicolumn{1}{c|}{\textbf{11,87}} &
+		\multicolumn{1}{c|}{\textbf{21,61}} &
+		\multicolumn{1}{c|}{\textbf{11,64}} &
+		\multicolumn{1}{c|}{\textbf{21,4}} &
+		\multicolumn{1}{c|}{\textbf{10,59}} &
+		\multicolumn{1}{c|}{\textbf{20,38}} \\ \cmidrule(l){2-14} 
+		\multicolumn{1}{|l|}{} &
+		\multicolumn{1}{l|}{Failure Design} &
+		\multicolumn{1}{c|}{37,63} &
+		\multicolumn{1}{c|}{36,57} &
+		\multicolumn{1}{c|}{42,27} &
+		\multicolumn{1}{c|}{32,76} &
+		\multicolumn{1}{c|}{43,55} &
+		\multicolumn{1}{c|}{32,14} &
+		\multicolumn{1}{c|}{42,97} &
+		\multicolumn{1}{c|}{32,00} &
+		\multicolumn{1}{c|}{42,33} &
+		\multicolumn{1}{c|}{31,93} &
+		\multicolumn{1}{c|}{N/A} &
+		\multicolumn{1}{c|}{N/A} \\ \bottomrule
+	\end{tabular}
+\end{table*}
+
+
+\begin{table*}[]
+	\label{Table: Estimation Metric for various methods}
+	\caption{Estimation Metric for various methods}
+\begin{tabular}{@{}llllllllllllll@{}}
 	\toprule
 	\multicolumn{2}{l}{Orbits} &
 	\multicolumn{2}{c}{1} &
@@ -575,204 +864,261 @@ For the recovery method where the sun sensor is ignored when a failure is detect
 	\multicolumn{1}{l|}{Std} &
 	\multicolumn{1}{l|}{Mean} &
 	\multicolumn{1}{l|}{Std} \\ \midrule
+	\multicolumn{1}{|l|}{\multirow{4}{*}{Random Choice}} &
+	\multicolumn{1}{l|}{EKF-Ignore} &
+	\multicolumn{1}{l|}{\textbf{3,15}} &
+	\multicolumn{1}{l|}{\textbf{2,92}} &
+	\multicolumn{1}{l|}{\textbf{3,09}} &
+	\multicolumn{1}{l|}{\textbf{3,06}} &
+	\multicolumn{1}{l|}{\textbf{3,10}} &
+	\multicolumn{1}{l|}{\textbf{3,02}} &
+	\multicolumn{1}{l|}{\textbf{3,23}} &
+	\multicolumn{1}{l|}{\textbf{3,13}} &
+	\multicolumn{1}{l|}{\textbf{3,26}} &
+	\multicolumn{1}{l|}{\textbf{3,14}} &
+	\multicolumn{1}{l|}{\textbf{3,22}} &
+	\multicolumn{1}{l|}{\textbf{2,99}} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{|l|}{} &
+	\multicolumn{1}{l|}{EKF-combination} &
+	\multicolumn{1}{l|}{7,93} &
+	\multicolumn{1}{l|}{11,43} &
+	\multicolumn{1}{l|}{10,23} &
+	\multicolumn{1}{l|}{16,61} &
+	\multicolumn{1}{l|}{10,43} &
+	\multicolumn{1}{l|}{19,07} &
+	\multicolumn{1}{l|}{10,59} &
+	\multicolumn{1}{l|}{19,42} &
+	\multicolumn{1}{l|}{11,56} &
+	\multicolumn{1}{l|}{20,38} &
+	\multicolumn{1}{l|}{13,29} &
+	\multicolumn{1}{l|}{24,23} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{|l|}{} &
+	\multicolumn{1}{l|}{EKF-reset} &
+	\multicolumn{1}{l|}{60,50} &
+	\multicolumn{1}{l|}{44,21} &
+	\multicolumn{1}{l|}{59,13} &
+	\multicolumn{1}{l|}{43,68} &
+	\multicolumn{1}{l|}{58,21} &
+	\multicolumn{1}{l|}{43,39} &
+	\multicolumn{1}{l|}{58,14} &
+	\multicolumn{1}{l|}{43,24} &
+	\multicolumn{1}{l|}{57,91} &
+	\multicolumn{1}{l|}{43,08} &
+	\multicolumn{1}{l|}{60,22} &
+	\multicolumn{1}{l|}{42,99} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{|l|}{} &
+	\multicolumn{1}{l|}{EKF-replacement} &
+	\multicolumn{1}{l|}{48,60} &
+	\multicolumn{1}{l|}{52,08} &
+	\multicolumn{1}{l|}{41,17} &
+	\multicolumn{1}{l|}{45,62} &
+	\multicolumn{1}{l|}{45,27} &
+	\multicolumn{1}{l|}{47,61} &
+	\multicolumn{1}{l|}{46,04} &
+	\multicolumn{1}{l|}{48,88} &
+	\multicolumn{1}{l|}{46,37} &
+	\multicolumn{1}{l|}{48,92} &
+	\multicolumn{1}{l|}{45,07} &
+	\multicolumn{1}{l|}{47,11} \\ \midrule
 	\multicolumn{1}{|l|}{\multirow{4}{*}{Decision Trees}} &
 	\multicolumn{1}{l|}{EKF-Ignore} &
-	\multicolumn{1}{c|}{\textbf{21.56}} &
-	\multicolumn{1}{c|}{\textbf{32.98}} &
-	\multicolumn{1}{c|}{\textbf{17.14}} &
-	\multicolumn{1}{c|}{\textbf{26.77}} &
-	\multicolumn{1}{c|}{\textbf{15.42}} &
-	\multicolumn{1}{c|}{\textbf{24.66}} &
-	\multicolumn{1}{c|}{\textbf{14.5}} &
-	\multicolumn{1}{c|}{\textbf{23.58}} &
-	\multicolumn{1}{c|}{\textbf{14.03}} &
-	\multicolumn{1}{c|}{\textbf{22.88}} &
-	\multicolumn{1}{c|}{\textbf{12.44}} &
-	\multicolumn{1}{c|}{\textbf{20.79}} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{\textbf{13,07}} &
+	\multicolumn{1}{l|}{\textbf{32,63}} &
+	\multicolumn{1}{l|}{\textbf{8,29}} &
+	\multicolumn{1}{l|}{\textbf{17,91}} &
+	\multicolumn{1}{l|}{\textbf{6,56}} &
+	\multicolumn{1}{l|}{\textbf{12,85}} &
+	\multicolumn{1}{l|}{\textbf{5,58}} &
+	\multicolumn{1}{l|}{\textbf{10,21}} &
+	\multicolumn{1}{l|}{\textbf{5,09}} &
+	\multicolumn{1}{l|}{\textbf{8,76}} &
+	\multicolumn{1}{l|}{\textbf{3,48}} &
+	\multicolumn{1}{l|}{\textbf{3,80}} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-combination} &
-	\multicolumn{1}{c|}{38.23} &
-	\multicolumn{1}{c|}{39.69} &
-	\multicolumn{1}{c|}{32.25} &
-	\multicolumn{1}{c|}{33.63} &
-	\multicolumn{1}{c|}{41.74} &
-	\multicolumn{1}{c|}{39.03} &
-	\multicolumn{1}{c|}{41.21} &
-	\multicolumn{1}{c|}{39.4} &
-	\multicolumn{1}{c|}{44.81} &
-	\multicolumn{1}{c|}{39.3} &
-	\multicolumn{1}{c|}{50.15} &
-	\multicolumn{1}{c|}{39.87} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{13,07} &
+	\multicolumn{1}{l|}{32,63} &
+	\multicolumn{1}{l|}{8,29} &
+	\multicolumn{1}{l|}{17,91} &
+	\multicolumn{1}{l|}{6,56} &
+	\multicolumn{1}{l|}{12,85} &
+	\multicolumn{1}{l|}{5,58} &
+	\multicolumn{1}{l|}{10,21} &
+	\multicolumn{1}{l|}{5,15} &
+	\multicolumn{1}{l|}{8,87} &
+	\multicolumn{1}{l|}{3,82} &
+	\multicolumn{1}{l|}{4,93} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-reset} &
-	\multicolumn{1}{c|}{60} &
-	\multicolumn{1}{c|}{40.87} &
-	\multicolumn{1}{c|}{62.02} &
-	\multicolumn{1}{c|}{42.83} &
-	\multicolumn{1}{c|}{62.53} &
-	\multicolumn{1}{c|}{42} &
-	\multicolumn{1}{c|}{63.3} &
-	\multicolumn{1}{c|}{41.24} &
-	\multicolumn{1}{c|}{61.2} &
-	\multicolumn{1}{c|}{42.73} &
-	\multicolumn{1}{c|}{65.64} &
-	\multicolumn{1}{c|}{41.65} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{18,48} &
+	\multicolumn{1}{l|}{25,62} &
+	\multicolumn{1}{l|}{28,41} &
+	\multicolumn{1}{l|}{32,39} &
+	\multicolumn{1}{l|}{29,68} &
+	\multicolumn{1}{l|}{33,56} &
+	\multicolumn{1}{l|}{31,77} &
+	\multicolumn{1}{l|}{36,11} &
+	\multicolumn{1}{l|}{33,02} &
+	\multicolumn{1}{l|}{37,55} &
+	\multicolumn{1}{l|}{33,56} &
+	\multicolumn{1}{l|}{38,05} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-replacement} &
-	\multicolumn{1}{c|}{56.62} &
-	\multicolumn{1}{c|}{45.46} &
-	\multicolumn{1}{c|}{61.23} &
-	\multicolumn{1}{c|}{48.41} &
-	\multicolumn{1}{c|}{61.84} &
-	\multicolumn{1}{c|}{47.14} &
-	\multicolumn{1}{c|}{60.13} &
-	\multicolumn{1}{c|}{46.57} &
-	\multicolumn{1}{c|}{59.65} &
-	\multicolumn{1}{c|}{46.59} &
-	\multicolumn{1}{c|}{56.33} &
-	\multicolumn{1}{c|}{45.46} \\ \midrule
+	\multicolumn{1}{l|}{40,77} &
+	\multicolumn{1}{l|}{44,19} &
+	\multicolumn{1}{l|}{41,47} &
+	\multicolumn{1}{l|}{43,24} &
+	\multicolumn{1}{l|}{40,21} &
+	\multicolumn{1}{l|}{42,96} &
+	\multicolumn{1}{l|}{42,77} &
+	\multicolumn{1}{l|}{44,46} &
+	\multicolumn{1}{l|}{42,33} &
+	\multicolumn{1}{l|}{45,04} &
+	\multicolumn{1}{l|}{42,29} &
+	\multicolumn{1}{l|}{45,18} \\ \midrule
 	\multicolumn{1}{|l|}{\multirow{4}{*}{Random Forest}} &
 	\multicolumn{1}{l|}{EKF-Ignore} &
-	\multicolumn{1}{c|}{\textbf{16.05}} &
-	\multicolumn{1}{c|}{\textbf{25.96}} &
-	\multicolumn{1}{c|}{\textbf{13.93}} &
-	\multicolumn{1}{c|}{\textbf{23.15}} &
-	\multicolumn{1}{c|}{\textbf{13.34}} &
-	\multicolumn{1}{c|}{\textbf{22.23}} &
-	\multicolumn{1}{c|}{\textbf{13.02}} &
-	\multicolumn{1}{c|}{\textbf{21.9}} &
-	\multicolumn{1}{c|}{\textbf{12.91}} &
-	\multicolumn{1}{c|}{\textbf{21.62}} &
-	\multicolumn{1}{c|}{\textbf{12.19}} &
-	\multicolumn{1}{c|}{\textbf{20.52}} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{\textbf{5,63}} &
+	\multicolumn{1}{l|}{\textbf{12,52}} &
+	\multicolumn{1}{l|}{\textbf{4,19}} &
+	\multicolumn{1}{l|}{\textbf{7,51}} &
+	\multicolumn{1}{l|}{\textbf{3,83}} &
+	\multicolumn{1}{l|}{\textbf{5,97}} &
+	\multicolumn{1}{l|}{\textbf{3,70}} &
+	\multicolumn{1}{l|}{\textbf{5,22}} &
+	\multicolumn{1}{l|}{\textbf{3,55}} &
+	\multicolumn{1}{l|}{\textbf{4,76}} &
+	\multicolumn{1}{l|}{\textbf{3,25}} &
+	\multicolumn{1}{l|}{\textbf{3,20}} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-combination} &
-	\multicolumn{1}{c|}{26.37} &
-	\multicolumn{1}{c|}{34.95} &
-	\multicolumn{1}{c|}{24.87} &
-	\multicolumn{1}{c|}{30.31} &
-	\multicolumn{1}{c|}{25.14} &
-	\multicolumn{1}{c|}{29.4} &
-	\multicolumn{1}{c|}{24.94} &
-	\multicolumn{1}{c|}{29.47} &
-	\multicolumn{1}{c|}{24.33} &
-	\multicolumn{1}{c|}{28.98} &
-	\multicolumn{1}{c|}{29.21} &
-	\multicolumn{1}{c|}{33.12} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{5,63} &
+	\multicolumn{1}{l|}{12,52} &
+	\multicolumn{1}{l|}{4,19} &
+	\multicolumn{1}{l|}{7,51} &
+	\multicolumn{1}{l|}{3,83} &
+	\multicolumn{1}{l|}{5,97} &
+	\multicolumn{1}{l|}{3,70} &
+	\multicolumn{1}{l|}{5,22} &
+	\multicolumn{1}{l|}{3,55} &
+	\multicolumn{1}{l|}{4,76} &
+	\multicolumn{1}{l|}{3,44} &
+	\multicolumn{1}{l|}{3,81} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-reset} &
-	\multicolumn{1}{c|}{37.67} &
-	\multicolumn{1}{c|}{38.06} &
-	\multicolumn{1}{c|}{33.24} &
-	\multicolumn{1}{c|}{33} &
-	\multicolumn{1}{c|}{34.06} &
-	\multicolumn{1}{c|}{32.29} &
-	\multicolumn{1}{c|}{32.5} &
-	\multicolumn{1}{c|}{31.75} &
-	\multicolumn{1}{c|}{31.59} &
-	\multicolumn{1}{c|}{31.5} &
-	\multicolumn{1}{c|}{42.43} &
-	\multicolumn{1}{c|}{37.33} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{31,44} &
+	\multicolumn{1}{l|}{39,63} &
+	\multicolumn{1}{l|}{24,32} &
+	\multicolumn{1}{l|}{32,66} &
+	\multicolumn{1}{l|}{27,96} &
+	\multicolumn{1}{l|}{34,90} &
+	\multicolumn{1}{l|}{23,43} &
+	\multicolumn{1}{l|}{30,93} &
+	\multicolumn{1}{l|}{25,80} &
+	\multicolumn{1}{l|}{31,38} &
+	\multicolumn{1}{l|}{19,44} &
+	\multicolumn{1}{l|}{26,35} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-replacement} &
-	\multicolumn{1}{l|}{71.26} &
-	\multicolumn{1}{l|}{51.78} &
-	\multicolumn{1}{l|}{62.49} &
-	\multicolumn{1}{l|}{48.13} &
-	\multicolumn{1}{l|}{57.58} &
-	\multicolumn{1}{l|}{45.82} &
-	\multicolumn{1}{l|}{57.79} &
-	\multicolumn{1}{l|}{46.74} &
-	\multicolumn{1}{c|}{N/A} &
-	\multicolumn{1}{c|}{N/A} &
-	\multicolumn{1}{c|}{N/A} &
-	\multicolumn{1}{c|}{N/A} \\ \midrule
+	\multicolumn{1}{l|}{46,93} &
+	\multicolumn{1}{l|}{49,43} &
+	\multicolumn{1}{l|}{43,24} &
+	\multicolumn{1}{l|}{47,37} &
+	\multicolumn{1}{l|}{44,57} &
+	\multicolumn{1}{l|}{48,48} &
+	\multicolumn{1}{l|}{43,80} &
+	\multicolumn{1}{l|}{47,24} &
+	\multicolumn{1}{l|}{43,08} &
+	\multicolumn{1}{l|}{47,21} &
+	\multicolumn{1}{l|}{42,38} &
+	\multicolumn{1}{l|}{46,49} \\ \midrule
 	\multicolumn{1}{|l|}{\multirow{4}{*}{Perfect}} &
 	\multicolumn{1}{l|}{EKF-Ignore} &
-	\multicolumn{1}{c|}{\textbf{14.71}} &
-	\multicolumn{1}{c|}{\textbf{25.85}} &
-	\multicolumn{1}{c|}{\textbf{13.42}} &
-	\multicolumn{1}{c|}{\textbf{23.17}} &
-	\multicolumn{1}{c|}{\textbf{12.89}} &
-	\multicolumn{1}{c|}{\textbf{22.25}} &
-	\multicolumn{1}{c|}{\textbf{12.57}} &
-	\multicolumn{1}{c|}{\textbf{21.59}} &
-	\multicolumn{1}{c|}{\textbf{12.45}} &
-	\multicolumn{1}{c|}{\textbf{21.26}} &
-	\multicolumn{1}{c|}{\textbf{12.19}} &
-	\multicolumn{1}{c|}{\textbf{20.38}} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{\textbf{3,44}} &
+	\multicolumn{1}{l|}{\textbf{4,95}} &
+	\multicolumn{1}{l|}{\textbf{3,21}} &
+	\multicolumn{1}{l|}{\textbf{3,77}} &
+	\multicolumn{1}{l|}{\textbf{3,20}} &
+	\multicolumn{1}{l|}{\textbf{3,48}} &
+	\multicolumn{1}{l|}{\textbf{3,17}} &
+	\multicolumn{1}{l|}{\textbf{3,37}} &
+	\multicolumn{1}{l|}{\textbf{3,14}} &
+	\multicolumn{1}{l|}{\textbf{3,31}} &
+	\multicolumn{1}{l|}{\textbf{3,21}} &
+	\multicolumn{1}{l|}{\textbf{2,97}} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-combination} &
-	\multicolumn{1}{c|}{57.84} &
-	\multicolumn{1}{c|}{44.26} &
-	\multicolumn{1}{c|}{55.28} &
-	\multicolumn{1}{c|}{44.14} &
-	\multicolumn{1}{c|}{53.83} &
-	\multicolumn{1}{c|}{44.43} &
-	\multicolumn{1}{c|}{52.67} &
-	\multicolumn{1}{c|}{43.09} &
-	\multicolumn{1}{c|}{52.85} &
-	\multicolumn{1}{c|}{43.66} &
-	\multicolumn{1}{c|}{55.51} &
-	\multicolumn{1}{c|}{40.75} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{3,44} &
+	\multicolumn{1}{l|}{4,95} &
+	\multicolumn{1}{l|}{3,21} &
+	\multicolumn{1}{l|}{3,77} &
+	\multicolumn{1}{l|}{3,20} &
+	\multicolumn{1}{l|}{3,48} &
+	\multicolumn{1}{l|}{3,17} &
+	\multicolumn{1}{l|}{3,37} &
+	\multicolumn{1}{l|}{3,18} &
+	\multicolumn{1}{l|}{3,32} &
+	\multicolumn{1}{l|}{3,37} &
+	\multicolumn{1}{l|}{3,49} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-reset} &
-	\multicolumn{1}{c|}{56.53} &
-	\multicolumn{1}{c|}{49.45} &
-	\multicolumn{1}{c|}{61.11} &
-	\multicolumn{1}{c|}{48.08} &
-	\multicolumn{1}{c|}{56.93} &
-	\multicolumn{1}{c|}{46.11} &
-	\multicolumn{1}{c|}{61.37} &
-	\multicolumn{1}{c|}{44.35} &
-	\multicolumn{1}{c|}{62.92} &
-	\multicolumn{1}{c|}{42.49} &
-	\multicolumn{1}{c|}{71.61} &
-	\multicolumn{1}{c|}{39.97} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{34,33} &
+	\multicolumn{1}{l|}{41,81} &
+	\multicolumn{1}{l|}{43,44} &
+	\multicolumn{1}{l|}{42,07} &
+	\multicolumn{1}{l|}{39,20} &
+	\multicolumn{1}{l|}{38,85} &
+	\multicolumn{1}{l|}{43,24} &
+	\multicolumn{1}{l|}{39,39} &
+	\multicolumn{1}{l|}{41,44} &
+	\multicolumn{1}{l|}{39,28} &
+	\multicolumn{1}{l|}{39,17} &
+	\multicolumn{1}{l|}{38,82} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{EKF-replacement} &
-	\multicolumn{1}{c|}{19.86} &
-	\multicolumn{1}{c|}{28.91} &
-	\multicolumn{1}{c|}{23.24} &
-	\multicolumn{1}{c|}{28.36} &
-	\multicolumn{1}{c|}{22.04} &
-	\multicolumn{1}{c|}{26.73} &
-	\multicolumn{1}{c|}{21.03} &
-	\multicolumn{1}{c|}{27.16} &
-	\multicolumn{1}{c|}{21.77} &
-	\multicolumn{1}{c|}{27.34} &
-	\multicolumn{1}{c|}{21.29} &
-	\multicolumn{1}{c|}{25.25} \\ \midrule
+	\multicolumn{1}{l|}{12,60} &
+	\multicolumn{1}{l|}{15,44} &
+	\multicolumn{1}{l|}{11,45} &
+	\multicolumn{1}{l|}{16,04} &
+	\multicolumn{1}{l|}{11,26} &
+	\multicolumn{1}{l|}{16,80} &
+	\multicolumn{1}{l|}{11,36} &
+	\multicolumn{1}{l|}{17,88} &
+	\multicolumn{1}{l|}{10,83} &
+	\multicolumn{1}{l|}{16,69} &
+	\multicolumn{1}{l|}{11,47} &
+	\multicolumn{1}{l|}{18,34} \\ \midrule
 	\multicolumn{1}{|l|}{\multirow{2}{*}{None}} &
 	\multicolumn{1}{l|}{Perfect Design} &
-	\multicolumn{1}{c|}{\textbf{15.54}} &
-	\multicolumn{1}{c|}{\textbf{26.75}} &
-	\multicolumn{1}{c|}{\textbf{13.08}} &
-	\multicolumn{1}{c|}{\textbf{23.18}} &
-	\multicolumn{1}{c|}{\textbf{12.39}} &
-	\multicolumn{1}{c|}{\textbf{22.13}} &
-	\multicolumn{1}{c|}{\textbf{11.87}} &
-	\multicolumn{1}{c|}{\textbf{21.61}} &
-	\multicolumn{1}{c|}{\textbf{11.64}} &
-	\multicolumn{1}{c|}{\textbf{21.4}} &
-	\multicolumn{1}{c|}{\textbf{10.59}} &
-	\multicolumn{1}{c|}{\textbf{20.38}} \\ \cmidrule(l){2-14} 
+	\multicolumn{1}{l|}{\textbf{1,87}} &
+	\multicolumn{1}{l|}{\textbf{2,77}} &
+	\multicolumn{1}{l|}{\textbf{1,85}} &
+	\multicolumn{1}{l|}{\textbf{2,72}} &
+	\multicolumn{1}{l|}{\textbf{1,89}} &
+	\multicolumn{1}{l|}{\textbf{2,83}} &
+	\multicolumn{1}{l|}{\textbf{1,85}} &
+	\multicolumn{1}{l|}{\textbf{2,71}} &
+	\multicolumn{1}{l|}{\textbf{1,82}} &
+	\multicolumn{1}{l|}{\textbf{2,72}} &
+	\multicolumn{1}{l|}{\textbf{1,70}} &
+	\multicolumn{1}{l|}{\textbf{2,50}} \\ \cmidrule(l){2-14} 
 	\multicolumn{1}{|l|}{} &
 	\multicolumn{1}{l|}{Failure Design} &
-	\multicolumn{1}{c|}{37.63} &
-	\multicolumn{1}{c|}{36.57} &
-	\multicolumn{1}{c|}{42.27} &
-	\multicolumn{1}{c|}{32.76} &
-	\multicolumn{1}{c|}{43.55} &
-	\multicolumn{1}{c|}{32.14} &
-	\multicolumn{1}{c|}{42.97} &
-	\multicolumn{1}{c|}{32.00} &
-	\multicolumn{1}{c|}{42.33} &
-	\multicolumn{1}{c|}{31.93} &
-	\multicolumn{1}{c|}{N/A} &
-	\multicolumn{1}{c|}{N/A} \\ \bottomrule
+	\multicolumn{1}{l|}{\textbf{43,65}} &
+	\multicolumn{1}{l|}{\textbf{49,94}} &
+	\multicolumn{1}{l|}{\textbf{47,28}} &
+	\multicolumn{1}{l|}{\textbf{46,57}} &
+	\multicolumn{1}{l|}{\textbf{52,50}} &
+	\multicolumn{1}{l|}{\textbf{46,81}} &
+	\multicolumn{1}{l|}{\textbf{53,68}} &
+	\multicolumn{1}{l|}{\textbf{46,63}} &
+	\multicolumn{1}{l|}{\textbf{52,33}} &
+	\multicolumn{1}{l|}{\textbf{46,20}} &
+	\multicolumn{1}{l|}{\textbf{N/A}} &
+	\multicolumn{1}{l|}{\textbf{N/A}} \\ \bottomrule
 \end{tabular}
 \end{table*}
+
 \newpage
 %\csvautotabular{/home/ulrich/Documents/Masters thesis/Satellite/Data files/Summary/Reflection.csv}
 

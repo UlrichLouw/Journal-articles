@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  1 FEB 2022 11:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  18 FEB 2022 11:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1061,22 +1061,22 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./root.aux)
 \openout1 = `root.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
  (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
@@ -1090,8 +1090,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'root.bbl' found.
 (./root.bbl)
-Package biblatex Info: Reference section=0 on input line 63.
-Package biblatex Info: Reference segment=0 on input line 63.
+Package biblatex Info: Reference section=0 on input line 66.
+Package biblatex Info: Reference segment=0 on input line 66.
  ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1119,10 +1119,10 @@ e
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into 
 your preamble.
- on input line 63.
+ on input line 66.
 
 \AtBeginShipoutBox=\box67
-Package hyperref Info: Link coloring OFF on input line 63.
+Package hyperref Info: Link coloring OFF on input line 66.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -1134,40 +1134,40 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count448
 )
-LaTeX Info: Redefining \ref on input line 63.
-LaTeX Info: Redefining \pageref on input line 63.
-LaTeX Info: Redefining \nameref on input line 63.
+LaTeX Info: Redefining \ref on input line 66.
+LaTeX Info: Redefining \pageref on input line 66.
+LaTeX Info: Redefining \nameref on input line 66.
 
 (./root.out) (./root.out)
 \@outlinefile=\write6
 \openout6 = `root.out'.
 
-LaTeX Info: Redefining \celsius on input line 63.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 63.
+LaTeX Info: Redefining \celsius on input line 66.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 66.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 63.
-Package gensymb Info: Using \Omega for \ohm on input line 63.
+LaTeX Info: Redefining \ohm on input line 66.
+Package gensymb Info: Using \Omega for \ohm on input line 66.
 
 Package gensymb Warning: Not defining \micro.
 
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 68.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 71.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 71.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 71.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
-8.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 7
+1.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
@@ -1225,25 +1225,25 @@ Package pdftex.def Info: Figures/Control_Diagram.pdf , page8 used on input line
 
 
 ] (./Figures/ReflectionModel.pdf_tex
-<Figures/ReflectionModel.pdf, id=120, page=1, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=119, page=1, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page1 used on input line
  56.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=121, page=2, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=120, page=2, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page2 used on input line
  60.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=122, page=3, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=121, page=3, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 3>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page3 used on input line
  65.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=123, page=4, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=122, page=4, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 4>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page4 used on input line
@@ -1251,26 +1251,26 @@ Package pdftex.def Info: Figures/ReflectionModel.pdf , page4 used on input line
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
 )
 (./Figures/ReflectionModelPoint.pdf_tex
-<Figures/ReflectionModelPoint.pdf, id=124, page=1, 405.80606pt x 361.23102pt>
+<Figures/ReflectionModelPoint.pdf, id=123, page=1, 405.80606pt x 361.23102pt>
 File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
 <use Figures/ReflectionModelPoint.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page1 used on input
  line 56.
 (pdftex.def)             Requested size: 199.16928pt x 177.29137pt.
-<Figures/ReflectionModelPoint.pdf, id=125, page=2, 405.80606pt x 361.23102pt>
+<Figures/ReflectionModelPoint.pdf, id=124, page=2, 405.80606pt x 361.23102pt>
 File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
 <use Figures/ReflectionModelPoint.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page2 used on input
  line 77.
 (pdftex.def)             Requested size: 199.16928pt x 177.29137pt.
 ) (./Figures/LineIntersection.pdf_tex
-<Figures/LineIntersection.pdf, id=126, page=1, 355.26335pt x 207.5424pt>
+<Figures/LineIntersection.pdf, id=125, page=1, 355.26335pt x 207.5424pt>
 File: Figures/LineIntersection.pdf Graphic file (type pdf)
 <use Figures/LineIntersection.pdf, page 1>
 Package pdftex.def Info: Figures/LineIntersection.pdf , page1 used on input lin
 e 56.
 (pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
-<Figures/LineIntersection.pdf, id=127, page=2, 355.26335pt x 207.5424pt>
+<Figures/LineIntersection.pdf, id=126, page=2, 355.26335pt x 207.5424pt>
 File: Figures/LineIntersection.pdf Graphic file (type pdf)
 <use Figures/LineIntersection.pdf, page 2>
 Package pdftex.def Info: Figures/LineIntersection.pdf , page2 used on input lin
@@ -1282,15 +1282,14 @@ has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.164 \begin{equation}
-                      pdfTeX warning (ext4): destination with the same identifi
-er (name{figure.2}) has been already used, duplicate ignored
+l.166 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.164 \begin{equation}
-                       <./Figures/Control_Diagram.pdf> <./Figures/Control_Diagr
-am.pdf
+l.166 
+       <./Figures/Control_Diagram.pdf> <./Figures/Control_Diagram.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
@@ -1335,73 +1334,15 @@ lusion: multiple pdfs with page group included in a single page
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
 lusion: multiple pdfs with page group included in a single page
 >]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
-Sat Model/2Sensors/Reflection.csv"}
-
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
-N/General CubeSat Model/2Sensors/Reflection.csv"' has an empty column name; rep
-lacing it by '0'' on input line 194.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
-Sat Model/2Sensors/Reflection.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
-N/General CubeSat Model/2Sensors/Reflection.csv"' has an empty column name; rep
-lacing it by '0'' on input line 195.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General Cube
-Sat Model/2Sensors/Reflection.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SU
-N/General CubeSat Model/2Sensors/Reflection.csv"' has an empty column name; rep
-lacing it by '0'' on input line 196.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
-odel/2Sensors/None.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
-eral CubeSat Model/2Sensors/None.csv"' has an empty column name; replacing it b
-y '0'' on input line 208.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
-odel/2Sensors/None.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
-eral CubeSat Model/2Sensors/None.csv"' has an empty column name; replacing it b
-y '0'' on input line 209.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat M
-odel/2Sensors/None.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/Gen
-eral CubeSat Model/2Sensors/None.csv"' has an empty column name; replacing it b
-y '0'' on input line 210.
-
- [warning /pgfplots/warning/empty column name]
-[3pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) 
-has been already used, duplicate ignored
+(./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
+General CubeSat Model/Reflection/Sun.pgf)
+(./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
+General CubeSat Model/None/Sun.pgf) [3pdfTeX warning (ext4): destination with t
+he same identifier (name{figure.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.248 \begin{equation}
+l.255 \begin{equation}
                        <./Figures/ReflectionModelPoint.pdf> <./Figures/Reflecti
 onModelPoint.pdf
 
@@ -1424,20 +1365,20 @@ abledDMDMethod/DecisionTreeBinaryClass.png Graphic file (type png)
 bledDMDMethod/DecisionTreeBinaryClass.png>
 Package pdftex.def Info: /home/ulrich/Documents/Masters thesis/Satellite/Hyperp
 arameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png  used on input li
-ne 281.
+ne 288.
 (pdftex.def)             Requested size: 426.79134pt x 273.14024pt.
  [4pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
  has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.291 \subsection
-                 {Recovery}] [5pdfTeX warning (ext4): destination with the same
- identifier (name{figure.5}) has been already used, duplicate ignored
+l.300 
+      ] [5pdfTeX warning (ext4): destination with the same identifier (name{fig
+ure.5}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.308 
+l.314 
        </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/Physics
 EnabledDMDMethod/DecisionTreeBinaryClass.png>] [6pdfTeX warning (ext4): destina
 tion with the same identifier (name{table.1}) has been already used, duplicate 
@@ -1445,119 +1386,77 @@ ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.362 \newpage
+l.371 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {table.2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.362 \newpage
+l.371 \newpage
               ]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC/General CubeS
-at Model/2Metric/None.csv"}
-
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC
-/General CubeSat Model/2Metric/None.csv"' has an empty column name; replacing i
-t by '0'' on input line 372.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC/General CubeS
-at Model/2Metric/None.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC
-/General CubeSat Model/2Metric/None.csv"' has an empty column name; replacing i
-t by '0'' on input line 386.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC/General CubeS
-at Model/Metric/Reflection.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC
-/General CubeSat Model/Metric/Reflection.csv"' has an empty column name; replac
-ing it by '0'' on input line 404.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC/General CubeS
-at Model/Metric/Reflection.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/ORC
-/General CubeSat Model/Metric/Reflection.csv"' has an empty column name; replac
-ing it by '0'' on input line 418.
-
- [warning /pgfplots/warning/empty column name]
-[7pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) 
-has been already used, duplicate ignored
+(./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
+General CubeSat Model/None/Pointing Metric.pgf)
+(./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
+General CubeSat Model/None/Estimation Metric.pgf)
+(./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
+General CubeSat Model/Reflection/Pointing Metric.pgf)
+(./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
+General CubeSat Model/Reflection/Estimation Metric.pgf)
+(./Figures/TexFigures/Predictor-PERFECT/Isolator-OnlySun/Recovery-EKF-ignore/EA
+RTH_SUN-ORC-General CubeSat Model/Reflection/Pointing Metric.pgf)
+(./Figures/TexFigures/Predictor-PERFECT/Isolator-OnlySun/Recovery-EKF-ignore/EA
+RTH_SUN-ORC-General CubeSat Model/Reflection/Estimation Metric.pgf) [7pdfTeX wa
+rning (ext4): destination with the same identifier (name{figure.6}) has been al
+ready used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.425 \newpage
+l.431 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {figure.7}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.425 \newpage
+l.431 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {figure.8}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.425 \newpage
+l.431 \newpage
               pdfTeX warning (ext4): destination with the same identifier (name
 {figure.9}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.425 \newpage
-              ]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-ignore/EARTH_SUN/ORC/G
-eneral CubeSat Model/2Metric/Reflection.csv"}
-
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-ignore/E
-ARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv"' has an empty column
- name; replacing it by '0'' on input line 438.
-
- [warning /pgfplots/warning/empty column name]
-PGFPlots: reading {"/home/ulrich/Documents/Masters thesis/Satellite/Data files/
-pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-ignore/EARTH_SUN/ORC/G
-eneral CubeSat Model/2Metric/Reflection.csv"}
-
-Package pgfplots Warning: Table '"/home/ulrich/Documents/Masters thesis/Satelli
-te/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF-ignore/E
-ARTH_SUN/ORC/General CubeSat Model/2Metric/Reflection.csv"' has an empty column
- name; replacing it by '0'' on input line 452.
-
- [warning /pgfplots/warning/empty column name]
+l.431 \newpage
+              ] (./Figures/TexFigures/Summary/PERFECT/Estimation Metric.pgf)
+(./Tables/Pointing Metric/Reflection.tex
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 549.
+               Default added (so using `tbp') on input line 1.
 
 
-Overfull \hbox (5.6123pt too wide) in paragraph at lines 552--831
-[][] 
+Overfull \hbox (5.6123pt too wide) in paragraph at lines 5--306
+ [][] 
  []
 
+) (./Tables/Estimation Metric/Reflection.tex
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 834.
+               Default added (so using `tbp') on input line 1.
 
 
-Overfull \hbox (5.6123pt too wide) in paragraph at lines 837--1116
-[][] 
+Overfull \hbox (5.6123pt too wide) in paragraph at lines 5--306
+ [][] 
  []
 
+) (./Tables/Prediction Accuracy/Reflection.tex
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1.
+
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1574,32 +1473,43 @@ Before submitting the final camera ready copy, remember to:
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.1154 \end{document}
-                     pdfTeX warning (ext4): destination with the same identifie
-r (name{figure.11}) has been already used, duplicate ignored
+l.490 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.11}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.1154 \end{document}
-                     ] [9pdfTeX warning (ext4): destination with the same ident
-ifier (name{table.3}) has been already used, duplicate ignored
+l.490 \end{document}
+                    pdfTeX warning (ext4): destination with the same identifier
+ (name{figure.12}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.1154 \end{document}
-                     ] [10pdfTeX warning (ext4): destination with the same iden
-tifier (name{table.4}) has been already used, duplicate ignored
+l.490 \end{document}
+                    ] [9pdfTeX warning (ext4): destination with the same identi
+fier (name{table.3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.1154 \end{document}
-                     ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1154.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1154.
+l.490 \end{document}
+                    ] [10pdfTeX warning (ext4): destination with the same ident
+ifier (name{table.4}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.490 \end{document}
+                    ] [11pdfTeX warning (ext4): destination with the same ident
+ifier (name{table.5}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.490 \end{document}
+                    ]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 490.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 490.
  (./root.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1154.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1154.
-
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 490.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 490.
 Package rerunfilecheck Info: File `root.out' has not changed.
 (rerunfilecheck)             Checksum: 88775B5BC16931246A5F62398C1B5B37;1220.
 Package logreq Info: Writing requests to 'root.run.xml'.
@@ -1607,13 +1517,13 @@ Package logreq Info: Writing requests to 'root.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 36478 strings out of 483107
- 852814 string characters out of 5964630
- 2899750 words of memory out of 5000000
- 50824 multiletter control sequences out of 15000+600000
+ 35999 strings out of 483107
+ 839869 string characters out of 5964630
+ 1626141 words of memory out of 5000000
+ 50316 multiletter control sequences out of 15000+600000
  575500 words of font info for 118 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 66i,20n,98p,1288b,2170s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,17n,98p,1288b,1584s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/
@@ -1632,10 +1542,10 @@ t/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts
 mes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (10 pages, 936340 bytes).
+Output written on root.pdf (11 pages, 802460 bytes).
 PDF statistics:
- 413 PDF objects out of 1000 (max. 8388607)
- 322 compressed objects within 4 object streams
- 66 named destinations out of 1000 (max. 500000)
+ 420 PDF objects out of 1000 (max. 8388607)
+ 328 compressed objects within 4 object streams
+ 69 named destinations out of 1000 (max. 500000)
  264 words of extra memory for PDF output out of 10000 (max. 10000000)
 

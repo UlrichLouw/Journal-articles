@@ -42,7 +42,9 @@
 \usepackage{placeins}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{xcolor}
 \usepackage{pgf}
+\usepackage{subcaption}
 %\usepackage[maxfloats=256]{morefloats}
 %\maxdeadcycles=1000
 %\usepgfplotslibrary{external} 
@@ -84,15 +86,15 @@ The Kalman Filter is a state estimator that is often used in attitude determinat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
-For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. The current state vector of the system can not be determined with only the use of models or sensors. Since the sensors contains noise and the mathematical model does not include certain disturbances in the actual system. Therefore a probabilistic approach can be used to determine the state vector from both the model and the sensor. This probabilistic approach is done with the use of an extended kalman filter (\emph{EKF}). 
+For many satellite missions the attitude determination is of high importance. A mission that requires earth following during eclipse and otherwise sun following for solar charging requires accurate attitude estimation. The current state vector of the system can not be determined with only the use of models or sensors. Since the sensors contains noise and the mathematical model does not include certain disturbances of the actual system. Therefore a probabilistic approach can be used to determine the attitude from both the model and the sensors. This probabilistic approach is done with the use of an extended kalman filter (\emph{EKF}). 
 
 The focus of this article is the attitude determination and control system, \emph{ADCS}, of the satellite. This system is demonstrated in Figure~\ref{fig:System_Diagram}, where the basic ADCS excludes the fault detection, isolation and recovery, \emph{FDIR}, and feature extraction. The FDIR for sensors receive the sensor measurements and the feature extractions as inputs and outputs the recovery method if it is required. 
 
-The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. The sensor measurements that are used for the measurement update, are the sensors that provide a modelled vector in the orbit-referenced coordinate, \emph{ORC}, frame as well as a measured vector in the satellite body coordinate, \emph{SBC}, frame. Therefore the sensors used for the measurement update if a magnetometer, sun sensor and nadir sensor. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliable measurements. The error between the modelled and measured vectors are used to update the EKF estimation. The EKF and the specific configuration thereof for satellites can be researched further~\cite{JansevanVuuren2015}. 
+The EKF is a method which incorporates a physics based model of the satellite dynamics as well as using sensor fusion and measurement updates to ensure accurate estimation. The sensor measurements that are used for the measurement update, are the sensors that provide a modelled vector in the orbit-referenced coordinate, \emph{ORC}, frame as well as a measured vector in the satellite body coordinate, \emph{SBC}, frame. The sensors used for the measurement update according to the general satellite design is a magnetometer, sun sensor and nadir sensor. The noise of the measurements and the noise of the system is incorporated in the EKF model to ensure stability and reliable estimation. The general principal for measurement updates, is to update the EKF from the least to the most reliable sensor measurements. The error between the modelled and measured vectors are used to update the EKF. The EKF and the specific configuration thereof for satellites can be researched further~\cite{JansevanVuuren2015}. 
 
-The problem with an EKF is when the sensors do not follow their modelled vector. Slight deviations thereof won't have significant effects, but anomalies such as failed sensors can cause the EKF to become unstable. Consequently, we want to be able to recover from failed sensors. The frequency of the anomaly occurrence can also determine the stability of the Kalman filter. Therefore we opted to use sun reflection from the solar panel on sun sensors as our modelled anomaly. This is because of the accurate modelling for sun reflection. This is a real problem in the satellite industry that can be isolated with changes in the satellite design to ensure that sun reflection does not occur on the sun sensor.
+The problem with an EKF is when the sensors do not follow their modelled vector. Slight deviations thereof won't have significant effects, but anomalies such as failed sensors can cause the EKF to become unstable. Consequently, we want to be able to recover from failed sensors. The frequency of the anomaly occurrence can also influence the stability of the Kalman filter. Therefore we opted to use sun reflection from the solar panel on sun sensors as our modelled anomaly. This is because of the accurate modelling for sun reflection. This is a real problem in the satellite industry that can be isolated with changes in the satellite design to ensure that sun reflection does not occur on the sun sensor.
 
-This anomaly also requires autonomous decision making to ensure sun facing control. This cannot be done by the ground station during orbit, unless the control system is dramatically changed if the anomaly is detected by the ground station. Therefore we aim to design a fault detection, isolation and recovery system specifically. The specific use case will be a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
+This anomaly also requires autonomous decision making to ensure sun facing control. This cannot be done by the ground station during orbit, unless the control system is dramatically changed after the anomaly is detected by the ground station. Therefore we aim to design a fault detection, isolation and recovery system for the specific use case of a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
 
 \begin{figure*}[h!b!t]
 	\centering
@@ -103,9 +105,9 @@ This anomaly also requires autonomous decision making to ensure sun facing contr
 \end{figure*}
 
 \subsection{Related Work}
-Sun reflection is not a new problem and has consequently been researched thoroughly. Hardware solutions to sun reflection have been developed with the use of digital sun sensors that can discriminate between direct sunlight and reflected sunlight. These digital sun sensors however, are not as accurate as many other analog sun sensors. There is also a long list of research that has been done with regards to sensor fault detection (as seen in \cite{wang2019adaptive}). One of the most relevant articles is done by \textcite{wang2019adaptive}, and proposed a adaptive unscented Kalman filter for sensor fault estimation and isolation. The results thereof seems promising and are based on dramatical changes in the measurements. However, the research does not seem to include sensor fusion, but only requires the true estimation from the single occurence of an anomaly in a sensor measurement. Therefore, future work might be to use the algorithm developed by \textcite{wang2019adaptive} to test the response thereof on sun reflection, noting that sun reflection occurs regularly during the sunlight phase of the orbit as well as the fact that normal satellite operations use sensor fusion to create an accurate estimation.
+Sun reflection is not a new problem and has consequently been researched thoroughly. Hardware solutions to sun reflection have been developed with the use of digital sun sensors that can discriminate between direct sunlight and reflected sunlight. These digital sun sensors however, are not as accurate as many other analog sun sensors. There is also a long list of research that has been done with regards to sensor fault detection (as seen in \cite{wang2019adaptive}). One of the most relevant articles is done by \textcite{wang2019adaptive}, and proposed a adaptive unscented Kalman filter for sensor fault estimation and isolation. The results thereof seems promising and are based on dramatical changes in the measurements. However, the research is not based on failures such as sun reflection, the results are based on drastic modelled failures. Therefore, future work will be to use the algorithm developed by \textcite{wang2019adaptive} to test the response thereof on sun reflection, noting that sun reflection occurs regularly during the sunlight phase of the orbit.
 
-Other research that is used for feature extraction in this article is based on research done by \textcite{DeSilva2020}. Fault prediction is done by implementing an innovative moving average, determined by the error estimated with dynamic mode decomposition, \emph{DMD}, and a kalman filter, as a input to a predictive model --- decision tree. The method however is adjusted for our use case to be a linear regression model instead of DMD.
+Other research that is used for feature extraction in this article is based on research done by \textcite{DeSilva2020}. Fault prediction is done by implementing an innovative moving average, determined by the error estimated with dynamic mode decomposition, \emph{DMD}, and a kalman filter, as an input to a predictive model --- decision tree. The method however is adjusted for our use case to be a linear regression model instead of DMD.
 
 \subsection{Preliminaries}
 The details of satellite dynamics will not be discussed in this article, however it must be noted that orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article is matrices in upper case and bold, vectors in lower case and bold and scalars as lower or upper case but not in bold as illustrated below.
@@ -121,7 +123,7 @@ This will be the notation throughout this article unless specified otherwise.
 
 \section{Reflection}
 \label{section:Reflection}
-The reflection anomaly is modelled for any dimensions but with the specific shape and design of the cubesat as shown in Figure~\ref{fig:CubeSat}.
+The reflection anomaly is modelled for the specific shape and design of the cubesat as shown in Figure~\ref{fig:CubeSat}.
 
 \begin{figure}[!htb]
 	\centering
@@ -142,18 +144,17 @@ The reflection anomaly is modelled for any dimensions but with the specific shap
 	\label{fig:LineIntersection}
 \end{figure*}
 
-The assumption is made that the solar panel can be modelled as a plane. Therefore light from the solar panel will reflect similarly to a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel is detected by the sun sensor, the measured sun vector will default to the reflection ray instead of the direct sun vector. Therefore the intensity of the light vector is disregarded. The reflected sun vector, $r$, can be calculated as
+The assumption is made that the solar panel can be modelled as a geometric plane. Therefore, light from the solar panel will reflect as from a perfectly smooth mirror. It is also assumed that if any reflection from the solar panel is detected by the sun sensor, the measured sun vector will default to the reflection ray instead of the direct sun vector. Therefore the intensity of the light vector is disregarded. The reflected sun vector, $r$, can be calculated as
 \begin{equation}
-	\mathbf{r} = \mathbf{v} - 2\mathbf{n}^T(\mathbf{v} \cdot \mathbf{n})
+	\mathbf{r} = \mathbf{v} - 2\mathbf{n}^T(\mathbf{v} \cdot \mathbf{n}).
 \end{equation}
-Where $\mathbf{v}$ is the incoming sun vector and $\mathbf{n}$ is the normal vector to the plane $ABCD$ of the solar panel as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $XWYZ$ of the sun sensor the intersecting point the equation of the plane, reflected vector and the point of origin is required. The equation for a plane can be denoted as 
+Where $\mathbf{v}$ is the incoming sun vector and $\mathbf{n}$ is the normal vector to the plane $ABCD$ of the solar panel as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $XWYZ$ of the sun sensor the equation of the plane, $XWYZ$, the reflected vector, $r$, and the point of origin is required. The equation for a plane can be denoted as 
 
 \begin{equation}
 	\mathbf{p} = ax + by + cz + d
 	\label{eq:Plane}
 \end{equation}
-where $x, y and z$ are the dimensions in the SBC frame. The reflected unit vector can also be translated to 
-
+where $x$, $y$ and $z$ are the dimensions in the SBC frame. The reflected unit vector can also be translated to 
 \begin{equation}
 	\begin{aligned}
 	&	x = \alpha t \\
@@ -162,14 +163,14 @@ where $x, y and z$ are the dimensions in the SBC frame. The reflected unit vecto
 	\end{aligned}
 \label{eq:LineOfVector}
 \end{equation}
-where the coefficients, $\alpha$, $\beta$ and $\zeta$ are the values of the reflected unit vector in each respective dimension. Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the reflected vector, we can calculate $t$, by substituting $x$, $y$ and $z$ into Eq~\ref{eq:Plane}. This is possible, because we determine the equation of the plane for the surface $XYZW$ based on our design. Thereafter, the intersecting point with the plane $XYZW$ can be calculated as
+where the coefficients, $\alpha$, $\beta$ and $\zeta$ are the values of the reflected unit vector in each respective dimension. Since we can calculate the coefficients for Eq~\ref{eq:LineOfVector} from the reflected vector, we can calculate $t$, by substituting $x$, $y$ and $z$ into Eq~\ref{eq:Plane}. This is possible, because we determine the equation of the plane for the surface $XYZW$ based on our design. 
 
+Thereafter, the intersecting point with the plane $XYZW$ can be calculated as
 \begin{equation}
 	P(x, y, z) = (o_1 + \alpha t, o_2 + \beta t, o_3 + \zeta t)
 	\label{eq:Intersection}
 \end{equation}
-where $o_1, o_2, o_3$ is the position of origin. Which in this case is the position of reflection from the solar panel. Therefore, if the sun vector $\mathbf{v}$ reflected from the solar panel as $\mathbf{r}$, the point of intersection $Q'$ can be calculated as
-
+where $o_1, o_2, o_3$ is the point of origin. Which in this case is the position of reflection from the solar panel. Therefore, if the sun vector $\mathbf{v}$ reflected from the solar panel as $\mathbf{r}$, the point of intersection $Q'$ on Figure~\ref{fig:LineIntersection} can be calculated as
 \begin{equation}
 	Q'(x, y, z) = (Q_x + \alpha t, Q_y + \beta t, Q_z + \zeta t)
 	\label{eq:SpecificIntersection}
@@ -178,55 +179,31 @@ where $o_1, o_2, o_3$ is the position of origin. Which in this case is the posit
 To model reflection from the solar panels to the sun sensor only two corners of the solar panel and two corners of the sun sensor are to be taken into account. From Figure~\ref{fig:LineIntersection} it is evident that if the solar panel reflects on $Y$ that the reflection will also cover $X$. The same is true for corner $Z$ and $W$. Since $C'$ will be at the exact same position as $C$, which is also true for $D'$ and $D$, the calculation thereof can be omitted. Therefore it is only necessary to calculate the reflected positions $A'$ and $B'$. This simplifies the reflection model significantly.
 
 The reflected position $A'$ can be calculated as the intersection of the reflected vector $R$ with plane $XYZW$ using Eq~\ref{eq:Intersection}. We also know the position of $A$, based on the satellite design and can therefore calculate $A'$. The same applies to $B$ and $B'$. To then determine whether $Y$ or $X$ is within the region of reflection, we assume that the plane $XYWZ$ is a 2D plane and we omit the third dimension. Therefore, the axis changes from $x, y, z$ to only $x, y$. We calculate whether $x$ is between the lines of $A'D'$ and $B'C$ as well as between the lines $CD$ and $A'B'$. By determining the line equation between reflected points in the form 
-
 \begin{equation}
 y_{A'B'} = mx_{A'B'} + c
 \label{eq:line equation}
 \end{equation}
-the corresponding $x$ or $y$ coordinate can be calculated by substituting either $X_y$ or $X_x$ in Eq~\ref{eq:line equation}. With this the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ can be determined. Thereafter with logical if statements it can be determined whether $X$ is in the reflection zone. This is demonstrated with the position $X$. If $X_x$ is to the right of $X_{B'C,x}$ and to the left of $X_{A'D,x}$, as well as $X_y$ is above $X_{A'B',y}$ and below $X_{CD,y}$ then $X$ is within the reflection zone. 
+the corresponding $x$ or $y$ coordinates can be calculated by substituting either $X_y$ or $X_x$ in Eq~\ref{eq:line equation}. With this the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ can be determined. Thereafter with logical if statements it can be determined whether $X$ is in the reflection zone. This is demonstrated with the position $X$. If $X_x$ is to the right of $X_{B'C,x}$ and to the left of $X_{A'D,x}$, as well as $X_y$ is above $X_{A'B',y}$ and below $X_{CD,y}$ then $X$ is within the reflection zone. 
 
-The results for the sun vector with and without reflection is shown in Figure~\ref{fig:Sun Vector comparison}. For modelling purposes, the reflection in this example has no influence on the estimation and control of the satellite.
-
-%\begin{figure*}[!htb]
-%	\hspace{1cm}
-%	\begin{tikzpicture}
-%	%\centering
-%	\begin{axis}[width = 7cm, ylabel = $\theta$ (deg), y label style = {at={(0,0.5)},
-%			anchor=north}, xlabel = Time (s), forget plot style={opacity=0.2}, title = Sun vector with reflection]
-%		
-%		\addplot[line width=1pt,color=blue, each nth point=500, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
-%		\addplot[line width=1pt,color=red, each nth point=500, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
-%		\addplot[line width=1pt,color=green, each nth point=500, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-PERFECT/Isolator-PERFECT/Recovery-EKF/EARTH_SUN/General CubeSat Model/2Sensors/Reflection.csv};
-%	\end{axis}
-%	%\end{tikzpicture}
-%%	\caption[Sun vector]{Sun vector  with reflection.}
-%%	\label{fig:Sun Vector with Reflection}
-%	%\centering
-%	%\begin{tikzpicture}
-%		%\centering
-%		\hspace{7cm}
-%		\begin{axis}[width = 7cm, xlabel = Time (s), legend style={draw = none, at={(1.15,0.65)},
-%				anchor=north}, forget plot style={opacity=0.2}, title = Sun vector without reflection]
-%			
-%			\addplot[line width=1pt,color=blue, each nth point=500, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_x, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
-%			\addplot[line width=1pt,color=red, each nth point=500, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_y, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
-%			\addplot[line width=1pt,color=green, each nth point=500, draw opacity=0.5,filter discard warning=false, unbounded coords=discard] table [x expr=\coordindex, y=Sun_z, col sep=comma]{/home/ulrich/Documents/Masters thesis/Satellite/Data files/pgfPlots/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN/General CubeSat Model/2Sensors/None.csv};
-%			\legend{x, y, z}
-%		\end{axis}
-%	\end{tikzpicture}
-%\caption[Sun vector]{Sun vector without reflection.}
-%\label{fig:Sun Vector comparison}
-%\end{figure*}
+The results for the sun vector with and without reflection is shown in Figure~\ref{fig:Sun Vector comparison}. During the modelling of the reflection, the reflection also effects the estimation and therefore also the attitude control of the satellite. In the figures of this article the grey zones indicate the eclipse period, as seen in Figure~\ref{fig:Sun Vector comparison}.
 
 \begin{figure*}[!htb]
-	
+\begin{subfigure}{.5\textwidth}
 	\centering
-\def\svgwidth{7cm}
-\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Sun.pgf}
-\centering
-\def\svgwidth{7cm}
-\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/None/}{Sun.pgf}
-\caption[Sun vector]{Sun vector without reflection.}
+	% include first image
+	\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Sun.pgf}
+	\caption[Sun vector with reflection]{Sun vector with reflection.}
+	\label{fig:Sun Vector comparison with reflection}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+	\centering
+	% include second image
+	\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/None/}{Sun.pgf} 
+	\caption[Sun vector without reflection]{Sun vector without reflection.}
+	\label{fig:Sun Vector comparison without reflection}
+\end{subfigure}
+
+\caption{Comparison of Sun Vector with and without Reflection}
 \label{fig:Sun Vector comparison}
 
 \end{figure*}
@@ -281,18 +258,18 @@ GI = 1 - \sum_{i = 1}^{n}{(P_i)^2}
 \label{eq:Gini index}
 \end{equation}
 
-The operator split that produces the lowest Gini index, provides the most pure split and will therefore be used as the root node. For our use case the CART algorithm will be used to optimize the decision tree, which also takes into account the largest information gain to construct the decision tree. Figure~\ref{fig:DecisionTree} is a graphical representation of the decision tree developed to classify anomalies. The depth of a decision tree determines how many splits occur from the root node to the leaf node the furthest from the first split. If the depth is unspecified, the decision tree will split until all the data samples are perfectly split into anomalous and normal data samples. However, the larger the depth, the more bias the decision tree is to the training data. Therefore, the depth is specified to $10$ for our use case.
+The operator split that produces the lowest Gini index, provides the most pure split and will therefore be used as the root node. For our use case the CART algorithm will be used to optimize the decision tree, which also takes into account the largest information gain to construct the decision tree. Figure~\ref{fig:DecisionTree} is a graphical representation of the decision tree developed to classify anomalies. The depth of a decision tree determines how many splits occur from the root node to the leaf node the furthest from the first split. If the depth is unspecified, the decision tree will split until all the data samples are perfectly split into anomalous and normal data samples. However, the larger the depth, the more bias the decision tree is to the training data. Therefore, the depth is specified to $10$ for our use case. This can be altered to optimize the decision tree, but we do not want to create an optimal solution for the simulation environment that will not behave well in a real environment.
 
 \begin{figure*}[!htb]
 	\centering
-	\includegraphics[trim = {3cm 7cm 3cm 7cm},clip, width = 15cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
+	\includegraphics[trim = {4cm 8cm 4cm 8cm},clip, width = 15cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
 	\label{fig:DecisionTree}
 	\caption{Decision Tree}
 \end{figure*}
 
-It is evident in Figure~\ref{fig:DecisionTree} that the best splits at the beginning of the tree is the sun sensor measurements as well as the moving average from the feature extraction. This makes logical sense, since the sun reflection should firstly be detected on the sun sensor measurements and the moving average indicates the changes in the linear regression model that correlates the sensors measurements.
+It is evident in Figure~\ref{fig:DecisionTree} that the largest splits at the beginning of the tree is the moving average from the feature extraction as well as the sun sensor and angular momentum of the reaction wheels' measurements. This makes logical sense, since the moving average provides the system with an extracted feature that correlates the change in measurements. The sun reflection can also be detected on the sun sensor measurements and changes in the angular momentum of the wheels indicate that there could be large changes in the sun vector during the sun following period.
 
-Random Forests, an method of using the prediction average of randomly sampled decision trees, is also tested and the results thereof shown in section~\ref{section:Results}.
+Random Forests, a method of using the prediction average of randomly sampled decision trees, is also tested and the results thereof shown in section~\ref{section:Results}.
 
 
 \subsection{Recovery}
@@ -364,19 +341,17 @@ The measurement update of the Kalman filter firstly with a magnetometer, nadir s
 
 \section{Results}
 \label{section:Results}
-Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to show the theoretical possibilities of the recovery method. Please note that the scale of the y-axis for each plot is not the same due to the large differences between the maximum y-values for each scenario.
+Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to provide the theoretical possibilities of the recovery method. Please note that the scale of the y-axis for each plot is not the same due to the large differences between the maximum y-values for each scenario.
 
-
-
-\newpage
+The pointing metric is the difference between the command or reference attitude and the actual attitude. The estimation metric is the difference between the actual attitude and the estimated attitude.
 
 \subsection{Perfect Designed Satellite Without Reflection}
-This test is implemented for the current design with the assumption that the sun sensor will never experience sun reflection. This also indicates the best scenario for the EKF.
+This test is implemented for the current design with the assumption that the sun sensor will never experience sun reflection. This also indicates the best scenario for the ADCS and requires a well designed satellite. The results for the first 5 orbits are shown to show the desired result from the recovery methods as shown in Figure~\ref{fig:Pointing Accuracy None} and Figure~\ref{fig:Estimation Accuracy None}. 
 \begin{figure}[!htb]
 	\begin{center}
 		\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/None/}{Pointing Metric.pgf}
 	\end{center}
-	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\caption[Pointing Metric for Satellite Without Reflection]{Pointing Metric for Satellite Without Reflection.}
 	\label{fig:Pointing Accuracy None}
 \end{figure}
 
@@ -384,17 +359,20 @@ This test is implemented for the current design with the assumption that the sun
 	\begin{center}
 	\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/None/}{Estimation Metric.pgf}
 	\end{center}
-	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\caption[Estimation Metric for Satellite Without Reflection]{Estimation Metric for Satellite Without Reflection.}
 	\label{fig:Estimation Accuracy None}
 \end{figure}
 
+From Figure~\ref{fig:Pointing Accuracy None} it evidently shows the transition of the reference vector between the eclipse and sunlit phases. This is the reason for the spikes in the point metric at the beginning of each period. From Figure~\ref{fig:Estimation Accuracy None} it is also evident that the estimation is more accurate during the sunlit phase, which correlates with the fact that the sun sensor has a smaller noise.
+
 \subsection{Satellite With Reflection}
-If no recovery strategy is implemented for the reflection anomaly, the EKF produces a singular matrix. Therefore there are no results for the satellite with reflection, without any recovery strategy.
+If no recovery strategy is implemented for the reflection anomaly, the EKF is very unstable and the estimation is very inaccurate. As a bare minimum the proposed methods should be better as the results shown in Figure~\ref{fig:Pointing Accuracy Reflection} and Figure~\ref{fig:Estimation Accuracy Reflection}. It is clear that the ADCS is unstable and the average estimation metric of a satellite without reflection is compared to the various recovery methods in Figure~\ref{fig:Estimation Metric Summary}.
+
 \begin{figure}[!htb]
 	\begin{center}
 	\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Pointing Metric.pgf}
 	\end{center}
-	\caption[Pointing Accuracy]{Pointing Accuracy.}
+	\caption[Pointing Metric for Satellite with Reflection and without FDIR]{Pointing Metric for Satellite with Reflection and without FDIR.}
 	\label{fig:Pointing Accuracy Reflection}
 \end{figure}
 
@@ -402,58 +380,80 @@ If no recovery strategy is implemented for the reflection anomaly, the EKF produ
 	\begin{center}
 	\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Estimation Metric.pgf}
 	\end{center}
-	\caption[Estimation Accuracy]{Estimation Accuracy.}
+	\caption[Estimation Metric for Satellite with Reflection and without FDIR]{Estimation Metric for Satellite with Reflection and without FDIR.}
 	\label{fig:Estimation Accuracy Reflection}
 \end{figure}
-\newpage
-\subsection{Perfect Prediction}
-This section indicates the results for each recovery method, with the assumption that the detection method is perfect. This means that the prediction methodology will produce an accuracy of 100\%.
 
-\subsubsection{Satellite With Recovery Ignore}
-For the recovery method where the sun sensor is ignored when a failure is detected, the results are very promising. This indicates that if the prediction methodology is very accurate then the EKF will be stable and the influence of the sun reflection will be minor, and will only change the vector which the control system will follow for the sun following part of the orbit.
-
-\begin{figure}[!htb]
-	\begin{center}
-	\import{Figures/TexFigures/Predictor-PERFECT/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Pointing Metric.pgf}
-	\end{center}
-	\caption[Pointing Accuracy]{Pointing Accuracy.}
-	\label{fig:Pointing Accuracy EKF-reset}
-\end{figure}
-
-\begin{figure}[!htb]
-	\begin{center}
-	\import{Figures/TexFigures/Predictor-PERFECT/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Estimation Metric.pgf}
-	\end{center}
-	\caption[Estimation Accuracy]{Estimation Accuracy.}
-	\label{fig:Estimation Accuracy EKF-reset}
-\end{figure}
-
-\newpage
+\subsection{Perfect Detection}
+This section indicates the results for each recovery method, with the assumption that the detection method is perfect. This means that the detection methodology will produce an accuracy of $100\%$. This is used to determine which method is most suitable for recovery from sensor anomalies and is the theoretical best scenario for each method. The mean estimation for each orbit is shown in Figure~\ref{fig:Estimation Metric Summary} and it is evident that the EKF-ignore method is the method that reduces the estimation error the most during a period of $30$ orbits. 
 
 \begin{figure}[!htb]
 	\begin{center}
 		\import{Figures/TexFigures/Summary/PERFECT/}{Estimation Metric.pgf}
 	\end{center}
-	\caption[Estimation Metric for Perfect Prediction]{Estimation Metric for Perfect Prediction.}
+	\caption[Estimation Metric for Perfect Detection]{Estimation Metric for Perfect Detection.}
 	\label{fig:Estimation Metric Summary}
 \end{figure}
-\newpage
 
-\import{Tables/Pointing Metric/}{Reflection.tex}
+It is evident that from all the recovery methods that the EKF-ignore method produces the best results with a perfect detection strategy. Therefore, this strategy will be further investigated with other detection strategies.
 
-\newpage
+\subsection{Satellite With Recovery Ignore}
+To show the promising results of the recovery ignore for perfect detection Figure~\ref{fig:Estimation Accuracy EKF-ignore} shows the estimation metric during the first 5 orbits. Our goal is to introduce detection strategies that produce similar results.
 
-\import{Tables/Estimation Metric/}{Reflection.tex}
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-PERFECT/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric for Satellite with Recovery Ignore]{Estimation Metric for Satellite with Recovery Ignore.}
+	\label{fig:Estimation Accuracy EKF-ignore}
+\end{figure}
 
-\newpage
+To compare the results between the detection methods the mean estimation metric for 30 orbits are shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. It is clear that both the Decision Tree and the Random Forest method as detection methods for the EKF-ignore produce better results than a satellite without any FDIR.
 
-\import{Tables/Prediction Accuracy/}{Reflection.tex}
+To further analyse both the Decision Tree and Random Forest methods, we require 
 
-\newpage
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric for Satellite with Recovery Ignore and Various detection Methods]{Estimation Metric for Satellite with Recovery Ignore and Various Detection Methods.}
+	\label{fig:Estimation Accuracy EKF-ignore summary}
+\end{figure}
 
-%\csvautotabular{/home/ulrich/Documents/Masters thesis/Satellite/Data files/Summary/Reflection.csv}
+However from Figure~\ref{fig:Estimation Accuracy EKF-ignore summary} it is clear that our estimation is not as we desired. The confusion matrix for both Random Forest and Decision Trees from Table~\ref{Table: Prediction Accuracy-DMDRandomForestOnlySunEKF-ignoreReflection-Reflection} and Table~\ref{Table: Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection} respectively indicates that the methods are able to predict the failures and no failures with more or less the same percentage false positives and negatives. The Random Forest has false positives of $15\%$ compared to the false negatives of $10\%$, while Decision Trees have a false positive percentage of $16.1\%$ and the false negatives of $18.7\%$. However both these methods has more or less the same estimation error during the 30 orbits.
 
-Insert a table to compare random orbit parameters. The mean, standard deviation of each orbit 0-20 for each of the different strategies of reflection.
+\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForestOnlySunEKF-ignoreReflection-Reflection.tex}
+
+\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection.tex}
+
+Due to the results from teh confusion matrices, we want to do an analysis of what is required for a suitable detection strategy. In Figure~\ref{fig:Prediction Accuracy EKF-ignore summary} we can see what the percentage values are to produce an estimation error as shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. To do a comparison we used a uniform random generator to produce accuracies of fixed percentages as shown in the legend of Figure~\ref{fig:Estimation Accuracy EKF-ignore Comparison}. This figure clearly shown that any percentage accuracy less than $99.0\%$ produces an average estimation error of more than $20^o$. 
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Prediction Accuracy.pgf}
+	\end{center}
+	\caption[Prediction Accuracy of Various Methods]{Prediction Accuracy of Various Methods.}
+	\label{fig:Prediction Accuracy EKF-ignore summary}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricComparison-Standard.pgf}
+	\end{center}
+	\caption[Estimation Metric of Fixed Percentage Accuracy]{Estimation Metric of Fixed Percentage Accuracy.}
+	\label{fig:Estimation Accuracy EKF-ignore Comparison}
+\end{figure}
+
+\subsection{First Order Filter}
+The $99.0\%$ prediction accuracy is a tall order for any prediction method. Therefore we test a method that only uses the two sensors who's measurement is the closest to the estimated vectors from the EKF and the modelled ORC vectors. From this we are able to produce a results similar to a $99.0\%$ accuracy with the EKF-ignore method.
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-top2/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric for Satellite with Recovery Ignore and Various detection Methods]{Estimation Metric for Satellite with Recovery Ignore and Various Detection Methods.}
+	\label{fig:Estimation Accuracy EKF-top2 summary}
+\end{figure}
 
 \section{CONCLUSIONS}
 Results from kalman filter and attitude determination as well as control compared for EKF with and without FDIR.

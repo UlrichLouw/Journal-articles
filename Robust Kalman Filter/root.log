@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  24 FEB 2022 13:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  3 MAR 2022 14:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1385,14 +1385,6 @@ clusion: multiple pdfs with page group included in a single page
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/LineIntersection.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
-
-Package caption Warning: \label without proper reference on input line 266.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:DecisionTree' on page 4 undefined on input line 2
-61.
-
 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabled
 DMDMethod/DecisionTreeBinaryClass.png, id=279, 1806.75pt x 1445.4pt>
 File: /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEn
@@ -1403,16 +1395,8 @@ Package pdftex.def Info: /home/ulrich/Documents/Masters thesis/Satellite/Hyperp
 arameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png  used on input li
 ne 265.
 (pdftex.def)             Requested size: 426.79134pt x 267.60252pt.
-
-Package caption Warning: \label without proper reference on input line 266.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `fig:DecisionTree' on page 4 undefined on input line 2
-70.
-
-[4] [5 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/Physics
-EnabledDMDMethod/DecisionTreeBinaryClass.png>]
+ [4] [5 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/Physic
+sEnabledDMDMethod/DecisionTreeBinaryClass.png>]
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
 General CubeSat Model/None/Pointing Metric.pgf)
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
@@ -1424,24 +1408,11 @@ General CubeSat Model/Reflection/Estimation Metric.pgf)
 (./Figures/TexFigures/Summary/PERFECT/Estimation Metric.pgf)
 (./Figures/TexFigures/Predictor-PERFECT/Isolator-OnlySun/Recovery-EKF-ignore/EA
 RTH_SUN-ORC-General CubeSat Model/Reflection/Estimation Metric.pgf)
-(./Figures/TexFigures/Summary/EKF-ignore/Estimation Metric.pgf) [7]
-
-Package caption Warning: \label without proper reference on input line 2.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `Table: Prediction Accuracy-DMDRandomForestOnlySunEKF-
-ignoreReflection-Reflection' on page 8 undefined on input line 423.
-
-
-Package caption Warning: \label without proper reference on input line 2.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `Table: Prediction Accuracy-DMDDecisionTreesOnlySunEKF
--ignoreReflection-Reflection' on page 8 undefined on input line 423.
-
-
+(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricRandomForestDifferent
+Depths.pgf)
+(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricDecisionTreesDifferen
+tDepths.pgf) (./Figures/TexFigures/Summary/EKF-ignore/Estimation Metric.pgf)
+[7]
 (./Tables/Prediction Accuracy/Prediction Accuracy-DMDRandomForestOnlySunEKF-ign
 oreReflection-Reflection.tex
 
@@ -1456,8 +1427,33 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 1.
 
 ) (./Figures/TexFigures/Summary/EKF-ignore/Prediction Accuracy.pgf)
+(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricPerfectNoFailurePredi
+ction.pgf)
 (./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricComparison-Standard.p
-gf) [8] (./Figures/TexFigures/Summary/EKF-top2/Estimation Metric.pgf)
+gf)
+(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricEKF-top2PerfectNoFail
+urePrediction.pgf)
+(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricEKF-top2.pgf)
+(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
+_SUN-ORC-General CubeSat Model/Reflection/Estimation Metric.pgf)
+(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
+_SUN-ORC-General CubeSat Model/ReflectionPerfectNoFailurePrediction/Estimation 
+Metric.pgf)
+(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
+_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/Estimation Metric.pgf)
+(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
+_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePrediction/Es
+timation Metric.pgf) [8]
+(./Figures/TexFigures/Summary/EKF-top2/Estimation Metric.pgf)
+(./Figures/TexFigures/Summary/RandomForest100/Estimation Metric.pgf)
+(./Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-i
+gnore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/Estimation Metric.
+pgf)
+(./Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-i
+gnore/EARTH_SUN-ORC-General CubeSat Model/Reflection/Estimation Metric.pgf)
+(./Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-i
+gnore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePr
+ediction/Estimation Metric.pgf) [9] [10]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1469,28 +1465,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 490.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 490.
+[11]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 596.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 596.
  (./root.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 490.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 490.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 596.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 596.
 Package rerunfilecheck Info: File `root.out' has not changed.
-(rerunfilecheck)             Checksum: 1348ADD551E8D0CA7486065A2B31C74E;1278.
-
-
-LaTeX Warning: There were undefined references.
-
+(rerunfilecheck)             Checksum: B52347D3F3E46478C02418AB9C894E37;1278.
 Package logreq Info: Writing requests to 'root.run.xml'.
 \openout1 = `root.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37146 strings out of 483107
- 861858 string characters out of 5964630
- 1601086 words of memory out of 5000000
- 51445 multiletter control sequences out of 15000+600000
- 575961 words of font info for 118 fonts, out of 8000000 for 9000
+ 37239 strings out of 483107
+ 867869 string characters out of 5964630
+ 1708170 words of memory out of 5000000
+ 51475 multiletter control sequences out of 15000+600000
+ 578229 words of font info for 129 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  66i,17n,98p,1261b,1584s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1501,20 +1493,22 @@ type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
-mes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (9 pages, 869469 bytes).
+mib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/co
+urier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on root.pdf (11 pages, 956708 bytes).
 PDF statistics:
- 436 PDF objects out of 1000 (max. 8388607)
- 346 compressed objects within 4 object streams
- 70 named destinations out of 1000 (max. 500000)
+ 470 PDF objects out of 1000 (max. 8388607)
+ 376 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
  272 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -77,7 +77,7 @@ Fault Detection of Sun Reflection to Increase Estimation Accuracy of Satellite A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 
-The Kalman Filter is a state estimator that is often used in attitude determination of satellites. A Kalman filter is highly sensitive to anomalies that occur in sensors. A good example of this is the reflection of a solar panel on a sun sensor that changes the perceived sun vector. This in term influences the estimation of the attitude by the kalman filter and consequently the control of the satellite. Detecting anomalies in sensors and omitting the sensor reading from the measurement update of the Kalman Filter increases the stability and reliability of the Kalman filter for satellite attitude determination.
+The Kalman Filter is a state estimator that is often used in attitude determination of satellites. A Kalman filter is highly sensitive to anomalies that occur in sensors. A good example of this is the reflection of a solar panel on a sun sensor that changes the perceived sun vector. This in term influences the estimation of the attitude by the kalman filter and consequently the control of the satellite. Detecting anomalies in sensors and omitting the sensor reading from the measurement update of the Kalman Filter increases the stability and reliability of the Kalman filter for satellite attitude determination. However detecting when an anomaly occurs is difficult and an accuracy of more than $99\%$ is required to produce satisfactory results.
 
 \emph{keywords} --- anomaly detection, Kalman filter, machine learning, sun reflection, satellites
 
@@ -110,7 +110,7 @@ Sun reflection is not a new problem and has consequently been researched thoroug
 Other research that is used for feature extraction in this article is based on research done by \textcite{DeSilva2020}. Fault prediction is done by implementing an innovative moving average, determined by the error estimated with dynamic mode decomposition, \emph{DMD}, and a kalman filter, as an input to a predictive model --- decision tree. The method however is adjusted for our use case to be a linear regression model instead of DMD.
 
 \subsection{Preliminaries}
-The details of satellite dynamics will not be discussed in this article, however it must be noted that orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article is matrices in upper case and bold, vectors in lower case and bold and scalars as lower or upper case but not in bold as illustrated below.
+The details of satellite dynamics will not be discussed in this article, however it must be noted that the orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article is matrices in upper case and bold, vectors in lower case and bold and scalars as lower or upper case but not in bold as illustrated below.
 \begin{itemize}
 	\item{\makebox[1.5cm]{Matrix\hfill} $\mathbf{A}$}
 	\item{\makebox[1.5cm]{Vector\hfill} $\mathbf{a} = \begin{bmatrix} 
@@ -183,7 +183,7 @@ The reflected position $A'$ can be calculated as the intersection of the reflect
 y_{A'B'} = mx_{A'B'} + c
 \label{eq:line equation}
 \end{equation}
-the corresponding $x$ or $y$ coordinates can be calculated by substituting either $X_y$ or $X_x$ in Eq~\ref{eq:line equation}. With this the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ can be determined. Thereafter with logical if statements it can be determined whether $X$ is in the reflection zone. This is demonstrated with the position $X$. If $X_x$ is to the right of $X_{B'C,x}$ and to the left of $X_{A'D,x}$, as well as $X_y$ is above $X_{A'B',y}$ and below $X_{CD,y}$ then $X$ is within the reflection zone. 
+the corresponding $x$ or $y$ coordinates can be calculated by substituting either $X_y$ or $X_x$ in Eq~\ref{eq:line equation}. With this the coordinates of $X_{B'C}$, $X_{A'D}$, $X_{A'B}$ and $X_{CD}$ can be determined. Thereafter with logical if statements it can be determined whether $X$ is in the reflection zone. If $X_x$ is to the right of $X_{B'C,x}$ and to the left of $X_{A'D,x}$, as well as $X_y$ is above $X_{A'B',y}$ and below $X_{CD,y}$ then $X$ is within the reflection zone. 
 
 The results for the sun vector with and without reflection is shown in Figure~\ref{fig:Sun Vector comparison}. During the modelling of the reflection, the reflection also effects the estimation and therefore also the attitude control of the satellite. In the figures of this article the grey zones indicate the eclipse period, as seen in Figure~\ref{fig:Sun Vector comparison}.
 
@@ -251,7 +251,7 @@ where $N$ is the number of timesteps to account for. The moving average is used 
 \subsection{Classification}
 The first step of FDIR is to detect whether an anomaly exists in the current sensor data with binary classification. For the proposed method, decision trees and random forests will be implemented to classify anomalies. A decision tree is a classification method that splits data samples based on a threshold of a specific input parameter. For instance binary classification can be performed on data samples from a satellite orbit to determine whether the satellite was in an eclipse or not. This would simple be done by determine whether the magnitude of the sun vector is equal to $0$. The decision tree determines this split with the CART algorithm.
 
-However to split the data for the anomalies we need to decide which input parameter will be used to make the first split, root node. The Gini index provides a measure of the probability of a data sample being being wrongly classified at a given node. This can be calculated with Eq~\ref{eq:Gini index}.
+However to split the data for the anomalies we need to decide which input parameter will be used to make the first split, root node. The Gini index provides a measure of the probability of a data sample being wrongly classified at a given node. This can be calculated with Eq~\ref{eq:Gini index}.
 
 \begin{equation}
 GI = 1 - \sum_{i = 1}^{n}{(P_i)^2}
@@ -263,8 +263,8 @@ The operator split that produces the lowest Gini index, provides the most pure s
 \begin{figure*}[!htb]
 	\centering
 	\includegraphics[trim = {4cm 8cm 4cm 8cm},clip, width = 15cm]{/home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabledDMDMethod/DecisionTreeBinaryClass.png}
-	\label{fig:DecisionTree}
 	\caption{Decision Tree}
+	\label{fig:DecisionTree}
 \end{figure*}
 
 It is evident in Figure~\ref{fig:DecisionTree} that the largest splits at the beginning of the tree is the moving average from the feature extraction as well as the sun sensor and angular momentum of the reaction wheels' measurements. This makes logical sense, since the moving average provides the system with an extracted feature that correlates the change in measurements. The sun reflection can also be detected on the sun sensor measurements and changes in the angular momentum of the wheels indicate that there could be large changes in the sun vector during the sun following period.
@@ -273,24 +273,23 @@ Random Forests, a method of using the prediction average of randomly sampled dec
 
 
 \subsection{Recovery}
-Four different methods of recovery are compared. These methods are all focused on ensuring that the sun reflection does not change the reliability and stability of the EKF.
+Three different methods of recovery are compared. These methods are all focused on ensuring that the sun reflection does not change the reliability and stability of the EKF.
 
-The ignore method uses the detected sensor that has failed and ignores the sensor measurement from the EKF measurement update. This method is based on the assumption that the EKF estimation is correct up until the moment where the sensor failure is detected. This however will highly depend on the accuracy of the anomaly detection method. Since an detection method with low accuracy will create cause instability to the EKF, since many anomalous measurements will be included in the measurement update of the EKF.
+The ignore method uses the detected sensor that has failed and ignores the sensor measurement from the EKF measurement update. This method is based on the assumption that the EKF estimation is correct up until the moment where the sensor failure is detected. This however will highly depend on the accuracy of the anomaly detection method. Since a detection method with low accuracy will create instability of the EKF, since many anomalous measurements will be included in the measurement update of the EKF.
 
-The replacement methodology changes $v_{meas,k}$ to $v_{est,k}$ at the timestep when the failure is detected. This method depends on the stability and accuracy of the EKF when the failure is detected and highly depends on the accuracy of the detection method. Although this seems to bypass the entire purpose of a measurement update, and might change the EKF's dependency to be more on the sensor than the model, even though the sensor measurement might not be accurate. The EKF will remain stable due to the other measurements being accurate and will save computation time. The EKF will not require any reset and the same number of measurements updates will still occur during a sensor's anomalous behaviour.
+%The replacement methodology changes $v_{meas,k}$ to $v_{est,k}$ at the timestep when the failure is detected. This method depends on the stability and accuracy of the EKF when the failure is detected and highly depends on the accuracy of the detection method. Although this seems to bypass the entire purpose of a measurement update, and might change the EKF's dependency to be more on the sensor than the model, even though the sensor measurement might not be accurate. The EKF will remain stable due to the other measurements being accurate and will save computation time. The EKF will not require any reset and the same number of measurements updates will still occur during a sensor's anomalous behaviour.
 
 The backtrack method uses a buffer of $v_{meas,k}$, $v_{model,k}$ and $\hat{x}_k^+$ and other parameters that are used to update the EKF. If a sensor failure is detected, the sensor is excluded from the EKF and the EKF is updated with the sensor data in the buffer excluding the sensor that has failed. The EKF is therefore \emph{reset} and updated from timestep $t_{k-N}$ to $t_k$, where $N$ is the size of the number of timesteps in the buffer. $N$ however must be optimized based on the computational time used to reset the EKF, but still ensure convergence of the EKF. If the sensor that was detected to have anomalous behaviour changes back to normal again, the EKF will be reset once again and the sensor will only be included in the measurement update of $t_k$ since it was anomalous for timesteps before $t_k$.
 
-Another method implemented and tested always uses the two sensors measurements that has the smallest mean squared error between the estimated SBC vector and the actual measured SBC vector. There are setbacks to this method. Firstly, it requires the modelling of the ORC vector and requires the position of the satellite in orbit. Secondly, this method will not work with small drifts in a sensor measurement, since the estimator will latch unto the drift in the sensor. The method will only detect sudden changes in the sensor, but will isolated the sudden change even if it remains stable after the sudden change.
-
 A backtrack method can be combined with the ignore method. Where the backtrack method is implemented only after a specified number of sun reflections are predicted.
 
+Another method implemented and tested always uses the two sensors measurements that has the smallest mean squared error between the estimated SBC vector and the actual measured SBC vector. There are setbacks to this method. Firstly, it requires the modelling of the ORC vector and requires the position of the satellite in orbit. Secondly, this method will not work with small drifts in a sensor measurement, since the estimator will latch unto the drift in the sensor. The method will only detect sudden changes in the sensor, but will isolated the sudden change even if it remains stable after the sudden change. This method is will only compared to the other methods as part of the analysis, since it the method is inherently different.
+
 \section{Testing Setup}
-To ensure repeatability of the tests conducted in this article, the github repo is provided ...
-sgp4 simulation environment is used for the position in orbit of the satellite. The disturbance torques modelled in this simulation is the aerodynamic disturbances, static and dynamic wheel disturbances, gravity gradient disturbances, and gyroscopic disturbances. The testing for the FDIR methods is done by implementing a reflection model on a cubesat from the moment of launching the satellite. Therefore the recovery methods are also implemented from the beginning of the satellite orbit. The mission of the ADCS of this specific satellite is to be nadir pointing during eclipse and sun following otherwise.
+To ensure repeatability of the tests conducted in this article, the sgp4 simulation environment is used for the position in orbit of the satellite. The disturbance torques modelled in this simulation is the aerodynamic disturbances, static and dynamic wheel disturbances, gravity gradient disturbances, and gyroscopic disturbances. The testing for the FDIR methods is done by implementing a reflection model on a cubesat from the moment of launching the satellite. Therefore the recovery methods are also implemented from the beginning of the satellite orbit. The mission of the ADCS of this specific satellite is to be nadir pointing during eclipse and sun following otherwise.
 
 \subsection{Control}
-Quaternion-feedback control with momentum dumping only during eclipse. The attitude command vector during nadir-pointing in the SBC frame is $\mathbf{u}_c = [0, 0, 1]$, since the SBC frame $z$ coordinate should line up with the ORC frame. During the sun following phase, the attitude command according to \textcite{chen2000ground} can be calculated as 
+Quaternion-feedback control with momentum dumping only during eclipse is implemented. The attitude command vector during nadir-pointing in the SBC frame is $\mathbf{u}_c = [0, 0, 1]$, since the SBC frame $z$ coordinate should line up with the ORC frame. During the sun following phase, the attitude command according to \textcite{chen2000ground} can be calculated as 
 
 \begin{equation}
 \mathbf{u}_c = \frac{\mathbf{u}_{sp}^{SBC} \times \mathbf{s}_o}{\norm{\mathbf{u}_{sp}^{SBC} \times \mathbf{s}_o}}
@@ -304,10 +303,10 @@ where $\mathbf{s}_o$ is the measured unit sun vector in ORC, and the main solar 
 	cos(\frac{\delta}{2})
 \end{bmatrix}
 \end{equation}
-This can then be used as the reference for the control. The reference $\omega_b^I$ is always $[0, 0, 0]$.
+This can then be used as the reference for the control. The reference $\boldsymbol{\omega}_b^I$ is always $[0, 0, 0]$.
 
 \subsection{Dimensions of Satellite}
-The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}. The dimensions are shown to ensure the repeatability of the results in this article.
+The dimensions of the satellite are shown in Table~\ref{Table:Dimensions}. The dimensions are shown to ensure the repeatability of the results in this article. The dimensions of the sun sensor are from the Sputnix cubesat sun sensor model.
 
 \begin{table}[!htb]
 	\caption{\label{Table:Dimensions}Dimensions of Cubesat}
@@ -337,16 +336,16 @@ The orbit parameters will not significantly effect the results, however, for rep
 \end{table}
 
 \subsection{Sensors}
-The measurement update of the Kalman filter firstly with a magnetometer, nadir sensor and lastly the sun sensor. This is due to the noise models of the sensors, as all the sensor noise models are based on zero-mean Guassian random noise and the magnetometer has the largest standard deviation and the sun sensor has the smallest standard deviation. There are two sun sensors, a coarse and fine sun sensor and both of them can experience sun reflection. The field of view \emph{FOV} of the sun sensors and the nadir sensor are both $180^o$. There is however only a single nadir sensor used in the simulation.
+The measurement update of the Kalman filter will firstly be with a magnetometer, nadir sensor and lastly the sun sensor. This is due to the noise models of the sensors, as all the sensor noise models are based on zero-mean Guassian random noise and the magnetometer has the largest standard deviation and the sun sensor has the smallest standard deviation. There are two sun sensors, a coarse and fine sun sensor and both of them can experience sun reflection. The field of view \emph{FOV} of the sun sensors and the nadir sensor are both $180^o$. There is however only a single nadir sensor used in the simulation.
 
 \section{Results}
 \label{section:Results}
 Three scenarios are implemented, a satellite that never experiences reflection, a satellite that experiences reflection without any recovery method and a satellite with a recovery method. The subsets of detecting the fault and recovering from the fault will be isolated and discussed separately. Therefore the results for recovery based on perfect detection can be shown to provide the theoretical possibilities of the recovery method. Please note that the scale of the y-axis for each plot is not the same due to the large differences between the maximum y-values for each scenario.
 
-The pointing metric is the difference between the command or reference attitude and the actual attitude. The estimation metric is the difference between the actual attitude and the estimated attitude.
+The pointing metric is the difference between the command or reference attitude and the actual attitude in degrees. The estimation metric is the difference between the actual attitude and the estimated attitude in degrees.
 
 \subsection{Perfect Designed Satellite Without Reflection}
-This test is implemented for the current design with the assumption that the sun sensor will never experience sun reflection. This also indicates the best scenario for the ADCS and requires a well designed satellite. The results for the first 5 orbits are shown to show the desired result from the recovery methods as shown in Figure~\ref{fig:Pointing Accuracy None} and Figure~\ref{fig:Estimation Accuracy None}. 
+This test is implemented for the current design with the assumption that the sun sensor will never experience sun reflection. This also indicates the best scenario for the ADCS and requires a well designed satellite. The results for the first 5 orbits are shown to provide a desired result for the recovery methods as shown in Figure~\ref{fig:Pointing Accuracy None} and Figure~\ref{fig:Estimation Accuracy None}. 
 \begin{figure}[!htb]
 	\begin{center}
 		\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/None/}{Pointing Metric.pgf}
@@ -366,7 +365,7 @@ This test is implemented for the current design with the assumption that the sun
 From Figure~\ref{fig:Pointing Accuracy None} it evidently shows the transition of the reference vector between the eclipse and sunlit phases. This is the reason for the spikes in the point metric at the beginning of each period. From Figure~\ref{fig:Estimation Accuracy None} it is also evident that the estimation is more accurate during the sunlit phase, which correlates with the fact that the sun sensor has a smaller noise.
 
 \subsection{Satellite With Reflection}
-If no recovery strategy is implemented for the reflection anomaly, the EKF is very unstable and the estimation is very inaccurate. As a bare minimum the proposed methods should be better as the results shown in Figure~\ref{fig:Pointing Accuracy Reflection} and Figure~\ref{fig:Estimation Accuracy Reflection}. It is clear that the ADCS is unstable and the average estimation metric of a satellite without reflection is compared to the various recovery methods in Figure~\ref{fig:Estimation Metric Summary}.
+If no recovery strategy is implemented for the reflection anomaly, the EKF is very unstable and the estimation is very inaccurate. As a bare minimum the proposed methods should be have a lower pointing and estimation metric than the results shown in Figure~\ref{fig:Pointing Accuracy Reflection} and Figure~\ref{fig:Estimation Accuracy Reflection}. It is clear that the ADCS is unstable and the average estimation metric of a satellite without reflection is compared to the various recovery methods in Figure~\ref{fig:Estimation Metric Summary}.
 
 \begin{figure}[!htb]
 	\begin{center}
@@ -385,7 +384,7 @@ If no recovery strategy is implemented for the reflection anomaly, the EKF is ve
 \end{figure}
 
 \subsection{Perfect Detection}
-This section indicates the results for each recovery method, with the assumption that the detection method is perfect. This means that the detection methodology will produce an accuracy of $100\%$. This is used to determine which method is most suitable for recovery from sensor anomalies and is the theoretical best scenario for each method. The mean estimation for each orbit is shown in Figure~\ref{fig:Estimation Metric Summary} and it is evident that the EKF-ignore method is the method that reduces the estimation error the most during a period of $30$ orbits. 
+This section indicates the results for each recovery method, with the assumption that the detection method is perfect. This means that the detection methodology will produce an accuracy of $100\%$. This is used to determine which method is most suitable for recovery from sensor anomalies since it provides the theoretical best scenario for each method. The mean estimation for each orbit is shown in Figure~\ref{fig:Estimation Metric Summary} and it is evident that the EKF-ignore method is the method that reduces the estimation error the most during a period of $30$ orbits. 
 
 \begin{figure}[!htb]
 	\begin{center}
@@ -395,7 +394,7 @@ This section indicates the results for each recovery method, with the assumption
 	\label{fig:Estimation Metric Summary}
 \end{figure}
 
-It is evident that from all the recovery methods that the EKF-ignore method produces the best results with a perfect detection strategy. Therefore, this strategy will be further investigated with other detection strategies.
+Due to the significant difference in performance between the EKF-ignore and the other recover methods, only the EKF-ignore method will be further investigated with other detection strategies.
 
 \subsection{Satellite With Recovery Ignore}
 To show the promising results of the recovery ignore for perfect detection Figure~\ref{fig:Estimation Accuracy EKF-ignore} shows the estimation metric during the first 5 orbits. Our goal is to introduce detection strategies that produce similar results.
@@ -408,9 +407,24 @@ To show the promising results of the recovery ignore for perfect detection Figur
 	\label{fig:Estimation Accuracy EKF-ignore}
 \end{figure}
 
-To compare the results between the detection methods the mean estimation metric for 30 orbits are shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. It is clear that both the Decision Tree and the Random Forest method as detection methods for the EKF-ignore produce better results than a satellite without any FDIR.
 
-To further analyse both the Decision Tree and Random Forest methods, we require 
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricRandomForestDifferentDepths.pgf}
+	\end{center}
+	\caption[Estimation Metric for Different Depths of RandomForests]{Estimation Metric for Different Depths of RandomForests.}
+	\label{fig:Estimation Accuracy EKF-ignore RandomForest depth}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricDecisionTreesDifferentDepths.pgf}
+	\end{center}
+	\caption[Estimation Metric for Different Depths of RandomForests]{Estimation Metric for Different Depths of RandomForests.}
+	\label{fig:Estimation Accuracy EKF-ignore Decision Tree depth}
+\end{figure}
+
+To compare the results between the detection methods the mean estimation metric for 30 orbits are shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. It is clear that both the Decision Tree and the Random Forest method as detection methods for the EKF-ignore produce better results than a satellite without any FDIR as shown in Figure~\ref{fig:Estimation Metric Summary}. 
 
 \begin{figure}[!htb]
 	\begin{center}
@@ -420,13 +434,13 @@ To further analyse both the Decision Tree and Random Forest methods, we require
 	\label{fig:Estimation Accuracy EKF-ignore summary}
 \end{figure}
 
-However from Figure~\ref{fig:Estimation Accuracy EKF-ignore summary} it is clear that our estimation is not as we desired. The confusion matrix for both Random Forest and Decision Trees from Table~\ref{Table: Prediction Accuracy-DMDRandomForestOnlySunEKF-ignoreReflection-Reflection} and Table~\ref{Table: Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection} respectively indicates that the methods are able to predict the failures and no failures with more or less the same percentage false positives and negatives. The Random Forest has false positives of $15\%$ compared to the false negatives of $10\%$, while Decision Trees have a false positive percentage of $16.1\%$ and the false negatives of $18.7\%$. However both these methods has more or less the same estimation error during the 30 orbits.
+However from Figure~\ref{fig:Estimation Accuracy EKF-ignore summary} it is clear that our estimation is not as we desired. The confusion matrix for both Random Forest and Decision Trees from Table~\ref{Table: Prediction Accuracy-DMDRandomForestOnlySunEKF-ignoreReflection-Reflection} and Table~\ref{Table: Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection} respectively indicates that the methods are able to predict the failures and no failures with more or less the same percentage false positives and negatives. The Random Forest has false positives of $15\%$ compared to the false negatives of $10\%$, while Decision Trees have a false positive percentage of $16.1\%$ and a false negative percentage of $18.7\%$. However both these methods has more or less the same estimation error during the 30 orbits.
 
 \import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForestOnlySunEKF-ignoreReflection-Reflection.tex}
 
 \import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection.tex}
 
-Due to the results from teh confusion matrices, we want to do an analysis of what is required for a suitable detection strategy. In Figure~\ref{fig:Prediction Accuracy EKF-ignore summary} we can see what the percentage values are to produce an estimation error as shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. To do a comparison we used a uniform random generator to produce accuracies of fixed percentages as shown in the legend of Figure~\ref{fig:Estimation Accuracy EKF-ignore Comparison}. This figure clearly shown that any percentage accuracy less than $99.0\%$ produces an average estimation error of more than $20^o$. 
+Due to the results from the confusion matrices, we want to do an analysis of what is required for a suitable detection strategy. In Figure~\ref{fig:Prediction Accuracy EKF-ignore summary} we can see what the percentage values are to produce an estimation error as shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. To do a comparison we used a uniform random generator to produce accuracies of fixed percentages as shown in the legend of Figure~\ref{fig:Estimation Accuracy EKF-ignore Comparison}. This figure clearly indicates that any percentage accuracy less than $99.0\%$ produces an average estimation error of more than $20^o$. 
 
 \begin{figure}[!htb]
 	\begin{center}
@@ -434,6 +448,15 @@ Due to the results from teh confusion matrices, we want to do an analysis of wha
 	\end{center}
 	\caption[Prediction Accuracy of Various Methods]{Prediction Accuracy of Various Methods.}
 	\label{fig:Prediction Accuracy EKF-ignore summary}
+\end{figure}
+
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricPerfectNoFailurePrediction.pgf}
+	\end{center}
+	\caption[Estimation Metric of Fixed Percentage Accuracies During Failures and Perfect Prediction During No Failures]{Estimation Metric of Fixed Percentage Accuracies During Failures and Perfect Prediction During No Failures.}
+	\label{fig:Estimation Accuracy EKF-ignore Comparison PerfectNoFailure}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -444,8 +467,57 @@ Due to the results from teh confusion matrices, we want to do an analysis of wha
 	\label{fig:Estimation Accuracy EKF-ignore Comparison}
 \end{figure}
 
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricEKF-top2PerfectNoFailurePrediction.pgf}
+	\end{center}
+	\caption[Estimation Metric of Fixed Percentage Accuracies During Failures and Perfect Prediction During No Failures with Recovery Buffer]{Estimation Metric of Fixed Percentage Accuracies During Failures and Perfect Prediction During No Failures with Recovery Buffer.}
+	\label{fig:Estimation Accuracy EKF-ignore PerfectNoFailure with Recovery Buffer}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricEKF-top2.pgf}
+	\end{center}
+	\caption[Estimation Metric of Fixed Percentage Accuracy with Recovery Buffer]{Estimation Metric of Fixed Percentage Accuracy with Recovery Buffer.}
+	\label{fig:Estimation Accuracy EKF-ignore with Recovery Buffer}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of $90.0\%$ Accuracy]{Estimation Metric of Fixed Percentage Accuracy.}
+	\label{fig:Estimation Accuracy EKF-ignore 90}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionPerfectNoFailurePrediction/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of $90.0\%$ Accuracy]{Estimation Metric of Fixed Percentage Accuracy.}
+	\label{fig:Estimation Accuracy EKF-ignore 90 perfectnofailureprediction}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of $90.0\%$ Accuracy with Recovery Buffer]{Estimation Metric of Fixed Percentage Accuracy with Recovery Buffer.}
+	\label{fig:Estimation Accuracy EKF-ignore 90 with Recovery Buffer}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePrediction/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of $90.0\%$ Accuracy]{Estimation Metric of Fixed Percentage Accuracy.}
+	\label{fig:Estimation Accuracy EKF-ignore 90 perfectnofailureprediction with Recovery Buffer}
+\end{figure}
+
+
 \subsection{First Order Filter}
-The $99.0\%$ prediction accuracy is a tall order for any prediction method. Therefore we test a method that only uses the two sensors who's measurement is the closest to the estimated vectors from the EKF and the modelled ORC vectors. From this we are able to produce a results similar to a $99.0\%$ accuracy with the EKF-ignore method.
+The $99.0\%$ prediction accuracy is a tall order for any prediction method. Therefore we test a method that only uses the two sensors who's measurement is the closest to the estimated vectors from the EKF and the modelled ORC vectors. This method will be name EKF-top2 for ease of reference. From this we are able to produce a results similar to a $99.0\%$ accuracy with the EKF-ignore method.
 
 \begin{figure}[!htb]
 	\begin{center}
@@ -455,8 +527,44 @@ The $99.0\%$ prediction accuracy is a tall order for any prediction method. Ther
 	\label{fig:Estimation Accuracy EKF-top2 summary}
 \end{figure}
 
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/RandomForest100/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of RandomForest with Recovery Buffer]{Estimation Metric of RandomForest with Recovery Buffer.}
+	\label{fig:Summary Estimation Accuracy EKF-ignore RandomForest with Recovery Buffer}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of RandomForest with Recovery Buffer]{Estimation Metric of RandomForest with Recovery Buffer.}
+	\label{fig:Estimation Accuracy EKF-ignore RandomForest with Recovery Buffer}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of $90.0\%$ Accuracy with Recovery Buffer]{Estimation Metric of Fixed Percentage Accuracy with Recovery Buffer.}
+	\label{fig:Estimation Accuracy EKF-ignore RandomForest withoutt Buffer}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePrediction/}{Estimation Metric.pgf}
+	\end{center}
+	\caption[Estimation Metric of $90.0\%$ Accuracy with Recovery Buffer and Prefect No Failure Prediction]{Estimation Metric of Fixed Percentage Accuracy with Recovery Buffer and Prefect No Failure Prediction.}
+	\label{fig:Estimation Accuracy EKF-ignore 90 with Recovery Buffer and prefectNoFailurePrediction}
+\end{figure}
+
+Even though the EKF-top2 method performs as well as a $99.0\%$ accuracy, it will decrease the performance of a system where no sun reflection ever occurs. Due to it not utilizing all three of the sensors during the measurement update. Therefore, further analysis must be done on combining the EKF-top2 method with the EKF-ignore method and only utilizing the EKF-top2 method when there is significant uncertainty. 
+
+An idea for further analysis is to use a threshold for the percentage uncertainty of the prediction and when the uncertainty is within a given range then the EKF-top2 method will be implemented. Another possible derivation of the current detection methods is to use the state covariance values from the EKF and then backtracking the measurement updates. This prediction will be more accurate due to the sudden change in the state covariance matrix due to the anomalous sensor.
+
 \section{CONCLUSIONS}
-Results from kalman filter and attitude determination as well as control compared for EKF with and without FDIR.
+Before written the conclusion do a further analysis of the ideas in the previous paragraph.
 
 \addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
                                   % on the last page of the document manually. It shortens
@@ -470,8 +578,6 @@ Results from kalman filter and attitude determination as well as control compare
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-References are important to the reader; therefore, each citation must be complete and correct. If at all possible, references should be commonly available publications.
 
 % \begin{thebibliography}{99}
 

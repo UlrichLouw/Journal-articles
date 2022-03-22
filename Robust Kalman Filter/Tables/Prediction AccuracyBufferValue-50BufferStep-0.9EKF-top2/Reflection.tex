@@ -1,0 +1,111 @@
+\begin{table*}[] 
+\caption{Prediction Accuracy for various methods} 
+\label{Table: Prediction Accuracy-Reflection} 
+\centering 
+\begin{tabular} 
+ {@{}ccccccccccccccc@{}} 
+\toprule 
+\multicolumn{2}{c}{\textbf{Orbits}} & 
+\multicolumn{2}{c}{\textbf{1}} & 
+\multicolumn{2}{c}{\textbf{2}} & 
+\multicolumn{2}{c}{\textbf{3}} & 
+\multicolumn{2}{c}{\textbf{4}} & 
+\multicolumn{2}{c}{\textbf{5}} & 
+\multicolumn{2}{c}{\textbf{30}}
+ \\ \midrule 
+\multicolumn{1}{|c|}{\multirow{2}{*}{Detection Strategy}} & 
+\multicolumn{1}{c|}{\multirow{2}{*}{Recovery Strategy}} & 
+\multicolumn{12}{c|}{Metric ($\theta$)}
+ \\ \cmidrule(l){3-14} 
+\multicolumn{1}{|c|}{} & 
+\multicolumn{1}{c|}{} & 
+\multicolumn{1}{c|}{Mean} & 
+\multicolumn{1}{c|}{Std} & 
+\multicolumn{1}{c|}{Mean} & 
+\multicolumn{1}{c|}{Std} & 
+\multicolumn{1}{c|}{Mean} & 
+\multicolumn{1}{c|}{Std} & 
+\multicolumn{1}{c|}{Mean} & 
+\multicolumn{1}{c|}{Std} & 
+\multicolumn{1}{c|}{Mean} & 
+\multicolumn{1}{c|}{Std} & 
+\multicolumn{1}{c|}{Mean} & 
+\multicolumn{1}{c|}{Std}
+ \\ \midrule 
+\multicolumn{1}{|c|}{70.0} & 
+\multicolumn{1}{c|}{\multirow{3}{*}{EKF-ignore}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7024691358024692}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.4572123328630378}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7013491861343504}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.45770509360056644}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.701210983902651}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.45776637004190435}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7012300506584289}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.457758270374485}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.6995486675766461}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.4584794232948844}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7004608188924103}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.4580503535024637}}
+ \\ \cmidrule(l){2-14} 
+\multicolumn{1}{|c|}{80.0} & 
+\multicolumn{1}{c|}{} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7959435626102292}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.40304597485640664}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7966668968050264}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.40251275343979204}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.794498086378805}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.40408511746797543}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7945598634968529}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.4040446654895127}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7954786084839574}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.40336948025452457}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.7987103585379415}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.4009444073042108}}
+ \\ \cmidrule(l){2-14} 
+\multicolumn{1}{|c|}{90.0} & 
+\multicolumn{1}{c|}{} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.9065255731922398}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.29112180572190394}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.9000975600046899}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.2997045428874365}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.9004823679288304}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.29925292754002053}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.9007188558267145}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.29896778407498553}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.9011781529033043}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.29836682163360473}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.9005984053484984}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.2991247481926775}}
+ \\ \midrule 
+\multicolumn{1}{|c|}{\multirow{2}{*}{None}} & 
+\multicolumn{1}{c|}{Failure Design} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.6511463844797178}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{0.4766495988621101}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.6231397589829377}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{0.48377957247932746}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.6543026595182789}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{0.4727447037529999}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.6379673402567659}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{0.4775749312813439}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.6285188201863685}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{0.48040864336080047}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.6058792544885532}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{0.48569347646163236}}
+ \\ \cmidrule(l){2-14} 
+\multicolumn{1}{|c|}{} & 
+\multicolumn{1}{c|}{Perfect Design} & 
+\multicolumn{1}{c|}{\color{green}\textbf{1.0}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.0}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{1.0}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.0}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{1.0}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.0}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{1.0}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.0}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{1.0}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.0}} & 
+\multicolumn{1}{c|}{\color{green}\textbf{1.0}} & 
+\multicolumn{1}{c|}{\color{red}\textbf{0.0}}
+ \\ \bottomrule 
+\end{tabular} 
+\end{table*} 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  3 MAR 2022 14:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  22 MAR 2022 15:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1215,49 +1215,49 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 7
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 (./Figures/Control_Diagram.pdf_tex
-<Figures/Control_Diagram.pdf, id=94, page=1, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=98, page=1, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 1>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page1 used on input line
  56.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=95, page=2, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=99, page=2, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 2>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page2 used on input line
  59.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=96, page=3, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=100, page=3, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 3>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page3 used on input line
  61.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=97, page=4, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=101, page=4, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 4>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page4 used on input line
  63.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=98, page=5, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=102, page=5, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 5>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page5 used on input line
  73.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=99, page=6, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=103, page=6, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 6>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page6 used on input line
  80.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=100, page=7, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=104, page=7, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 7>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page7 used on input line
  84.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=101, page=8, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=105, page=8, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 8>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page8 used on input line
@@ -1267,25 +1267,25 @@ Package pdftex.def Info: Figures/Control_Diagram.pdf , page8 used on input line
 
 
 ] (./Figures/ReflectionModel.pdf_tex
-<Figures/ReflectionModel.pdf, id=124, page=1, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=128, page=1, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page1 used on input line
  56.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=125, page=2, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=129, page=2, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page2 used on input line
  60.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=126, page=3, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=130, page=3, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 3>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page3 used on input line
  65.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=127, page=4, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=131, page=4, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 4>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page4 used on input line
@@ -1293,26 +1293,26 @@ Package pdftex.def Info: Figures/ReflectionModel.pdf , page4 used on input line
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
 )
 (./Figures/ReflectionModelPoint.pdf_tex
-<Figures/ReflectionModelPoint.pdf, id=128, page=1, 405.80606pt x 361.23102pt>
+<Figures/ReflectionModelPoint.pdf, id=132, page=1, 405.80606pt x 361.23102pt>
 File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
 <use Figures/ReflectionModelPoint.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page1 used on input
  line 56.
 (pdftex.def)             Requested size: 199.16928pt x 177.29137pt.
-<Figures/ReflectionModelPoint.pdf, id=129, page=2, 405.80606pt x 361.23102pt>
+<Figures/ReflectionModelPoint.pdf, id=133, page=2, 405.80606pt x 361.23102pt>
 File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
 <use Figures/ReflectionModelPoint.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page2 used on input
  line 77.
 (pdftex.def)             Requested size: 199.16928pt x 177.29137pt.
 ) (./Figures/LineIntersection.pdf_tex
-<Figures/LineIntersection.pdf, id=130, page=1, 355.26335pt x 207.5424pt>
+<Figures/LineIntersection.pdf, id=134, page=1, 355.26335pt x 207.5424pt>
 File: Figures/LineIntersection.pdf Graphic file (type pdf)
 <use Figures/LineIntersection.pdf, page 1>
 Package pdftex.def Info: Figures/LineIntersection.pdf , page1 used on input lin
 e 56.
 (pdftex.def)             Requested size: 199.16928pt x 116.35594pt.
-<Figures/LineIntersection.pdf, id=131, page=2, 355.26335pt x 207.5424pt>
+<Figures/LineIntersection.pdf, id=135, page=2, 355.26335pt x 207.5424pt>
 File: Figures/LineIntersection.pdf Graphic file (type pdf)
 <use Figures/LineIntersection.pdf, page 2>
 Package pdftex.def Info: Figures/LineIntersection.pdf , page2 used on input lin
@@ -1386,7 +1386,7 @@ pdfTeX warning: /usr/bin/pdflatex (file ./Figures/LineIntersection.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
 >]
 </home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEnabled
-DMDMethod/DecisionTreeBinaryClass.png, id=279, 1806.75pt x 1445.4pt>
+DMDMethod/DecisionTreeBinaryClass.png, id=283, 1806.75pt x 1445.4pt>
 File: /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEn
 abledDMDMethod/DecisionTreeBinaryClass.png Graphic file (type png)
 <use /home/ulrich/Documents/Masters thesis/Satellite/Hyperparameters/PhysicsEna
@@ -1400,60 +1400,50 @@ sEnabledDMDMethod/DecisionTreeBinaryClass.png>]
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
 General CubeSat Model/None/Pointing Metric.pgf)
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
-General CubeSat Model/None/Estimation Metric.pgf) [6]
-(./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
-General CubeSat Model/Reflection/Pointing Metric.pgf)
+General CubeSat Model/None/Estimation Metric.pgf)
+
+LaTeX Warning: Reference `fig:Pointing Accuracy Reflection' on page 6 undefined
+ on input line 368.
+
+[6]
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
 General CubeSat Model/Reflection/Estimation Metric.pgf)
 (./Figures/TexFigures/Summary/PERFECT/Estimation Metric.pgf)
 (./Figures/TexFigures/Predictor-PERFECT/Isolator-OnlySun/Recovery-EKF-ignore/EA
 RTH_SUN-ORC-General CubeSat Model/Reflection/Estimation Metric.pgf)
-(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricRandomForestDifferent
-Depths.pgf)
-(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricDecisionTreesDifferen
-tDepths.pgf) (./Figures/TexFigures/Summary/EKF-ignore/Estimation Metric.pgf)
-[7]
-(./Tables/Prediction Accuracy/Prediction Accuracy-DMDRandomForestOnlySunEKF-ign
-oreReflection-Reflection.tex
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 1.
-
-)
-(./Tables/Prediction Accuracy/Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ig
-noreReflection-Reflection.tex
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 1.
-
-) (./Figures/TexFigures/Summary/EKF-ignore/Prediction Accuracy.pgf)
-(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricPerfectNoFailurePredi
-ction.pgf)
 (./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricComparison-Standard.p
-gf)
-(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricEKF-top2PerfectNoFail
-urePrediction.pgf)
-(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricEKF-top2.pgf)
-(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
-_SUN-ORC-General CubeSat Model/Reflection/Estimation Metric.pgf)
-(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
-_SUN-ORC-General CubeSat Model/ReflectionPerfectNoFailurePrediction/Estimation 
-Metric.pgf)
-(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
-_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/Estimation Metric.pgf)
-(./Figures/TexFigures/Predictor-90.0/Isolator-OnlySun/Recovery-EKF-ignore/EARTH
-_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePrediction/Es
-timation Metric.pgf) [8]
-(./Figures/TexFigures/Summary/EKF-top2/Estimation Metric.pgf)
-(./Figures/TexFigures/Summary/RandomForest100/Estimation Metric.pgf)
-(./Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-i
-gnore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/Estimation Metric.
-pgf)
-(./Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-i
-gnore/EARTH_SUN-ORC-General CubeSat Model/Reflection/Estimation Metric.pgf)
-(./Figures/TexFigures/Predictor-RandomForest100/Isolator-OnlySun/Recovery-EKF-i
-gnore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePr
-ediction/Estimation Metric.pgf) [9] [10]
+gf) [7]
+(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricPerfectNoFailurePredi
+ction.pgf) (./Figures/TexFigures/Summary/EKF-top2/Estimation Metric.pgf)
+(./Figures/TexFigures/Summary/90.0/Estimation Metric.pgf) [8]
+(./Figures/TexFigures/Summary/10/Estimation Metric10Depths.pgf)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDRandomForest5OnlySunEKF-ig
+noreReflection-Reflection.tex)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDRandomForest10OnlySunEKF-i
+gnoreReflection-Reflection.tex)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDRandomForest20OnlySunEKF-i
+gnoreReflection-Reflection.tex)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDRandomForest100OnlySunEKF-
+ignoreReflection-Reflection.tex)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDDecisionTrees5OnlySunEKF-i
+gnoreReflection-Reflection.tex)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDDecisionTrees10OnlySunEKF-
+ignoreReflection-Reflection.tex)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDDecisionTrees20OnlySunEKF-
+ignoreReflection-Reflection.tex)
+(./Tables/Prediction Accuracy/Prediction Accuracy-DMDDecisionTrees100OnlySunEKF
+-ignoreReflection-Reflection.tex)
+(./Figures/TexFigures/Summary/EKF-ignore/Estimation MetricDecision20AndForest20
+.pgf)
+(./Figures/TexFigures/Summary/10/Estimation MetricDecision20AndForest20.pgf)
+(./Figures/TexFigures/Summary/10/Prediction AccuracyDecision20AndForest20.pgf)
+(./Figures/TexFigures/Predictor-RandomForest20/Isolator-OnlySun/Recovery-EKF-ig
+nore/EARTH_SUN-ORC-General CubeSat Model/ReflectionBufferValue-10BufferStep-0.9
+EKF-top2/Prediction Accuracy.pgf)
+Underfull \vbox (badness 1968) has occurred while \output is active []
+
+ [9]
+[10]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1465,24 +1455,30 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 596.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 596.
+[11
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 648.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 648.
  (./root.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 596.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 596.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 648.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 648.
 Package rerunfilecheck Info: File `root.out' has not changed.
-(rerunfilecheck)             Checksum: B52347D3F3E46478C02418AB9C894E37;1278.
+(rerunfilecheck)             Checksum: CBCE005A384E767E267F5817B8495029;1345.
+
+
+LaTeX Warning: There were undefined references.
+
 Package logreq Info: Writing requests to 'root.run.xml'.
 \openout1 = `root.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37239 strings out of 483107
- 867869 string characters out of 5964630
- 1708170 words of memory out of 5000000
- 51475 multiletter control sequences out of 15000+600000
- 578229 words of font info for 129 fonts, out of 8000000 for 9000
+ 37227 strings out of 483107
+ 866119 string characters out of 5964630
+ 1606434 words of memory out of 5000000
+ 51476 multiletter control sequences out of 15000+600000
+ 579336 words of font info for 130 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  66i,17n,98p,1261b,1584s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1505,10 +1501,10 @@ urier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (11 pages, 956708 bytes).
+Output written on root.pdf (11 pages, 888014 bytes).
 PDF statistics:
- 470 PDF objects out of 1000 (max. 8388607)
- 376 compressed objects within 4 object streams
- 85 named destinations out of 1000 (max. 500000)
- 272 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 462 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 280 words of extra memory for PDF output out of 10000 (max. 10000000)
 

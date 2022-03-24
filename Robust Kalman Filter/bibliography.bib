@@ -13,6 +13,53 @@ keywords = "Machine learning, Telemetry data mining, Satellite fault diagnosis, 
 abstract = "Satellites are known as a remotely operated systems with high degree of complexity due to large number of interconnected devices onboard the satellite. Consequently, it has corresponding significant number of telemetry parameters to allow operator and designers have full control and monitor of satellite mode of operation. The tremendous amount of telemetry data received from the satellite, during its lifetime, has to be analyzed in order to monitor and control subsystems health for better decision making and fast responsively. In this research, we address the topic of using machine learning techniques to diagnose faults of satellite subsystems using its telemetry parameters. The case study and source of telemetry are acquired from Egyptsat-1 satellite which has been launched April 2007 and lost communication with ground station last 2010. We applied Machine learning techniques in order to identify operating modes and corresponding telemetry parameters. We used Support Vector Machine for Regression to analyze the satellite performance; then a fault diagnosis approach is applied to determine the most probable reason of this satellite failure. Telemetry data is clustered using k-means clustering algorithm in combination with t-distributed stochastic neighbor embedding (t-SNE) function for dimensionality reduction. We classified data using Logical Analysis of Data (LAD) in order to generate positive patterns for each failure class which is used to determine probability failure cause for each telemetry parameter. These probabilities enable Fault Tree Analysis (FTA) to get the most probable cause that lead to satellite failure."
 }
 
+@article{Nasrolahi2018,
+	abstract = {This paper proposes an integrated sensor fault detection and recovery for the satellite attitude control system. By introducing a nonlinear observer, the healthy sensor measurements are provided. Considering attitude dynamics and kinematic, a novel observer is developed to detect the fault in angular rate as well as attitude sensors individually or simultaneously. There is no limit on type and configuration of attitude sensors. By designing a state feedback based control signal and Lyapunov stability criterion, the uniformly ultimately boundedness of tracking errors in the presence of sensor faults is guaranteed. Finally, simulation results are presented to illustrate the performance of the integrated scheme.},
+	author = {Nasrolahi, Seiied Saeed and Abdollahi, Farzaneh},
+	doi = {10.1016/j.actaastro.2018.01.002},
+	file = {:home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Sensor fault recovery/Sensor fault detection and recovery in satellite atttitude control.pdf:pdf},
+	issn = {00945765},
+	journal = {Acta Astronautica},
+	keywords = {Lyapunov stability,Satellite attitude control,Sensor fault detection and recovery,State feedback control},
+	number = {February},
+	pages = {275--283},
+	publisher = {Elsevier Ltd},
+	title = {{Sensor fault detection and recovery in satellite attitude control}},
+	url = {https://doi.org/10.1016/j.actaastro.2018.01.002},
+	volume = {145},
+	year = {2018}
+}
+
+@article{Zhou2016,
+	abstract = {This paper presents a scheme for satellite multi-sensor fault-tolerant attitude estimation. It can both detect a faulty sensor online and conduct fault tolerance in time. First, a satellite attitude estimator based on error states is presented as the unified filter algorithm, in which the filter state equation is built with the gyro model and satellite kinematics, and the measurement equations are built with angle sensors. Meanwhile, typical fault models of the angle sensors are given. Then, a fault-tolerant federated Kalman filter (FTFKF) scheme is designed. Its three sub-filters include the respective angle sensors and share the public gyro measurement. Under the sensor fault condition, a FTFKF can detect the faulty sensor by contrasting and analysing the dimensionless fault detection factors and then selectively fusing the sub-filters' outputs to enable the satellite attitude determination accuracy to approach normal. The comparative analysis of simulation results in typical fault cases shows that the proposed satellite multi-sensor fault-tolerant attitude estimation scheme may achieve the expected fault-tolerant performance. It is promising for enhancing the reliability of satellite attitude determination and control systems.},
+	author = {Zhou, Jun and Li, Xin and Liu, Rui and Liu, Yingying},
+	doi = {10.1177/0142331216642838},
+	file = {:home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Sensor fault recovery/A scheme of satellite multi-sensor.pdf:pdf},
+	issn = {01423312},
+	journal = {Transactions of the Institute of Measurement and Control},
+	keywords = {Fault-tolerant estimator,federated Kalman filter,multi-sensor system,satellite attitude determination,sensor fault},
+	number = {9},
+	pages = {1053--1063},
+	title = {{A scheme of satellite multi-sensor fault-tolerant attitude estimation}},
+	volume = {38},
+	year = {2016}
+}
+
+@article{Xiong2007,
+	abstract = {A novel fault detection (FD) method for nonlinear systems using the residuals generated by the unscented Kalman filter (UKF) is proposed. The errors of the UKF are derived and sufficient conditions for the convergence of the UKF are presented. As the local approach is a powerful statistical technique for detecting changes in the mean of a Gaussian process, it is used to devise a hypothesis test to detect faults from residuals obtained from the UKF. Further, it is demonstrated that the selection of a sample number is important in improving the performance of the local approach. To illustrate the implementation and performance of the proposed technique, it is applied to detect sensor faults in the measurement of satellite attitude. {\textcopyright} 2007 IEEE.},
+	author = {Xiong, K. and Chan, C. W. and Zhang, H. Y.},
+	doi = {10.1109/TAES.2007.4285348},
+	file = {:home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Sensor fault recovery/Detection_of_satellite_attitude_sensor_faults_using_the_UKF.pdf:pdf},
+	issn = {00189251},
+	journal = {IEEE Transactions on Aerospace and Electronic Systems},
+	number = {2},
+	pages = {480--491},
+	title = {{Detection of satellite attitude sensor faults using the UKF}},
+	volume = {43},
+	year = {2007}
+}
+
+
 @article{wang2019adaptive,
 	title={Adaptive Kalman filtering for sensor fault estimation and isolation of satellite attitude control based on descriptor systems},
 	author={Wang, Mao and Liang, Tiantian},

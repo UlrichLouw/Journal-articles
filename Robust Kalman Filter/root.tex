@@ -109,6 +109,8 @@ Sun reflection is not a new problem and has consequently been researched thoroug
 
 Other research that is used for feature extraction in this article is based on research done by \textcite{DeSilva2020}. Fault prediction is done by implementing an innovative moving average, determined by the error estimated with dynamic mode decomposition, \emph{DMD}, and a kalman filter, as an input to a predictive model --- decision tree. The method however is adjusted for our use case to be a linear regression model instead of DMD.
 
+Discuss the following article: \cite{Nasrolahi2018}, \cite{Zhou2016}, \cite{Xiong2007}.
+
 \subsection{Preliminaries}
 The details of satellite dynamics will not be discussed in this article, however it must be noted that the orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC} respectively. General notation of this article is matrices in upper case and bold, vectors in lower case and bold and scalars as lower or upper case but not in bold as illustrated below.
 \begin{itemize}
@@ -345,7 +347,7 @@ Three scenarios are implemented, a satellite that never experiences reflection, 
 The pointing metric is the difference between the command or reference attitude and the actual attitude in degrees. The estimation metric is the difference between the actual attitude and the estimated attitude in degrees.
 
 \subsection{Perfect Designed Satellite Without Reflection}
-This test is implemented for the current design with the assumption that the sun sensor will never experience sun reflection. This also indicates the best scenario for the ADCS and requires a well designed satellite. The results for the first 5 orbits are shown to provide a desired result for the recovery methods as shown in Figure~\ref{fig:Pointing Accuracy None} and Figure~\ref{fig:Estimation Accuracy None}. 
+This test is implemented for the current design with the assumption that the sun sensor will never experience sun reflection. This also indicates the best scenario for the ADCS and requires a well designed satellite. The results for the first $5$ orbits are shown to provide a desired result for the recovery methods as shown in Figure~\ref{fig:Pointing Accuracy None} and Figure~\ref{fig:Estimation Accuracy None}. 
 \begin{figure}[!htb]
 	\begin{center}
 		\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/None/}{Pointing Metric.pgf}
@@ -362,18 +364,10 @@ This test is implemented for the current design with the assumption that the sun
 	\label{fig:Estimation Accuracy None}
 \end{figure}
 
-From Figure~\ref{fig:Pointing Accuracy None} it evidently shows the transition of the reference vector between the eclipse and sunlit phases. This is the reason for the spikes in the point metric at the beginning of each period. From Figure~\ref{fig:Estimation Accuracy None} it is also evident that the estimation is more accurate during the sunlit phase, which correlates with the fact that the sun sensor has a smaller noise.
+Figure~\ref{fig:Pointing Accuracy None} evidently shows the transition of the reference vector between the eclipse and sunlit phases. This is the reason for the spikes in the pointing metric at the beginning of each period. From Figure~\ref{fig:Estimation Accuracy None} it is also evident that the estimation is more accurate during the sunlit phase, which correlates with the fact that the sun sensor has a smaller noise.
 
 \subsection{Satellite With Reflection}
-If no recovery strategy is implemented for the reflection anomaly, the EKF is very unstable and the estimation is very inaccurate. As a bare minimum the proposed methods should be have a lower pointing and estimation metric than the results shown in Figure~\ref{fig:Pointing Accuracy Reflection} and Figure~\ref{fig:Estimation Accuracy Reflection}. It is clear that the ADCS is unstable and the average estimation metric of a satellite without reflection is compared to the various recovery methods in Figure~\ref{fig:Estimation Metric Summary}.
-
-%\begin{figure}[!htb]
-%	\begin{center}
-%	\import{Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-General CubeSat Model/Reflection/}{Pointing Metric.pgf}
-%	\end{center}
-%	\caption[Pointing Metric for Satellite with Reflection and without FDIR]{Pointing Metric for Satellite with Reflection and without FDIR.}
-%	\label{fig:Pointing Accuracy Reflection}
-%\end{figure}
+If no recovery strategy is implemented for the reflection anomaly, the EKF is very unstable and the estimation is inaccurate. As a bare minimum the proposed methods should lower the estimation metric as shown in Figure~\ref{fig:Estimation Accuracy Reflection} of which the average is also indicated in Figure~\ref{fig:Estimation Metric Summary}. It is clear that the ADCS is unstable due to sun reflection.
 
 \begin{figure}[!htb]
 	\begin{center}
@@ -394,7 +388,7 @@ This section indicates the results for each recovery method, with the assumption
 	\label{fig:Estimation Metric Summary}
 \end{figure}
 
-Due to the significant difference in performance between the EKF-ignore and the other recover methods, only the EKF-ignore method will be further investigated with other detection strategies.
+Due to the significant difference in performance between the EKF-ignore and the other recover methods, only the EKF-ignore method will be further investigated with other detection strategies. The EKF-ignore results on average $3.43$
 
 \subsection{Satellite With Recovery Ignore}
 To show the promising results of the recovery ignore for perfect detection Figure~\ref{fig:Estimation Accuracy EKF-ignore} shows the estimation metric during the first 5 orbits. Our goal is to introduce detection strategies that produce similar results.
@@ -451,7 +445,7 @@ Now we want to test what the estimation error is for various fixed accuracy perc
 	\label{fig:Prediction Accuracy 90.0 with various steps summary}
 \end{figure}
 
-From Figure~\ref{fig:Prediction Accuracy 90.0 with various steps summary} the buffer period is selected as $10$ time steps after a failure is detected. The results thereof is shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore with Recovery Buffer} for a range of accuracies is shown. 
+From Figure~\ref{fig:Prediction Accuracy 90.0 with various steps summary} the buffer period is selected as $10$ time steps after a failure is detected. The results thereof is shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore with Recovery Buffer} for a range of accuracies expected from the various detection strategies. 
 
 \begin{figure}[!htb]
 	\begin{center}
@@ -461,10 +455,10 @@ From Figure~\ref{fig:Prediction Accuracy 90.0 with various steps summary} the bu
 	\label{fig:Estimation Accuracy EKF-ignore with Recovery Buffer}
 \end{figure}
 
-It is clear that the required percentage accuracy is lowered dramatically with the buffer implementation. A percentage accuracy of $70.0\%$ with the buffer is performing similarly to a $99.0\%$ accuracy without the buffer. 
+It is clear that the required percentage accuracy is lowered dramatically with the buffer implementation. A percentage accuracy of $70.0\%$ with the buffer is performing similarly to a $99.5\%$ accuracy without the buffer after $10$ orbits. After we've now analysed the results for various fixed accuracies and various deviations of the the recovery methods we can now implement the detection strategies with the recovery methods and determine the efficiency of the 
 
 \subsection{Detection Methods}
-\textbf{First determine decision tree depth with confusion matrices. Then show the results with and without the buffer. Explain why the buffer does not reach the analysis goal by showing the prediction accuracy without buffer.}
+Firstly, we want to analyse how the maximum root depth for both Random Forest and Decision Trees changes the accuracy of the detection strategies. In Table~\ref{Table: Prediction Accuracy-DMDRandomForestOnlySunEKF-ignoreReflection-Reflection} the false and true positives and false and true negatives are shown in the confusion matrices for different depths. It is clear from the average of the false positive and false negative that a depth of $20$ is the best for the Random Forest. This is also rather chosen than the depth of a $100$, since a depth of a $100$ is computationally much more expensive than a depth of $20$.
 
 \begin{table*}
 	\caption{Confusion Matric for RandomForest} 
@@ -488,9 +482,11 @@ It is clear that the required percentage accuracy is lowered dramatically with t
 	\end{minipage}
 \end{table*}
 
-\begin{table*}
+For the Decision Tree the confusion matrices are shown in Table~\ref{Table: Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection}. Although the lowest false negative are at a depth of $5$, the false positive is significantly higher than a depth of $10$ and $15$. This essentially means that there are multiple instances where a failure will be predicted while there is no failure. Comparing the depth of $10$ and $20$ the sum of the false positive and false negatives are $211$ more at a depth of $20$. However false negatives are more concerning than false positives and from a depth of $10$ to a depth of $20$ the false negatives decrease by $4494$. The depth of $100$ has too many false positives for the small decrease of false negatives and consequently, the depth of $20$ is used.
+
+\begin{table*}[h!tb]
 	\caption{Confusion Matric for Decision Trees} 
-	\label{Table: Prediction Accuracy-DMDDecsionTreesOnlySunEKF-ignoreReflection-Reflection} 
+	\label{Table: Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection} 
 	\centering
 	\begin{minipage}[c]{0.2\textwidth}
 		\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDDecisionTrees5OnlySunEKF-ignoreReflection-Reflection.tex}
@@ -510,18 +506,11 @@ It is clear that the required percentage accuracy is lowered dramatically with t
 	\end{minipage}
 \end{table*}
 
-%\begin{minipage}[c]{0.5\textwidth}
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForest20OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\end{minipage}
-%\begin{minipage}[c]{0.5\textwidth}
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForest100OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\end{minipage}
+Using the depth of $20$ for both Random Forest and Decision Trees we determine the average estimation error for $30$ orbits with and without the first order buffer of $10$ time steps as shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore DT and RF} and Figure~\ref{fig:Estimation Accuracy EKF-ignore DT and RF with Recovery Buffer}. It is clear that the first order buffer implementation has a negative impact on the estimation error for the Decision Tree method, but slight decrease the estimation error for the Random Forest. Comparing the prediction accuracy for both the Decision Tree and Random Forest it is clear that both methods should at least produce better results than the theoretical $80$ accuracy, but it is clear that they have higher estimation errors. 
 
 \begin{figure}[!htb]
 	\begin{center}
-		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricDecision20AndForest20.pgf}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricRF20DT20.pgf}
 	\end{center}
 	\caption[Estimation Metric of Decision Tree and Random Forest]{Estimation Metric of Decision Tree and Random Forest.}
 	\label{fig:Estimation Accuracy EKF-ignore DT and RF}
@@ -529,7 +518,7 @@ It is clear that the required percentage accuracy is lowered dramatically with t
 
 \begin{figure}[!htb]
 	\begin{center}
-		\import{Figures/TexFigures/Summary/10/}{Estimation MetricDecision20AndForest20.pgf}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricRF20DT20withBuffer.pgf}
 	\end{center}
 	\caption[Estimation Metric of Decision Tree and Random Forest with Recovery Buffer]{Estimation Metric of Decision Tree and Random Forest with Recovery Buffer.}
 	\label{fig:Estimation Accuracy EKF-ignore DT and RF with Recovery Buffer}
@@ -537,86 +526,26 @@ It is clear that the required percentage accuracy is lowered dramatically with t
 
 \begin{figure}[!htb]
 	\begin{center}
-		\import{Figures/TexFigures/Summary/10/}{Prediction AccuracyDecision20AndForest20.pgf}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Prediction AccuracyRF20DT20withBuffer.pgf}
 	\end{center}
 	\caption[Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer]{Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer.}
 	\label{fig:Summary Prediction Accuracy EKF-ignore DT and RF with Recovery Buffer}
 \end{figure}
 
+To determine the behaviour of the detection strategies we plot the prediction accuracy during the first $5$ orbits, but we do not plot the mean, but the actual prediction accuracy. This is used to determine the time gaps between incorrect predictions, which would vary from the fixed accuracies. For this analysis we isolate the Random Forest detection strategy, since it out significantly out performs the Decision Tree method.
+
+From Figure~\ref{fig:Estimation Accuracy EKF-ignore DT and RF with Recovery Buffer} we see that the estimation metric for the first orbit is an average of $8.9^o$, which increases to $12.1^o$ in the second orbit and by the $5^{th}$ orbit the estimation error has increased to $20.8^o$. From Figure~\ref{fig:Prediction Accuracy EKF-ignore RF} and Figure~\ref{fig:Summary Prediction Accuracy EKF-ignore DT and RF with Recovery Buffer} it is clear that there are two reasons for this increase in estimation error. Firstly, the average prediction accuracy decreases from $90\%$ during the first orbit to settle at an average $86\%$ accuracy. Secondly, the duration of inaccurate predictions increases as seen in the horizontal line at $0$. This large durations of constant inaccurate prediction will increase the instability and decrease the accuracy of the EKF. The reason for this inaccurate predictions is due to the change of the satellite behaviour during recovery and this in turn influences the prediction. It is thus recommended to implement non-linear machine learning methods such as Support Vector Machines which will not produce single thresholds for each parameter, but a kernel function that splits the data based on n-dimension planes.
 
 \begin{figure}[!htb]
 	\begin{center}
 		\import{Figures/TexFigures/Predictor-RandomForest20/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionBufferValue-10BufferStep-0.9EKF-top2/}{Prediction Accuracy.pgf}
 	\end{center}
 	\caption[Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer]{Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer.}
-	\label{fig:Prediction Accuracy EKF-ignore DT and RF with Recovery Buffer}
+	\label{fig:Prediction Accuracy EKF-ignore RF}
 \end{figure}
 
-\textbf{The performance of the random forest and decision trees are not the same as expected from the analysis, because of the irregular prediction accuracy. Long time of accuracies and long periods of inaccuracies}
-
-%Now that we have analyzed what is required from the detection strategies, we can now implement the RandomForest and the DecisionTree methods. \textbf{Show the results from the randomforest and decisiontrees for the recovery buffer method as well as comparing the confusion matrices of the different depths. Then motivate the selection of a specific depth for both methods}.
-
-%To compare the results between the detection methods the mean estimation metric for 30 orbits are shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. It is clear that both the Decision Tree and the Random Forest method as detection methods for the EKF-ignore produce better results than a satellite without any FDIR as shown in Figure~\ref{fig:Estimation Metric Summary}. 
-%
-%\begin{figure}[!htb]
-%	\begin{center}
-%		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation Metric.pgf}
-%	\end{center}
-%	\caption[Estimation Metric for Satellite with Recovery Ignore and Various detection Methods]{Estimation Metric for Satellite with Recovery Ignore and Various Detection Methods.}
-%	\label{fig:Estimation Accuracy EKF-ignore summary}
-%\end{figure}
-%
-%However from Figure~\ref{fig:Estimation Accuracy EKF-ignore summary} it is clear that our estimation is not as we desired. The confusion matrix for both Random Forest and Decision Trees from Table~\ref{Table: Prediction Accuracy-DMDRandomForestOnlySunEKF-ignoreReflection-Reflection} and Table~\ref{Table: Prediction Accuracy-DMDDecisionTreesOnlySunEKF-ignoreReflection-Reflection} respectively indicates that the methods are able to predict the failures and no failures with more or less the same percentage false positives and negatives. The Random Forest has false positives of $15\%$ compared to the false negatives of $10\%$, while Decision Trees have a false positive percentage of $16.1\%$ and a false negative percentage of $18.7\%$. However both these methods has more or less the same estimation error during the 30 orbits.
-
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForest5OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForest10OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForest20OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDRandomForest100OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDDecisionTrees5OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDDecisionTrees10OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDDecisionTrees20OnlySunEKF-ignoreReflection-Reflection.tex}
-%
-%\import{Tables/Prediction Accuracy/}{Prediction Accuracy-DMDDecisionTrees100OnlySunEKF-ignoreReflection-Reflection.tex}
-
-
-%Due to the results from the confusion matrices, we want to do an analysis of what is required for a suitable detection strategy. In Figure~\ref{fig:Prediction Accuracy EKF-ignore summary} we can see what the percentage values are to produce an estimation error as shown in Figure~\ref{fig:Estimation Accuracy EKF-ignore summary}. To do a comparison we used a uniform random generator to produce accuracies of fixed percentages as shown in the legend of Figure~\ref{fig:Estimation Accuracy EKF-ignore Comparison}. This figure clearly indicates that any percentage accuracy less than $99.0\%$ produces an average estimation error of more than $20^o$. 
-
-%\begin{figure}[!htb]
-%	\begin{center}
-%		\import{Figures/TexFigures/Summary/RandomForest100/}{Estimation Metric.pgf}
-%	\end{center}
-%	\caption[Estimation Metric of RandomForest with Recovery Buffer]{Estimation Metric of RandomForest with Recovery Buffer.}
-%	\label{fig:Summary Estimation Accuracy EKF-ignore RandomForest with Recovery Buffer}
-%\end{figure}
-
-%\begin{figure}[!htb]
-%	\begin{center}
-%		\import{Figures/TexFigures/Predictor-RandomForest10/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePrediction/}{Estimation Metric.pgf}
-%	\end{center}
-%	\caption[Estimation Metric of RandomForest with Recovery Buffer]{Estimation Metric of RandomForest with Recovery Buffer.}
-%	\label{fig:Estimation Accuracy EKF-ignore 90 perfectnofailureprediction with Recovery Buffer}
-%\end{figure}
-%
-%\begin{figure}[!htb]
-%	\begin{center}
-%		\import{Figures/TexFigures/Predictor-DecisionTrees10/Isolator-OnlySun/Recovery-EKF-ignore/EARTH_SUN-ORC-General CubeSat Model/ReflectionEKF-top2/PerfectNoFailurePrediction/}{Estimation Metric.pgf}
-%	\end{center}
-%	\caption[Estimation Metric of DecisionTree with Recovery Buffer]{Estimation Metric of DecisionTrees10 with Recovery Buffer.}
-%	\label{fig:Estimation Accuracy EKF-ignore DecisionTrees10 perfectnofailureprediction with Recovery Buffer}
-%\end{figure}
-
-%Even though the EKF-top2 method performs as well as a $99.0\%$ accuracy, it will decrease the performance of a system where no sun reflection ever occurs. Due to it not utilizing all three of the sensors during the measurement update. Therefore, further analysis must be done on combining the EKF-top2 method with the EKF-ignore method and only utilizing the EKF-top2 method when there is significant uncertainty. 
-%
-%An idea for further analysis is to use a threshold for the percentage uncertainty of the prediction and when the uncertainty is within a given range then the EKF-top2 method will be implemented. Another possible derivation of the current detection methods is to use the state covariance values from the EKF and then backtracking the measurement updates. This prediction will be more accurate due to the sudden change in the state covariance matrix due to the anomalous sensor.
-
 \section{CONCLUSIONS}
-Before written the conclusion do a further analysis of the ideas in the previous paragraph.
+It is clear from the results from the analysis that recovery of sun reflection is possible with the proposed EKF-ignore method. It is also clear that the percentage accuracy for the detection is drastically decreased with a first order buffer and the EKF-top2 method. However, both the Decision Tree and Random Forest method do not produce the desired results due the decrease in accuracy of the prediction after the recovery method is implemented. It is therefore recommend to further the testing with methods such as Support Vector Machines.
 
 \addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
                                   % on the last page of the document manually. It shortens
@@ -635,6 +564,24 @@ Before written the conclusion do a further analysis of the ideas in the previous
 
 % \bibitem{c1} G. O. Young, ÒSynthetic structure of industrial plastics (Book style with paper title and editor),Ó 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York:  % McGraw-Hill, 1964, pp. 15Ð64.
 % \bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
+
+\newpage
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Estimation MetricwithSVM.pgf}
+	\end{center}
+	\caption[Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer]{Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer.}
+	\label{fig:Summary Estimation Accuracy EKF-ignore DT and RF and SVM with Recovery Buffer}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\import{Figures/TexFigures/Summary/EKF-ignore/}{Prediction AccuracywithSVM.pgf}
+	\end{center}
+	\caption[Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer]{Prediction Accuracy of Decision Tree and Random Forest with Recovery Buffer.}
+	\label{fig:Summary Prediction Accuracy EKF-ignore DT and RF and SVM with Recovery Buffer}
+\end{figure}
 
 \printbibliography[heading=bibintoc]
 

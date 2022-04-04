@@ -1,23 +1,25 @@
-[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'root.blg'
-[96] biber-MSWIN64:322> INFO - === 
-[118] Biber.pm:415> INFO - Reading 'root.bcf'
-[237] Biber.pm:943> INFO - Found 9 citekeys in bib section 0
-[263] Biber.pm:4256> INFO - Processing section 0
-[263] Utils.pm:75> INFO - Globbing data source 'bibliography.bib'
-[274] Utils.pm:91> INFO - Globbed data source 'bibliography.bib' to bibliography.bib
-[293] Biber.pm:4455> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
-[310] bibtex.pm:1653> INFO - LaTeX decoding ...
-[526] bibtex.pm:1471> INFO - Found BibTeX data source 'bibliography.bib'
-[531] Utils.pm:304> WARN - Duplicate entry key: 'Hariri2021' in file 'bibliography.bib', skipping ...
-[534] Utils.pm:304> WARN - Duplicate entry key: 'emmott2013systematic' in file 'bibliography.bib', skipping ...
-[535] Utils.pm:304> WARN - Duplicate entry key: 'breunig2000lof' in file 'bibliography.bib', skipping ...
-[536] Utils.pm:304> WARN - Duplicate entry key: 'do2008multivariate' in file 'bibliography.bib', skipping ...
-[537] Utils.pm:304> WARN - Duplicate entry key: 'JansevanVuuren2015' in file 'bibliography.bib', skipping ...
-[648] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[648] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[648] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[648] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[668] bbl.pm:652> INFO - Writing 'root.bbl' with encoding 'UTF-8'
-[679] bbl.pm:755> INFO - Output to root.bbl
-[680] Biber.pm:128> INFO - WARNINGS: 5
+[46] biber:322> INFO - === Wed Mar 30, 2022, 14:50:34
+[54] Biber.pm:415> INFO - Reading 'root.bcf'
+[95] Biber.pm:943> INFO - Found 27 citekeys in bib section 0
+[103] Biber.pm:4256> INFO - Processing section 0
+[103] Utils.pm:75> INFO - Globbing data source 'bibliography.bib'
+[103] Utils.pm:91> INFO - Globbed data source 'bibliography.bib' to bibliography.bib
+[108] Biber.pm:4455> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
+[112] bibtex.pm:1653> INFO - LaTeX decoding ...
+[205] bibtex.pm:1471> INFO - Found BibTeX data source 'bibliography.bib'
+[207] Utils.pm:293> WARN - Duplicate entry key: 'Hariri2021' in file 'bibliography.bib', skipping ...
+[208] Utils.pm:293> WARN - Duplicate entry key: 'emmott2013systematic' in file 'bibliography.bib', skipping ...
+[209] Utils.pm:293> WARN - Duplicate entry key: 'ibrahim2018machine' in file 'bibliography.bib', skipping ...
+[209] Utils.pm:293> WARN - Duplicate entry key: 'breunig2000lof' in file 'bibliography.bib', skipping ...
+[209] Utils.pm:293> WARN - Duplicate entry key: 'do2008multivariate' in file 'bibliography.bib', skipping ...
+[210] Utils.pm:293> WARN - Duplicate entry key: 'JansevanVuuren2015' in file 'bibliography.bib', skipping ...
+[231] Utils.pm:293> WARN - month field 'Jul' in entry 'steyn_2021' is not an integer - this will probably not sort properly.
+[360] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[360] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[360] Biber.pm:4084> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[360] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[379] bbl.pm:652> INFO - Writing 'root.bbl' with encoding 'UTF-8'
+[391] bbl.pm:755> INFO - Output to root.bbl
+[391] Biber.pm:128> INFO - WARNINGS: 7

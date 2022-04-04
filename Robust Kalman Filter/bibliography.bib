@@ -13,6 +13,42 @@ keywords = "Machine learning, Telemetry data mining, Satellite fault diagnosis, 
 abstract = "Satellites are known as a remotely operated systems with high degree of complexity due to large number of interconnected devices onboard the satellite. Consequently, it has corresponding significant number of telemetry parameters to allow operator and designers have full control and monitor of satellite mode of operation. The tremendous amount of telemetry data received from the satellite, during its lifetime, has to be analyzed in order to monitor and control subsystems health for better decision making and fast responsively. In this research, we address the topic of using machine learning techniques to diagnose faults of satellite subsystems using its telemetry parameters. The case study and source of telemetry are acquired from Egyptsat-1 satellite which has been launched April 2007 and lost communication with ground station last 2010. We applied Machine learning techniques in order to identify operating modes and corresponding telemetry parameters. We used Support Vector Machine for Regression to analyze the satellite performance; then a fault diagnosis approach is applied to determine the most probable reason of this satellite failure. Telemetry data is clustered using k-means clustering algorithm in combination with t-distributed stochastic neighbor embedding (t-SNE) function for dimensionality reduction. We classified data using Logical Analysis of Data (LAD) in order to generate positive patterns for each failure class which is used to determine probability failure cause for each telemetry parameter. These probabilities enable Fault Tree Analysis (FTA) to get the most probable cause that lead to satellite failure."
 }
 
+@article{Reif2008,
+	abstract = {In this paper a modified decision tree algorithm for anomaly detection is presented. During the tree building process, densities for the outlier class are used directly in the split point determination algorithm. No artificial counter-examples have to be sampled from the unknown class, which yields to more precise decision boundaries and a deterministic classification result. Furthermore, the prior of the outlier class can be used to adjust the sensitivity of the anomaly detector. The proposed method combines the advantages of classification trees with the benefit of a more accurate representation of the outliers. For evaluation, we compare our approach with other state-of-the-art anomaly detection algorithms on four standard data sets including the KDD-Cup 99. The results show that the proposed method performs as well as more complex approaches and is even superior on three out of four data sets. {\textcopyright} 2008 IEEE.},
+	author = {Reif, Matthias and Goldstein, Markus and Stahl, Armin and Breuel, Thomas M.},
+	doi = {10.1109/icpr.2008.4761796},
+	file = {:home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Supervised Learning/Decision Trees/Anomaly_Detection_Trees.pdf:pdf},
+	isbn = {9781424421756},
+	issn = {10514651},
+	journal = {Proceedings - International Conference on Pattern Recognition},
+	number = {January},
+	title = {{Anomaly detection by combining decision trees and parametric densities}},
+	year = {2008}
+}
+
+@article{Tudoroiu2007,
+	abstract = {The main objective of this work is development and testing of a detection, isolation, and diagnosis algorithm based on interacting multiple model (IMM) filters for both partial (soft) and total (hard) reaction wheels faults in a spacecraft. This is shown to be accomplished under a number of different faulty mode scenarios for these actuators associated with the attitude control system (ACS) of a satellite. Various operating and faulty conditions due to changes and anomalies in the temperature, the power supply line voltage, and the loss of effectiveness of the torque and the current are considered in each reaction wheel associated with the three axes of the satellite. Once a fault mode is detected and isolated the recovery procedure can subsequently be engaged by invoking appropriate switching control strategies for the ACS. The application of a bank of interactng multiple Kalman filters for detection and diagnosis of anticipated reaction wheel failures in the ACS is described and developed. Compared with other model-based fault detection, diagnosis and isolation (FDDI) strategies developed in the control systems literature, our FDDI strategy is shown, through extensive numerical simulations, to be more accurate and robust with potential for extension to a number of other application areas. {\textcopyright} 2007 IEEE.},
+	author = {Tudoroiu, N. and Khorasani, K.},
+	doi = {10.1109/TAES.2007.4441743},
+	file = {:home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Satellite_fault_diagnosis_using_a_bank_of_interacting_Kalman_filters.pdf:pdf},
+	issn = {00189251},
+	journal = {IEEE Transactions on Aerospace and Electronic Systems},
+	number = {4},
+	pages = {1334--1350},
+	title = {{Satellite fault diagnosis using a bank of interacting Kalman filters}},
+	volume = {43},
+	year = {2007}
+}
+
+@article{Ciftciogl1991,
+	author = {Ciftciogl, O},
+	file = {:home/ulrich/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Ciftciogl - 1991 - SENSOR FAILURE DETECTION IN DYNAMICAL SYSTEMS BY KALMAN FILTERING METHODOLOGY Service unit General Services.pdf:pdf},
+	number = {March},
+	title = {{SENSOR FAILURE DETECTION IN DYNAMICAL SYSTEMS BY KALMAN FILTERING METHODOLOGY Service unit General Services}},
+	year = {1991}
+}
+
+
 @article{Nasrolahi2018,
 	abstract = {This paper proposes an integrated sensor fault detection and recovery for the satellite attitude control system. By introducing a nonlinear observer, the healthy sensor measurements are provided. Considering attitude dynamics and kinematic, a novel observer is developed to detect the fault in angular rate as well as attitude sensors individually or simultaneously. There is no limit on type and configuration of attitude sensors. By designing a state feedback based control signal and Lyapunov stability criterion, the uniformly ultimately boundedness of tracking errors in the presence of sensor faults is guaranteed. Finally, simulation results are presented to illustrate the performance of the integrated scheme.},
 	author = {Nasrolahi, Seiied Saeed and Abdollahi, Farzaneh},
@@ -59,6 +95,7 @@ abstract = "Satellites are known as a remotely operated systems with high degree
 	year = {2007}
 }
 
+@misc{steyn_2021, journal={Multi-agent fault detection}, author={Steyn, Herman}, year={2021}, month={Jul}} 
 
 @article{wang2019adaptive,
 	title={Adaptive Kalman filtering for sensor fault estimation and isolation of satellite attitude control based on descriptor systems},
@@ -310,6 +347,42 @@ abstract = "Satellites are known as a remotely operated systems with high degree
 	title = {{Spinning Solar Sail: The Deployment and Control of a Spinning Solar Sail Satellite}},
 	year = {2016}
 }
+
+@article{Liu2021,
+	abstract = {Aiming at solving network delay caused by large chunks of data in industrial Internet of Things, a data compression algorithm based on edge computing is creatively put forward in this paper. The data collected by sensors need to be handled in advance and are then processed by different single packet quantity K and error threshold e for multiple groups of comparative experiments, which greatly reduces the amount of data transmission under the premise of ensuring the instantaneity and effectiveness of data. On the basis of compression processing, an outlier detection algorithm based on isolated forest is proposed, which can accurately identify the anomaly caused by gradual change and sudden change and control and adjust the action of equipment, in order to meet the control requirement. As is shown by experimental simulation, the isolated forest algorithm based on partition outperforms box graph and K-means clustering algorithm based on distance in anomaly detection, which verifies the feasibility and advantages of the former in data compression and detection accuracy.},
+	author = {Liu, Desheng and Zhen, Hang and Kong, Dequan and Chen, Xiaowei and Zhang, Lei and Yuan, Mingrun and Wang, Hui},
+	doi = {10.1155/2021/6699313},
+	file = {:home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Sensor fault recovery/Isolation_Forezt_IoT.pdf:pdf},
+	issn = {10589244},
+	journal = {Scientific Programming},
+	title = {{Sensors Anomaly Detection of Industrial Internet of Things Based on Isolated Forest Algorithm and Data Compression}},
+	volume = {2021},
+	year = {2021}
+}
+
+@article{Malhotra2016,
+	abstract = {Mechanical devices such as engines, vehicles, aircrafts, etc., are typically instrumented with numerous sensors to capture the behavior and health of the machine. However, there are often external factors or variables which are not captured by sensors leading to time-series which are inherently unpredictable. For instance, manual controls and/or unmonitored environmental conditions or load may lead to inherently unpredictable time-series. Detecting anomalies in such scenarios becomes challenging using standard approaches based on mathematical models that rely on stationarity, or prediction models that utilize prediction errors to detect anomalies. We propose a Long Short Term Memory Networks based Encoder-Decoder scheme for Anomaly Detection (EncDec-AD) that learns to reconstruct 'normal' time-series behavior, and thereafter uses reconstruction error to detect anomalies. We experiment with three publicly available quasi predictable time-series datasets: power demand, space shuttle, and ECG, and two real-world engine datasets with both predictive and unpredictable behavior. We show that EncDec-AD is robust and can detect anomalies from predictable, unpredictable, periodic, aperiodic, and quasi-periodic time-series. Further, we show that EncDec-AD is able to detect anomalies from short time-series (length as small as 30) as well as long time-series (length as large as 500).},
+	archivePrefix = {arXiv},
+	arxivId = {1607.00148},
+	author = {Malhotra, Pankaj and Ramakrishnan, Anusha and Anand, Gaurangi and Vig, Lovekesh and Agarwal, Puneet and Shroff, Gautam},
+	eprint = {1607.00148},
+	file = {:home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Sensor fault recovery/LSTM_auto_encoder.pdf:pdf},
+	title = {{LSTM-based Encoder-Decoder for Multi-sensor Anomaly Detection}},
+	url = {http://arxiv.org/abs/1607.00148},
+	year = {2016}
+}
+
+@article{ibrahim2018machine,
+	author = {Ibrahim, Sara K and Ahmed, Ayman and Zeidan, M Amal Eldin and Ziedan, Ibrahim E},
+	journal = {IEEE Transactions on Aerospace and Electronic Systems},
+	number = {4},
+	pages = {1816--1827},
+	publisher = {IEEE},
+	title = {{Machine learning methods for spacecraft telemetry mining}},
+	volume = {55},
+	year = {2018}
+}
+
 
 @phdthesis{auret2012design,
 	title={Design of an aerodynamic attitude control system for a CubeSat},

@@ -19,6 +19,31 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{auret2012design}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=5b7eee7652c7c600f9bf83f861801a42}{%
+           family={Auret},
+           familyi={A\bibinitperiod},
+           given={Jacoba},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Stellenbosch: Stellenbosch University}%
+      }
+      \strng{namehash}{5b7eee7652c7c600f9bf83f861801a42}
+      \strng{fullhash}{5b7eee7652c7c600f9bf83f861801a42}
+      \strng{bibnamehash}{5b7eee7652c7c600f9bf83f861801a42}
+      \strng{authorbibnamehash}{5b7eee7652c7c600f9bf83f861801a42}
+      \strng{authornamehash}{5b7eee7652c7c600f9bf83f861801a42}
+      \strng{authorfullhash}{5b7eee7652c7c600f9bf83f861801a42}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Design of an aerodynamic attitude control system for a CubeSat}
+      \field{type}{phdthesis}
+      \field{year}{2012}
+    \endentry
     \entry{chen2000ground}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=380c49395293074c7302a362bae865ff}{%
@@ -53,6 +78,157 @@
       \field{pages}{4547}
       \range{pages}{1}
     \endentry
+    \entry{Ciftciogl1991}{article}{}
+      \name{author}{1}{}{%
+        {{hash=f8560375494d9d987209e0af0d805c6e}{%
+           family={Ciftciogl},
+           familyi={C\bibinitperiod},
+           given={O},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{f8560375494d9d987209e0af0d805c6e}
+      \strng{fullhash}{f8560375494d9d987209e0af0d805c6e}
+      \strng{bibnamehash}{f8560375494d9d987209e0af0d805c6e}
+      \strng{authorbibnamehash}{f8560375494d9d987209e0af0d805c6e}
+      \strng{authornamehash}{f8560375494d9d987209e0af0d805c6e}
+      \strng{authorfullhash}{f8560375494d9d987209e0af0d805c6e}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{March}
+      \field{title}{{SENSOR FAILURE DETECTION IN DYNAMICAL SYSTEMS BY KALMAN FILTERING METHODOLOGY Service unit General Services}}
+      \field{year}{1991}
+      \verb{file}
+      \verb :home/ulrich/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Ciftciogl - 1991 - SENSOR FAILURE DETECTION IN DYNAMICAL SYSTEMS BY KALMAN FILTERING METHODOLOGY Service unit General Services.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Jones2017}{article}{}
+      \name{author}{3}{}{%
+        {{hash=32bec1da5236b658426080ad4bd7ec37}{%
+           family={Daalen},
+           familyi={D\bibinitperiod},
+           given={C},
+           giveni={C\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=46016589f5a1a0477a6f42822578458a}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={T},
+           giveni={T\bibinitperiod}}}%
+        {{hash=73e3f743142f33d0a3cc9cf687685494}{%
+           family={Jaquet},
+           familyi={J\bibinitperiod},
+           given={D},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{a6d9c3974cd8117780adea131011b65c}
+      \strng{fullhash}{a6d9c3974cd8117780adea131011b65c}
+      \strng{bibnamehash}{a6d9c3974cd8117780adea131011b65c}
+      \strng{authorbibnamehash}{a6d9c3974cd8117780adea131011b65c}
+      \strng{authornamehash}{a6d9c3974cd8117780adea131011b65c}
+      \strng{authorfullhash}{a6d9c3974cd8117780adea131011b65c}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Advanced Estimation 813 :}}
+      \field{year}{2017}
+      \verb{file}
+      \verb :home/ulrich/.local/share/data/Mendeley Ltd./Mendeley Desktop/Downloaded/Jones, Jaquet - 2017 - Advanced Estimation 813.pdf:pdf
+      \endverb
+    \endentry
+    \entry{ibrahim2018machine}{article}{}
+      \name{author}{4}{}{%
+        {{hash=9f9d1c6a30fc1b12dc17dd1c7b31d83e}{%
+           family={Ibrahim},
+           familyi={I\bibinitperiod},
+           given={Sara\bibnamedelima K},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=dfeff2ca43ac3a342bf73f66bb2200ff}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Ayman},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bf7989e6fff22b2ce53d4e6f4f04e29f}{%
+           family={Zeidan},
+           familyi={Z\bibinitperiod},
+           given={M\bibnamedelima Amal\bibnamedelima Eldin},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=765b832108af5c9fdd65fd28b290e0d4}{%
+           family={Ziedan},
+           familyi={Z\bibinitperiod},
+           given={Ibrahim\bibnamedelima E},
+           giveni={I\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{fullhash}{493c75ab98d238e670a27f8cca7097c8}
+      \strng{bibnamehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{authorbibnamehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{authornamehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{authorfullhash}{493c75ab98d238e670a27f8cca7097c8}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Aerospace and Electronic Systems}
+      \field{number}{4}
+      \field{title}{{Machine learning methods for spacecraft telemetry mining}}
+      \field{volume}{55}
+      \field{year}{2018}
+      \field{pages}{1816\bibrangedash 1827}
+      \range{pages}{12}
+    \endentry
+    \entry{ibrahim2020machine}{article}{}
+      \name{author}{4}{}{%
+        {{hash=9f9d1c6a30fc1b12dc17dd1c7b31d83e}{%
+           family={Ibrahim},
+           familyi={I\bibinitperiod},
+           given={Sara\bibnamedelima K},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=dfeff2ca43ac3a342bf73f66bb2200ff}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Ayman},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bf7989e6fff22b2ce53d4e6f4f04e29f}{%
+           family={Zeidan},
+           familyi={Z\bibinitperiod},
+           given={M\bibnamedelima Amal\bibnamedelima Eldin},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=765b832108af5c9fdd65fd28b290e0d4}{%
+           family={Ziedan},
+           familyi={Z\bibinitperiod},
+           given={Ibrahim\bibnamedelima E},
+           giveni={I\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{fullhash}{493c75ab98d238e670a27f8cca7097c8}
+      \strng{bibnamehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{authorbibnamehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{authornamehash}{d93ec38f99dfb71a784dc8021bf6dcac}
+      \strng{authorfullhash}{493c75ab98d238e670a27f8cca7097c8}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ain Shams Engineering Journal}
+      \field{number}{1}
+      \field{title}{Machine learning techniques for satellite fault diagnosis}
+      \field{volume}{11}
+      \field{year}{2020}
+      \field{pages}{45\bibrangedash 56}
+      \range{pages}{12}
+    \endentry
     \entry{JansevanVuuren2015}{article}{}
       \name{author}{1}{}{%
         {{hash=3481a3d176239ecde9d14f4fa8bdac8a}{%
@@ -78,6 +254,191 @@
       \verb :home/ulrich/Documents/Masters thesis/Journal articles/Satellites/jansevanvuuren{\_}attitude{\_}2015.pdf:pdf
       \endverb
       \keyw{ADCS,MATLAB,Simulink}
+    \endentry
+    \entry{jin2008fault}{article}{}
+      \name{author}{3}{}{%
+        {{hash=2562888545443fd99a1db9f34e9a0e5a}{%
+           family={Jin},
+           familyi={J\bibinitperiod},
+           given={Jaehyun},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6c4fe23b60ab7ca35e9e41df2a11395d}{%
+           family={Ko},
+           familyi={K\bibinitperiod},
+           given={Sangho},
+           giveni={S\bibinitperiod}}}%
+        {{hash=70dda2ceeb044b4226ececb85068f462}{%
+           family={Ryoo},
+           familyi={R\bibinitperiod},
+           given={Chang-Kyung},
+           giveni={C\bibinithyphendelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{eafccff897888d266e6e63df4ad5cb57}
+      \strng{fullhash}{eafccff897888d266e6e63df4ad5cb57}
+      \strng{bibnamehash}{eafccff897888d266e6e63df4ad5cb57}
+      \strng{authorbibnamehash}{eafccff897888d266e6e63df4ad5cb57}
+      \strng{authornamehash}{eafccff897888d266e6e63df4ad5cb57}
+      \strng{authorfullhash}{eafccff897888d266e6e63df4ad5cb57}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Control Engineering Practice}
+      \field{number}{10}
+      \field{title}{Fault tolerant control for satellites with four reaction wheels}
+      \field{volume}{16}
+      \field{year}{2008}
+      \field{pages}{1250\bibrangedash 1258}
+      \range{pages}{9}
+    \endentry
+    \entry{Jordaan2016}{article}{}
+      \name{author}{1}{}{%
+        {{hash=8ac2acd1b15c191ffbc7284954497244}{%
+           family={Jordaan},
+           familyi={J\bibinitperiod},
+           given={Hendrik\bibnamedelima Willem},
+           giveni={H\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{8ac2acd1b15c191ffbc7284954497244}
+      \strng{fullhash}{8ac2acd1b15c191ffbc7284954497244}
+      \strng{bibnamehash}{8ac2acd1b15c191ffbc7284954497244}
+      \strng{authorbibnamehash}{8ac2acd1b15c191ffbc7284954497244}
+      \strng{authornamehash}{8ac2acd1b15c191ffbc7284954497244}
+      \strng{authorfullhash}{8ac2acd1b15c191ffbc7284954497244}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{March}
+      \field{title}{{Spinning Solar Sail: The Deployment and Control of a Spinning Solar Sail Satellite}}
+      \field{year}{2016}
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/Satellites/jordaan{\_}spinning{\_}2016.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Liu2021}{article}{}
+      \name{author}{7}{}{%
+        {{hash=50f78da5d656a13d4fae46746bca262c}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Desheng},
+           giveni={D\bibinitperiod}}}%
+        {{hash=cff438bbf4cebd5291a3e1dbf3ca56b7}{%
+           family={Zhen},
+           familyi={Z\bibinitperiod},
+           given={Hang},
+           giveni={H\bibinitperiod}}}%
+        {{hash=95d869851ce56f8a0386e35ffe91dbe4}{%
+           family={Kong},
+           familyi={K\bibinitperiod},
+           given={Dequan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=757000857f6d5a5f350d4187b81b9272}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Xiaowei},
+           giveni={X\bibinitperiod}}}%
+        {{hash=f4a4cbf770add19c206827116c68732e}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+        {{hash=264e43a8d2404e021fc0aee802662780}{%
+           family={Yuan},
+           familyi={Y\bibinitperiod},
+           given={Mingrun},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a753993c6afc6bfea114ea4114b2e619}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hui},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{c1690e421705eff354fcc623be899fa9}
+      \strng{fullhash}{3cdbdc070dc1391938efdb267ed962be}
+      \strng{bibnamehash}{c1690e421705eff354fcc623be899fa9}
+      \strng{authorbibnamehash}{c1690e421705eff354fcc623be899fa9}
+      \strng{authornamehash}{c1690e421705eff354fcc623be899fa9}
+      \strng{authorfullhash}{3cdbdc070dc1391938efdb267ed962be}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Aiming at solving network delay caused by large chunks of data in industrial Internet of Things, a data compression algorithm based on edge computing is creatively put forward in this paper. The data collected by sensors need to be handled in advance and are then processed by different single packet quantity K and error threshold e for multiple groups of comparative experiments, which greatly reduces the amount of data transmission under the premise of ensuring the instantaneity and effectiveness of data. On the basis of compression processing, an outlier detection algorithm based on isolated forest is proposed, which can accurately identify the anomaly caused by gradual change and sudden change and control and adjust the action of equipment, in order to meet the control requirement. As is shown by experimental simulation, the isolated forest algorithm based on partition outperforms box graph and K-means clustering algorithm based on distance in anomaly detection, which verifies the feasibility and advantages of the former in data compression and detection accuracy.}
+      \field{issn}{10589244}
+      \field{journaltitle}{Scientific Programming}
+      \field{title}{{Sensors Anomaly Detection of Industrial Internet of Things Based on Isolated Forest Algorithm and Data Compression}}
+      \field{volume}{2021}
+      \field{year}{2021}
+      \verb{doi}
+      \verb 10.1155/2021/6699313
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Sensor fault recovery/Isolation_Forezt_IoT.pdf:pdf
+      \endverb
+    \endentry
+    \entry{Malhotra2016}{article}{}
+      \name{author}{6}{}{%
+        {{hash=dcd5dcd4e4f78f96e2f472d3f01ede9c}{%
+           family={Malhotra},
+           familyi={M\bibinitperiod},
+           given={Pankaj},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d31c40be83c6c4e91877c31622bdc33a}{%
+           family={Ramakrishnan},
+           familyi={R\bibinitperiod},
+           given={Anusha},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0120e6b0607adbcd6b2dc964a3398b08}{%
+           family={Anand},
+           familyi={A\bibinitperiod},
+           given={Gaurangi},
+           giveni={G\bibinitperiod}}}%
+        {{hash=dd153a0cfbbb770a226276234db9aa76}{%
+           family={Vig},
+           familyi={V\bibinitperiod},
+           given={Lovekesh},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e3552fa0520a6e47f5555c944932844d}{%
+           family={Agarwal},
+           familyi={A\bibinitperiod},
+           given={Puneet},
+           giveni={P\bibinitperiod}}}%
+        {{hash=11ddfe25cf35d38891cff07417fe10cf}{%
+           family={Shroff},
+           familyi={S\bibinitperiod},
+           given={Gautam},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{188cd65c41d431d5d7edef39504ff5a7}
+      \strng{fullhash}{57048ce25d0cba82861b5b81762a91df}
+      \strng{bibnamehash}{188cd65c41d431d5d7edef39504ff5a7}
+      \strng{authorbibnamehash}{188cd65c41d431d5d7edef39504ff5a7}
+      \strng{authornamehash}{188cd65c41d431d5d7edef39504ff5a7}
+      \strng{authorfullhash}{57048ce25d0cba82861b5b81762a91df}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mechanical devices such as engines, vehicles, aircrafts, etc., are typically instrumented with numerous sensors to capture the behavior and health of the machine. However, there are often external factors or variables which are not captured by sensors leading to time-series which are inherently unpredictable. For instance, manual controls and/or unmonitored environmental conditions or load may lead to inherently unpredictable time-series. Detecting anomalies in such scenarios becomes challenging using standard approaches based on mathematical models that rely on stationarity, or prediction models that utilize prediction errors to detect anomalies. We propose a Long Short Term Memory Networks based Encoder-Decoder scheme for Anomaly Detection (EncDec-AD) that learns to reconstruct 'normal' time-series behavior, and thereafter uses reconstruction error to detect anomalies. We experiment with three publicly available quasi predictable time-series datasets: power demand, space shuttle, and ECG, and two real-world engine datasets with both predictive and unpredictable behavior. We show that EncDec-AD is robust and can detect anomalies from predictable, unpredictable, periodic, aperiodic, and quasi-periodic time-series. Further, we show that EncDec-AD is able to detect anomalies from short time-series (length as small as 30) as well as long time-series (length as large as 500).}
+      \field{eprinttype}{arXiv}
+      \field{title}{{LSTM-based Encoder-Decoder for Multi-sensor Anomaly Detection}}
+      \field{year}{2016}
+      \verb{eprint}
+      \verb 1607.00148
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Sensor fault recovery/LSTM_auto_encoder.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1607.00148
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1607.00148
+      \endverb
     \endentry
     \entry{Nasrolahi2018}{article}{}
       \name{author}{2}{}{%
@@ -128,6 +489,165 @@
       \endverb
       \keyw{Lyapunov stability,Satellite attitude control,Sensor fault detection and recovery,State feedback control}
     \endentry
+    \entry{Paul2018}{article}{}
+      \name{author}{6}{}{%
+        {{hash=2ec4262970a5a3a5c890eeaa772a123c}{%
+           family={Paul},
+           familyi={P\bibinitperiod},
+           given={Angshuman},
+           giveni={A\bibinitperiod}}}%
+        {{hash=dd1b4adbe0a2821d8bfe0a0a20d2b3ea}{%
+           family={Mukherjee},
+           familyi={M\bibinitperiod},
+           given={Dipti\bibnamedelima Prasad},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=f7d2b07ab7dd73fbc97274fead653f73}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Prasun},
+           giveni={P\bibinitperiod}}}%
+        {{hash=be9ca728a17f9bf926b3cb1ff30e0f7e}{%
+           family={Gangopadhyay},
+           familyi={G\bibinitperiod},
+           given={Abhinandan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=67451c7121650b2c381ed915e481d04e}{%
+           family={Chintha},
+           familyi={C\bibinitperiod},
+           given={Appa\bibnamedelima Rao},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=2e9fee32a4d03800622d7e53ec081934}{%
+           family={Kundu},
+           familyi={K\bibinitperiod},
+           given={Saurabh},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{e62fb1b384824961f471fdc87c4eb898}
+      \strng{fullhash}{50e3900a4981c763b6819cd7f4d827a0}
+      \strng{bibnamehash}{e62fb1b384824961f471fdc87c4eb898}
+      \strng{authorbibnamehash}{e62fb1b384824961f471fdc87c4eb898}
+      \strng{authornamehash}{e62fb1b384824961f471fdc87c4eb898}
+      \strng{authorfullhash}{50e3900a4981c763b6819cd7f4d827a0}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We propose an improved random forest classifier that performs classification with a minimum number of trees. The proposed method iteratively removes some unimportant features. Based on the number of important and unimportant features, we formulate a novel theoretical upper limit on the number of trees to be added to the forest to ensure improvement in classification accuracy. Our algorithm converges with a reduced but important set of features. We prove that further addition of trees or further reduction of features does not improve classification performance. The efficacy of the proposed approach is demonstrated through experiments on benchmark data sets. We further use the proposed classifier to detect mitotic nuclei in the histopathological data sets of breast tissues. We also apply our method on the industrial data set of dual-phase steel microstructures to classify different phases. Results of our method on different data sets show significant reduction in an average classification error compared with a number of competing methods.}
+      \field{issn}{10577149}
+      \field{journaltitle}{IEEE Transactions on Image Processing}
+      \field{number}{8}
+      \field{title}{{Improved Random Forest for Classification}}
+      \field{volume}{27}
+      \field{year}{2018}
+      \field{pages}{4012\bibrangedash 4024}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1109/TIP.2018.2834830
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Unsupervised Learning/Random Forests/Improver Random Forest for Classification.pdf:pdf
+      \endverb
+      \keyw{Random forest,classification accuracy,feature reduction,optimal number of trees}
+    \endentry
+    \entry{Pilastre2020}{article}{}
+      \name{author}{4}{}{%
+        {{hash=b3c80829c44ff9901bc5443740d92ab4}{%
+           family={Pilastre},
+           familyi={P\bibinitperiod},
+           given={Barbara},
+           giveni={B\bibinitperiod}}}%
+        {{hash=97b160de287ff32ba0229f52a58a99d3}{%
+           family={Boussouf},
+           familyi={B\bibinitperiod},
+           given={Lo{ï}c},
+           giveni={L\bibinitperiod}}}%
+        {{hash=fbea7ebb8b752ddb9e7af1ced008ed24}{%
+           family={D'Escrivan},
+           familyi={D\bibinitperiod},
+           given={St{é}phane},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a8f5d6cc0b11456d27b361c3304cf311}{%
+           family={Tourneret},
+           familyi={T\bibinitperiod},
+           given={Jean\bibnamedelima Yves},
+           giveni={J\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier B.V.}%
+      }
+      \strng{namehash}{ce4183f97f2e34a3c9c3a97d87df54ed}
+      \strng{fullhash}{6bef8ef93071578ccba4e2aead58e8e0}
+      \strng{bibnamehash}{ce4183f97f2e34a3c9c3a97d87df54ed}
+      \strng{authorbibnamehash}{ce4183f97f2e34a3c9c3a97d87df54ed}
+      \strng{authornamehash}{ce4183f97f2e34a3c9c3a97d87df54ed}
+      \strng{authorfullhash}{6bef8ef93071578ccba4e2aead58e8e0}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Spacecraft health monitoring and failure prevention are major issues in space operations. In recent years, machine learning techniques have received an increasing interest in many fields and have been applied to housekeeping telemetry data via semi-supervised learning. The idea is to use past telemetry describing normal spacecraft behaviour in order to learn a reference model to which can be compared most recent data in order to detect potential anomalies. This paper introduces a new machine learning method for anomaly detection in telemetry time series based on a sparse representation and dictionary learning. The main advantage of the proposed method is the possibility to handle multivariate telemetry time series described by mixed continuous and discrete parameters, taking into account the potential correlations between these parameters. The proposed method is evaluated on a representative anomaly dataset obtained from real satellite telemetry with an available ground-truth and compared to state-of-the-art algorithms.}
+      \field{issn}{01651684}
+      \field{journaltitle}{Signal Processing}
+      \field{title}{{Anomaly detection in mixed telemetry data using a sparse representation and dictionary learning}}
+      \field{volume}{168}
+      \field{year}{2020}
+      \field{pages}{107320}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.sigpro.2019.107320
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Satellite/Anomaly Detection in descitiona nd continuous telemetry signals using a sparse decomposition in a dictionary.pdf:pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/j.sigpro.2019.107320
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/j.sigpro.2019.107320
+      \endverb
+      \keyw{Anomaly detection,Dictionary learning,Shift-Invariance,Spacecraft health monitoring,Sparse representation}
+    \endentry
+    \entry{Primartha2018}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5bae9d0bfa47fc8d02f190e26479bd37}{%
+           family={Primartha},
+           familyi={P\bibinitperiod},
+           given={Rifkie},
+           giveni={R\bibinitperiod}}}%
+        {{hash=a15658189f93e6379dfa94dc0048d0bc}{%
+           family={Tama},
+           familyi={T\bibinitperiod},
+           given={Bayu\bibnamedelima Adhi},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{febc3717557f0e8763a8dc905d0eecc8}
+      \strng{fullhash}{febc3717557f0e8763a8dc905d0eecc8}
+      \strng{bibnamehash}{febc3717557f0e8763a8dc905d0eecc8}
+      \strng{authorbibnamehash}{febc3717557f0e8763a8dc905d0eecc8}
+      \strng{authornamehash}{febc3717557f0e8763a8dc905d0eecc8}
+      \strng{authorfullhash}{febc3717557f0e8763a8dc905d0eecc8}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Intruders have become more and more sophisticated thus a deterrence mechanism such as an intrusion detection systems (IDS) is pivotal in information security management. An IDS aims at capturing and repealing any malignant activities in the network before they can cause harmful destruction. An IDS relies on a well-trained classification model so the model is able to identify the presence of attacks effectively. This paper compares the performance of IDS by exerting random forest classifier with respect to two performance measures, i.e. accuracy and false alarm rate. Three public intrusion data sets, i.e NSL-KDD, UNSW-NB15, and GPRS are employed in the experiment. Furthermore, different tree-size ensembles are considered whilst other best learning parameters are obtained using a grid search. Our experimental results prove the superiority of random forest model for IDS as it significantly outperforms the similar ensemble, i.e. ensemble of random tree + naive bayes tree and other single classifier, i.e. naive bayes and neural network in terms of k-cross validation method.}
+      \field{isbn}{9781538614495}
+      \field{journaltitle}{Proceedings of 2017 International Conference on Data and Software Engineering, ICoDSE 2017}
+      \field{title}{{Anomaly detection using random forest: A performance revisited}}
+      \field{volume}{2018-January}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/ICODSE.2017.8285847
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Unsupervised Learning/Random Forests/Anomaly Detection using Random Forest.pdf:pdf
+      \endverb
+    \endentry
     \entry{proctor2016dynamic}{article}{}
       \name{author}{3}{}{%
         {{hash=6a40787d40e2987796669ac5bec77021}{%
@@ -166,6 +686,85 @@
       \field{year}{2016}
       \field{pages}{142\bibrangedash 161}
       \range{pages}{20}
+    \endentry
+    \entry{rahimi2020fault}{article}{}
+      \name{author}{2}{}{%
+        {{hash=306d193d7f058f7b1ba6057dd87300af}{%
+           family={Rahimi},
+           familyi={R\bibinitperiod},
+           given={Afshin},
+           giveni={A\bibinitperiod}}}%
+        {{hash=80408bb0a7ffac5ee9e65a5aaff2d80d}{%
+           family={Saadat},
+           familyi={S\bibinitperiod},
+           given={Atilla},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{94a04a11c851f0b9252ee972755ab18b}
+      \strng{fullhash}{94a04a11c851f0b9252ee972755ab18b}
+      \strng{bibnamehash}{94a04a11c851f0b9252ee972755ab18b}
+      \strng{authorbibnamehash}{94a04a11c851f0b9252ee972755ab18b}
+      \strng{authornamehash}{94a04a11c851f0b9252ee972755ab18b}
+      \strng{authorfullhash}{94a04a11c851f0b9252ee972755ab18b}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Aerospace Systems}
+      \field{title}{Fault isolation of reaction wheels onboard three-axis controlled in-orbit satellite using ensemble machine learning}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 8}
+      \range{pages}{8}
+    \endentry
+    \entry{Reif2008}{article}{}
+      \name{author}{4}{}{%
+        {{hash=dfe58d2d6efd8cec3d1cf6ec4f91f0b6}{%
+           family={Reif},
+           familyi={R\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e6436bacfaed41cfc4d347f71b526f3c}{%
+           family={Goldstein},
+           familyi={G\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c64173011c1c8d05f8dd6ed57f0bc1e0}{%
+           family={Stahl},
+           familyi={S\bibinitperiod},
+           given={Armin},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8f6a79ebe66f5791b62e16e4c66d79e8}{%
+           family={Breuel},
+           familyi={B\bibinitperiod},
+           given={Thomas\bibnamedelima M.},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{c8371a922ff38d8e982c4dbc58b7fe13}
+      \strng{fullhash}{1bcd0951bb5795913480edeeb173cb5d}
+      \strng{bibnamehash}{c8371a922ff38d8e982c4dbc58b7fe13}
+      \strng{authorbibnamehash}{c8371a922ff38d8e982c4dbc58b7fe13}
+      \strng{authornamehash}{c8371a922ff38d8e982c4dbc58b7fe13}
+      \strng{authorfullhash}{1bcd0951bb5795913480edeeb173cb5d}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this paper a modified decision tree algorithm for anomaly detection is presented. During the tree building process, densities for the outlier class are used directly in the split point determination algorithm. No artificial counter-examples have to be sampled from the unknown class, which yields to more precise decision boundaries and a deterministic classification result. Furthermore, the prior of the outlier class can be used to adjust the sensitivity of the anomaly detector. The proposed method combines the advantages of classification trees with the benefit of a more accurate representation of the outliers. For evaluation, we compare our approach with other state-of-the-art anomaly detection algorithms on four standard data sets including the KDD-Cup 99. The results show that the proposed method performs as well as more complex approaches and is even superior on three out of four data sets. © 2008 IEEE.}
+      \field{isbn}{9781424421756}
+      \field{issn}{10514651}
+      \field{journaltitle}{Proceedings - International Conference on Pattern Recognition}
+      \field{number}{January}
+      \field{title}{{Anomaly detection by combining decision trees and parametric densities}}
+      \field{year}{2008}
+      \verb{doi}
+      \verb 10.1109/icpr.2008.4761796
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Supervised Learning/Decision Trees/Anomaly_Detection_Trees.pdf:pdf
+      \endverb
     \endentry
     \entry{schmid2011applications}{article}{}
       \name{author}{4}{}{%
@@ -210,6 +809,47 @@
       \field{year}{2011}
       \field{pages}{249\bibrangedash 259}
       \range{pages}{11}
+    \endentry
+    \entry{Shi2006}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9331226ef68bbe6869e9079900c3a307}{%
+           family={Shi},
+           familyi={S\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f520a749adbb878b4ba30b3f54e0dad8}{%
+           family={Horvath},
+           familyi={H\bibinitperiod},
+           given={Steve},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c922c7a49ebe4daefa66fdc1b46981f5}
+      \strng{fullhash}{c922c7a49ebe4daefa66fdc1b46981f5}
+      \strng{bibnamehash}{c922c7a49ebe4daefa66fdc1b46981f5}
+      \strng{authorbibnamehash}{c922c7a49ebe4daefa66fdc1b46981f5}
+      \strng{authornamehash}{c922c7a49ebe4daefa66fdc1b46981f5}
+      \strng{authorfullhash}{c922c7a49ebe4daefa66fdc1b46981f5}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A random forest (RF) predictor is an ensemble of individual tree predictors. As part of their construction, RF predictors naturally lead to a dissimilarity measure between the observations. One can also define an RF dissimilarity measure between unlabeled data: the idea is to construct an RF predictor that distinguishes the "observed" data from suitably generated synthetic data. The observed data are the original unlabeled data and the synthetic data are drawn from a reference distribution. Here we describe the properties of the RF dissimilarity and make recommendations on how to use it in practice. An RF dissimilarity can be attractive because it handles mixed variable types well, is invariant to monotonic transformations of the input variables, and is robust to outlying observations. The RF dissimilarity easily deals with a large number of variables due to its intrinsic variable selection; for example, the Addcl1 RF dissimilarity weighs the contribution of each variable according to how dependent it is on other variables. We find that the RF dissimilarity is useful for detecting tumor sample clusters on the basis of tumor marker expressions. In this application, biologically meaningful clusters can often be described with simple thresholding rules. © 2006 American Statistical Association.}
+      \field{isbn}{106186006X}
+      \field{issn}{10618600}
+      \field{journaltitle}{Journal of Computational and Graphical Statistics}
+      \field{number}{1}
+      \field{title}{{Unsupervised learning with random forest predictors}}
+      \field{volume}{15}
+      \field{year}{2006}
+      \field{pages}{118\bibrangedash 138}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1198/106186006X94072
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Unsupervised Learning/Random Forests/Unsupervised Learning With Random Forest Predictors.pdf:pdf
+      \endverb
+      \keyw{Biomarkers,Cluster analysis,Dissimilarity,Ensemble predictors,Tumor markers}
     \endentry
     \entry{DeSilva2020}{article}{}
       \name{author}{10}{}{%
@@ -295,6 +935,95 @@
       \verb http://arxiv.org/abs/2006.13380
       \endverb
       \keyw{anomaly detection,dynamic mode decomposition,kalman filter,machine learning}
+    \endentry
+    \entry{steyn_2021}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0cac9d1ae3aa20b84e8f74b0c7feffb3}{%
+           family={Steyn},
+           familyi={S\bibinitperiod},
+           given={Herman},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{0cac9d1ae3aa20b84e8f74b0c7feffb3}
+      \strng{fullhash}{0cac9d1ae3aa20b84e8f74b0c7feffb3}
+      \strng{bibnamehash}{0cac9d1ae3aa20b84e8f74b0c7feffb3}
+      \strng{authorbibnamehash}{0cac9d1ae3aa20b84e8f74b0c7feffb3}
+      \strng{authornamehash}{0cac9d1ae3aa20b84e8f74b0c7feffb3}
+      \strng{authorfullhash}{0cac9d1ae3aa20b84e8f74b0c7feffb3}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{journaltitle}{Multi-agent fault detection}
+      \field{month}{7}
+      \field{year}{2021}
+    \endentry
+    \entry{Tudoroiu2007}{article}{}
+      \name{author}{2}{}{%
+        {{hash=7e31243136d59b54a70ba757c1093fe6}{%
+           family={Tudoroiu},
+           familyi={T\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=90b738390b3b757068fa51c2d6acfc05}{%
+           family={Khorasani},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{599b9429850ae54fe9130b65dd009196}
+      \strng{fullhash}{599b9429850ae54fe9130b65dd009196}
+      \strng{bibnamehash}{599b9429850ae54fe9130b65dd009196}
+      \strng{authorbibnamehash}{599b9429850ae54fe9130b65dd009196}
+      \strng{authornamehash}{599b9429850ae54fe9130b65dd009196}
+      \strng{authorfullhash}{599b9429850ae54fe9130b65dd009196}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The main objective of this work is development and testing of a detection, isolation, and diagnosis algorithm based on interacting multiple model (IMM) filters for both partial (soft) and total (hard) reaction wheels faults in a spacecraft. This is shown to be accomplished under a number of different faulty mode scenarios for these actuators associated with the attitude control system (ACS) of a satellite. Various operating and faulty conditions due to changes and anomalies in the temperature, the power supply line voltage, and the loss of effectiveness of the torque and the current are considered in each reaction wheel associated with the three axes of the satellite. Once a fault mode is detected and isolated the recovery procedure can subsequently be engaged by invoking appropriate switching control strategies for the ACS. The application of a bank of interactng multiple Kalman filters for detection and diagnosis of anticipated reaction wheel failures in the ACS is described and developed. Compared with other model-based fault detection, diagnosis and isolation (FDDI) strategies developed in the control systems literature, our FDDI strategy is shown, through extensive numerical simulations, to be more accurate and robust with potential for extension to a number of other application areas. © 2007 IEEE.}
+      \field{issn}{00189251}
+      \field{journaltitle}{IEEE Transactions on Aerospace and Electronic Systems}
+      \field{number}{4}
+      \field{title}{{Satellite fault diagnosis using a bank of interacting Kalman filters}}
+      \field{volume}{43}
+      \field{year}{2007}
+      \field{pages}{1334\bibrangedash 1350}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1109/TAES.2007.4441743
+      \endverb
+      \verb{file}
+      \verb :home/ulrich/Documents/Masters thesis/Journal articles/FDIR/Satellite_fault_diagnosis_using_a_bank_of_interacting_Kalman_filters.pdf:pdf
+      \endverb
+    \endentry
+    \entry{wander2013innovative}{book}{}
+      \name{author}{2}{}{%
+        {{hash=0f117a43f91bc65cff19518fe9ba121b}{%
+           family={Wander},
+           familyi={W\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6917522423cd7859974d89d537ab9e35}{%
+           family={F{ö}rstner},
+           familyi={F\bibinitperiod},
+           given={Roger},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Deutsche Gesellschaft f{ü}r Luft-und Raumfahrt-Lilienthal-Oberth eV}%
+      }
+      \strng{namehash}{689e9b113d8354db37d924f7fd1834f4}
+      \strng{fullhash}{689e9b113d8354db37d924f7fd1834f4}
+      \strng{bibnamehash}{689e9b113d8354db37d924f7fd1834f4}
+      \strng{authorbibnamehash}{689e9b113d8354db37d924f7fd1834f4}
+      \strng{authornamehash}{689e9b113d8354db37d924f7fd1834f4}
+      \strng{authorfullhash}{689e9b113d8354db37d924f7fd1834f4}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Innovative fault detection, isolation and recovery strategies on-board spacecraft: state of the art and research challenges}
+      \field{year}{2013}
     \endentry
     \entry{wang2019adaptive}{article}{}
       \name{author}{2}{}{%

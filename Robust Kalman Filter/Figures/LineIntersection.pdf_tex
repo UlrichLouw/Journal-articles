@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{353.93609493bp}%
+    \setlength{\unitlength}{347.57615079bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,20 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.5841931)%
+  \begin{picture}(1,0.59488265)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{LineIntersection.pdf}}%
-    \put(0.49075489,0.55614097){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
-    \put(0.9579269,0.55947666){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D\end{tabular}}}}%
-    \put(0.56627503,0.27360323){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}X\end{tabular}}}}%
-    \put(-0.00332753,0.00147393){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B'\end{tabular}}}}%
-    \put(0.4151621,0){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A'\end{tabular}}}}%
-    \put(0.17596614,0.09927853){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Reflection\end{tabular}}}}%
+    \put(0.49973471,0.56631723){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}C\end{tabular}}}}%
+    \put(0.97545504,0.56971396){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}D\end{tabular}}}}%
+    \put(0.56226075,0.29053918){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
+    \put(-0.00338842,0.0015009){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}B'\end{tabular}}}}%
+    \put(0.42275873,0){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}A'\end{tabular}}}}%
+    \put(0.17918597,0.10109513){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Reflection\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{LineIntersection.pdf}}%
-    \put(0.13818248,0.28907139){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{B'C}$\end{tabular}}}}%
-    \put(0.6133658,0.20936305){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{A'D}$\end{tabular}}}}%
-    \put(0.27297915,0.01308293){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{A'B'}$\end{tabular}}}}%
-    \put(0.7687614,0.54260423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{CD}$\end{tabular}}}}%
+    \put(0.14071095,0.29436081){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{B'C}$\end{tabular}}}}%
+    \put(0.70912709,0.27708825){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{A'D}$\end{tabular}}}}%
+    \put(0.60314983,0.1785203){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{A'B'}$\end{tabular}}}}%
+    \put(0.58318564,0.55699717){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_{CD}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{LineIntersection.pdf}}%
   \end{picture}%
 \endgroup%

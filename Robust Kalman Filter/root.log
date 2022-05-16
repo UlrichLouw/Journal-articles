@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  4 APR 2022 11:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.11.8)  22 APR 2022 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1213,172 +1213,171 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 7
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-(./Figures/Control_Diagram.pdf_tex
-<Figures/Control_Diagram.pdf, id=102, page=1, 906.91612pt x 434.20847pt>
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+] (./Figures/Control_Diagram.pdf_tex
+<Figures/Control_Diagram.pdf, id=146, page=1, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 1>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page1 used on input line
  56.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=103, page=2, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=147, page=2, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 2>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page2 used on input line
  59.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=104, page=3, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=148, page=3, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 3>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page3 used on input line
  61.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=105, page=4, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=149, page=4, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 4>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page4 used on input line
  63.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=106, page=5, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=150, page=5, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 5>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page5 used on input line
  73.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=107, page=6, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=151, page=6, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 6>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page6 used on input line
  80.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=108, page=7, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=152, page=7, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 7>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page7 used on input line
  84.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-<Figures/Control_Diagram.pdf, id=109, page=8, 906.91612pt x 434.20847pt>
+<Figures/Control_Diagram.pdf, id=153, page=8, 906.91612pt x 434.20847pt>
 File: Figures/Control_Diagram.pdf Graphic file (type pdf)
 <use Figures/Control_Diagram.pdf, page 8>
 Package pdftex.def Info: Figures/Control_Diagram.pdf , page8 used on input line
  86.
 (pdftex.def)             Requested size: 398.33858pt x 190.7144pt.
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-] (./Figures/ReflectionModel.pdf_tex
-<Figures/ReflectionModel.pdf, id=150, page=1, 777.90771pt x 594.69492pt>
+)
+(./Figures/ReflectionModel.pdf_tex
+<Figures/ReflectionModel.pdf, id=155, page=1, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page1 used on input line
  56.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=151, page=2, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=156, page=2, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page2 used on input line
  60.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=152, page=3, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=157, page=3, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 3>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page3 used on input line
  65.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-<Figures/ReflectionModel.pdf, id=153, page=4, 777.90771pt x 594.69492pt>
+<Figures/ReflectionModel.pdf, id=158, page=4, 777.90771pt x 594.69492pt>
 File: Figures/ReflectionModel.pdf Graphic file (type pdf)
 <use Figures/ReflectionModel.pdf, page 4>
 Package pdftex.def Info: Figures/ReflectionModel.pdf , page4 used on input line
  68.
 (pdftex.def)             Requested size: 199.16928pt x 152.2577pt.
-)
-(./Figures/ReflectionModelPoint.pdf_tex
-<Figures/ReflectionModelPoint.pdf, id=154, page=1, 405.80606pt x 361.23102pt>
+) (./Figures/ReflectionModelPoint.pdf_tex
+<Figures/ReflectionModelPoint.pdf, id=159, page=1, 405.80606pt x 361.23102pt>
 File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
 <use Figures/ReflectionModelPoint.pdf, page 1>
 Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page1 used on input
  line 56.
 (pdftex.def)             Requested size: 199.16928pt x 177.29137pt.
-<Figures/ReflectionModelPoint.pdf, id=155, page=2, 405.80606pt x 361.23102pt>
+<Figures/ReflectionModelPoint.pdf, id=160, page=2, 405.80606pt x 361.23102pt>
 File: Figures/ReflectionModelPoint.pdf Graphic file (type pdf)
 <use Figures/ReflectionModelPoint.pdf, page 2>
 Package pdftex.def Info: Figures/ReflectionModelPoint.pdf , page2 used on input
  line 77.
 (pdftex.def)             Requested size: 199.16928pt x 177.29137pt.
-) (./Figures/LineIntersection.pdf_tex
-<Figures/LineIntersection.pdf, id=156, page=1, 348.87955pt x 207.5424pt>
+)
+(./Figures/LineIntersection.pdf_tex
+<Figures/LineIntersection.pdf, id=161, page=1, 348.87955pt x 207.5424pt>
 File: Figures/LineIntersection.pdf Graphic file (type pdf)
 <use Figures/LineIntersection.pdf, page 1>
 Package pdftex.def Info: Figures/LineIntersection.pdf , page1 used on input lin
 e 56.
 (pdftex.def)             Requested size: 199.16928pt x 118.4809pt.
-<Figures/LineIntersection.pdf, id=157, page=2, 348.87955pt x 207.5424pt>
+<Figures/LineIntersection.pdf, id=162, page=2, 348.87955pt x 207.5424pt>
 File: Figures/LineIntersection.pdf Graphic file (type pdf)
 <use Figures/LineIntersection.pdf, page 2>
 Package pdftex.def Info: Figures/LineIntersection.pdf , page2 used on input lin
 e 63.
 (pdftex.def)             Requested size: 199.16928pt x 118.4809pt.
-<Figures/LineIntersection.pdf, id=158, page=3, 348.87955pt x 207.5424pt>
+<Figures/LineIntersection.pdf, id=163, page=3, 348.87955pt x 207.5424pt>
 File: Figures/LineIntersection.pdf Graphic file (type pdf)
 <use Figures/LineIntersection.pdf, page 3>
 Package pdftex.def Info: Figures/LineIntersection.pdf , page3 used on input lin
 e 68.
 (pdftex.def)             Requested size: 199.16928pt x 118.4809pt.
-)
-[2 <./Figures/Control_Diagram.pdf> <./Figures/Control_Diagram.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/Control_Diagram.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/Control_Diagram.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/Control_Diagram.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/Control_Diagram.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/Control_Diagram.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/Control_Diagram.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModel.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModel.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModel.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
-> <./Figures/ReflectionModel.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
->]
+) [2]
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
 General CubeSat Model/Reflection/Sun.pgf)
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
 General CubeSat Model/None/Sun.pgf)
-Overfull \hbox (2.29994pt too wide) in paragraph at lines 192--206
+Overfull \hbox (2.29994pt too wide) in paragraph at lines 200--214
 []$[]$ $[]$ 
  []
 
-[3 <./Figures/ReflectionModelPoint.pdf> <./Figures/ReflectionModelPoint.pdf
+[3 <./Figures/Control_Diagram.pdf> <./Figures/Control_Diagram.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/Control_Diagram.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/Control_Diagram.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/Control_Diagram.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/Control_Diagram.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/Control_Diagram.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/Control_Diagram.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/Control_Diagram.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/ReflectionModel.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/ReflectionModel.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/ReflectionModel.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+> <./Figures/ReflectionModel.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModel.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+>] [4 <./Figures/ReflectionModelPoint.pdf> <./Figures/ReflectionModelPoint.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/ReflectionModelPoint.pdf): PD
 F inclusion: multiple pdfs with page group included in a single page
@@ -1394,12 +1393,12 @@ clusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /usr/bin/pdflatex (file ./Figures/LineIntersection.pdf): PDF in
 clusion: multiple pdfs with page group included in a single page
->] [4]
-<Figures/DecisionTreeBinaryClass.png, id=335, 1806.75pt x 1445.4pt>
+>]
+<Figures/DecisionTreeBinaryClass.png, id=332, 1806.75pt x 1445.4pt>
 File: Figures/DecisionTreeBinaryClass.png Graphic file (type png)
 <use Figures/DecisionTreeBinaryClass.png>
 Package pdftex.def Info: Figures/DecisionTreeBinaryClass.png  used on input lin
-e 266.
+e 274.
 (pdftex.def)             Requested size: 426.79134pt x 267.60252pt.
  [5]
 (./Figures/TexFigures/Predictor-None/Isolator-None/Recovery-None/EARTH_SUN-ORC-
@@ -1442,7 +1441,7 @@ pgf) [9]
 (./Figures/TexFigures/Predictor-RandomForest20/Isolator-OnlySun/Recovery-EKF-ig
 nore/EARTH_SUN-ORC-General CubeSat Model/ReflectionBufferValue-10BufferStep-0.9
 EKF-top2/Prediction Accuracy.pgf)
-Underfull \hbox (badness 2717) in paragraph at lines 567--567
+Underfull \hbox (badness 2717) in paragraph at lines 575--575
 \OT1/ptm/m/n/10 ``Ground-target track-ing con-trol of earth-pointing
  []
 
@@ -1451,12 +1450,12 @@ Overfull \vbox (334.2332pt too high) has occurred while \output is active []
 
 
 [10]
-Underfull \hbox (badness 4765) in paragraph at lines 567--567
+Underfull \hbox (badness 4765) in paragraph at lines 575--575
 []\OT1/ptm/m/n/10 Pankaj Mal-ho-tra et al. ``LSTM-based Encoder-
  []
 
 [11]
-Underfull \hbox (badness 3058) in paragraph at lines 567--567
+Underfull \hbox (badness 3058) in paragraph at lines 575--575
 []\OT1/ptm/m/n/10 Alexandra Wan-der and Roger F[]orstner. \OT1/ptm/m/it/10 In-n
 o-va-
  []
@@ -1473,25 +1472,25 @@ Before submitting the final camera ready copy, remember to:
  process uses the US letter (8.5in X 11in) paper size.
 
 [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 576.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 576.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 584.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 584.
  (./root.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 576.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 576.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 584.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 584.
 Package rerunfilecheck Info: File `root.out' has not changed.
-(rerunfilecheck)             Checksum: CBCE005A384E767E267F5817B8495029;1345.
+(rerunfilecheck)             Checksum: B59C579B4BF9C80A7D3E384387E7CAB2;1283.
 Package logreq Info: Writing requests to 'root.run.xml'.
 \openout1 = `root.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37322 strings out of 483107
- 868800 string characters out of 5964630
- 1600545 words of memory out of 5000000
- 51550 multiletter control sequences out of 15000+600000
+ 37320 strings out of 483107
+ 868770 string characters out of 5964630
+ 1605467 words of memory out of 5000000
+ 51549 multiletter control sequences out of 15000+600000
  578229 words of font info for 129 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 66i,17n,98p,1496b,1630s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,17n,98p,1496b,1585s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/
@@ -1500,22 +1499,23 @@ type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/co
-urier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on root.pdf (12 pages, 902362 bytes).
+mi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/u
+crr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/urw/times/utmri8a.pfb>
+Output written on root.pdf (12 pages, 910024 bytes).
 PDF statistics:
- 544 PDF objects out of 1000 (max. 8388607)
- 447 compressed objects within 5 object streams
- 99 named destinations out of 1000 (max. 500000)
- 285 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 547 PDF objects out of 1000 (max. 8388607)
+ 449 compressed objects within 5 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 277 words of extra memory for PDF output out of 10000 (max. 10000000)
 

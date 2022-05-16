@@ -58,8 +58,8 @@ Fault Detection of Sun Reflection to Increase Estimation Accuracy of Satellite A
 
 
 \author{Louw UJ$^{1}$, Jordaan HW$^{2}$, Schoeman JC$^{3}$% <-this % stops a space
-\thanks{*This work was not supported by any organization}% <-this % stops a space
-\thanks{$^{1}$Louw UJ is with Faculty of Electronic \& Electrical Engineering, Electronic System            Laboratory, University of Stellenbosch, Stellenbosch Central, Stellenbosch, 7600
+% \thanks{*This work was not supported by any organization}% <-this % stops a space
+\thanks{$^{1}$Louw UJ is with Faculty of Electrical and Electronic Engineering Department, Stellenbosch University, Stellenbosch Central, Stellenbosch, 7600
         {\tt\small louwuj@gmail.com}}%
 }
 
@@ -77,7 +77,9 @@ Fault Detection of Sun Reflection to Increase Estimation Accuracy of Satellite A
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 	
-We develop methods to increase the reliability of a Kalman filter during sun reflection. This is done by omitting the sun sensor reading when reflection is detected. This method is analysed with a range of accuracies to determine the theoretical prediction accuracy to produce a robust Kalman filter exposed to sun reflection. The supervised learning methods of decision trees and random forests are implemented to predict whether the current state experiences sun reflection or not. The prediction is accompanied with feature extraction to enhance the prediction accuracy. From the analysis it is evident that the prediction accuracy is required to be $99.5\%$. This is a very challenging accuracy to achieve. We therefore implement a first order filter accompanied with a \emph{EKF-top2} method to reduce the required prediction accuracy to $70\%$.
+Methods are developed to increase the reliability of a Kalman filter when a sun reflection occurs. This is done by omitting the sun sensor reading when a reflection is detected. This method is analysed with a range of accuracies to determine the theoretical prediction accuracy to produce a robust Kalman filter exposed to sun reflections. The supervised learning methods of decision trees and random forests are implemented to predict whether the current state experiences sun reflection or not. The prediction is accompanied with feature extraction to enhance the prediction accuracy. From the analysis it is evident that the prediction accuracy is required to be $99.5\%$. This is a very challenging accuracy to achieve. From simulations it was found that a system that can predict and isolate sun reflections can improve the robustness and accuracy of the attitude estimate.
+
+%We therefore implement a first order filter accompanied with a \emph{EKF-top2} method to reduce the required prediction accuracy to $70\%$.
 
 %The Kalman Filter is a state estimator often used in attitude determination of satellites. A Kalman filter is susceptible to anomalies that occur in sensors. An excellent example of this is the reflection of a solar panel on a sun sensor that changes the perceived sun vector. Sun reflection influences the estimation of the attitude by the Kalman filter and, consequently, the satellite's control. Detecting anomalies in sensors and omitting the anomalous reading from the measurement update of the Kalman Filter increases the stability and reliability of the Kalman filter for satellite attitude determination. However, detecting when an anomaly occurs is challenging, and a prediction accuracy of more than $99\%$ is required to produce satisfactory results unless the sensor with the largest error between the estimated vector and the measured vector is omitted during a fixed period after the fault is detected. This then decreases the required prediction accuracy to $70\%$.
 
@@ -85,15 +87,16 @@ We develop methods to increase the reliability of a Kalman filter during sun ref
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
-For many satellite missions, attitude determination is of high importance. For example, a mission that requires earth following during eclipse and otherwise sun following for solar charging, requires accurate attitude estimation. The estimation however is highly influenced by the sensor readings. The current trend in sensor anomaly detection research is the use of generic sensor anomalies, such as bias drift, high noise, sudden failure or any drastic change in the behaviour of the sensor. The research is thus not based on actual anomalies in specific situations such as sun reflection from solar panels on a sun sensor. An anomaly like sun reflection can be very accurately modelled and a binary classification can be performed on anomaly that can influence the robustness and reliability of the extended Kalman filter, \emph{EKF}. Through this article the sun reflection will be modelled and the influence thereof on the attitude determination and control system, \emph{ADCS}, will be demonstrated.
+For many satellite missions, attitude determination is of high importance. For example, a mission that requires earth following during eclipse and otherwise sun following for solar charging, requires accurate attitude estimation. The estimation however is highly influenced by the sensor readings. The current trend in sensor anomaly detection is to use generic sensor anomalies, such as bias drift, high noise, sudden failure or any drastic change in the behaviour of the sensor. This is thus not based on practical anomalies in specific situations such as sun reflections from solar panels on a sun sensor. An anomaly like sun reflections can be accurately modelled and a binary classification can be developed that can improve the robustness and reliability of the extended Kalman filter, (EKF). In this paper the sun reflection will be modelled and the influence thereof on the attitude determination and control system, (ADCS), will be investigated.
 
-Sun reflection is a problem in industry for which hardware solutions have been developed by using digital sun sensors to discriminate between direct sunlight and reflected sunlight. However, these digital sun sensors are not as accurate as analogue sun sensors. Therefore we will implement anomaly detection algorithms to maintain the accuracy of the sun sensor during normal events and recover from the measurement during sun reflection.
+%Sun reflection is a problem in industry for which hardware solutions have been developed by using digital sun sensors to discriminate between direct sunlight and reflected sunlight. However, these digital sun sensors are not as accurate as analogue sun sensors. Therefore we will implement anomaly detection algorithms to maintain the accuracy of the sun sensor during normal events and recover from the measurement during sun reflection.
 
-Some of the most relevant research articles for sensor anomaly detection was done by \textcite{wang2019adaptive}, \textcite{Xiong2007}, \textcite{Zhou2016} and \textcite{Nasrolahi2018}. \textcite{wang2019adaptive} proposed an adaptive unscented Kalman filter for sensor fault estimation and isolation. \textcite{Xiong2007} provides a fault detection method by using the residuals generated by an unscented Kalman filter to detect anomalies with a threshold based on a confidence level. \textcite{Zhou2016} implements a fault tolerant federated Kalman filter with three sub-filters for multi-sensor fault estimation. \textcite{Nasrolahi2018} provides a fault detection and recovery method by implementing a non-linear observer to detect anomalies in attitude and rate sensors. For these methods however, the implemented failures are based on severe modelled failures such as a sudden increase in the noise of the sensor, or a sudden constant bias or any large sudden change and are generic modelled anomalies and not specific to the system. 
+\subsection{Related Work}
+Some of the relevant research for sensor anomaly detection was done by \textcite{wang2019adaptive}, \textcite{Xiong2007}, \textcite{Zhou2016} and \textcite{Nasrolahi2018}. \textcite{wang2019adaptive} proposed an adaptive unscented Kalman filter for sensor fault estimation and isolation. \textcite{Xiong2007} provides a fault detection method by using the residuals generated by an unscented Kalman filter to detect anomalies with a threshold based on a confidence level. \textcite{Zhou2016} implements a fault tolerant federated Kalman filter with three sub-filters for multi-sensor fault estimation. \textcite{Nasrolahi2018} provides a fault detection and recovery method by implementing a non-linear observer to detect anomalies in attitude and rate sensors. For these methods however, the implemented failures are based on severe modelled failures such as a sudden increase in the noise of the sensor, or a sudden constant bias or any large sudden change and are generic modelled anomalies and not specific to the system. 
 
-Multiple other methods have been developed for fault detection and recovery of satellites with the focus on reaction wheels, gyroscopes and other probable failures \cite{Tudoroiu2007, Pilastre2020, rahimi2020fault, jin2008fault, wander2013innovative, ibrahim2018machine, ibrahim2020machine}. Methods for sensor failure detection in other dynamical systems have also been developed which include kalman filter methodology~\cite{Ciftciogl1991}, isolation forests~\cite{Liu2021} and using LSTM on sensor data to detect anomalies on machines \cite{Malhotra2016}. 
+Multiple other methods have been developed for fault detection and recovery of satellites with the focus on reaction wheels, gyroscopes and other probable failures \cite{Tudoroiu2007, Pilastre2020, rahimi2020fault, jin2008fault, wander2013innovative, ibrahim2018machine, ibrahim2020machine}. Methods for sensor failure detection in other dynamical systems have also been developed which include kalman filter methodology~\cite{Ciftciogl1991}, isolation forests~\cite{Liu2021} and using Long Short Term Memory, (LSTM), on sensor data to detect anomalies on engines, vehicles and aircrafts \cite{Malhotra2016}. 
 
-The research done on anomaly detection is extensive and only a few examples are given. This article, however is an adaptation of research done by \textcite{DeSilva2020} that provide a novel method for feature extraction in FDIR. An innovative moving average, determined by the error estimated with dynamic mode decomposition, \emph{DMD}, and a Kalman filter, is provided as additional input to a predictive model --- decision tree. However, the method is adjusted for our use case to be a linear regression model instead of DMD.
+The research done on anomaly detection is extensive and only a few examples are given. In this paper, research done by \textcite{DeSilva2020} on a novel method for feature extraction is adapted and applied to satellite attitude control. An innovative moving average, determined by the error estimated with dynamic mode decomposition, (DMD), and a Kalman filter, is provided as additional input to a predictive model --- decision tree. However, the method is adjusted for our use case to be a linear regression model instead of DMD.
 
 %However, the current state vector of the system can not be determined with only the use of models or sensors, since the sensors contain noise and the mathematical model does not include certain disturbances of the existing system. Therefore a probabilistic approach can determine the attitude from both the model and the sensors, for which we generally use an extended Kalman filter (\emph{EKF}).
 
@@ -103,7 +106,7 @@ The EKF incorporates a physics-based model of the satellite dynamics with sensor
 
 Sun reflection also requires autonomous decision making to ensure sun-facing control. Unfortunately, the ground station cannot do this during orbit unless the control system is dramatically changed after the ground station detects the anomaly. Therefore we aim to design a fault detection, isolation and recovery system for the specific use case of a mission that requires earth following during eclipse and sun following otherwise on a generic small satellite design as seen in Figure~\ref{fig:CubeSat}.
 
-Sun reflection is modelled in section~\ref{section:Reflection} and from this modelled vector we implement methods to increase the reliability of the Kalman filter. Different recovery methods are implemented, \emph{EKF-ignore}, \emph{EKF-reset} and \emph{EKF-combination}, and compared in section~\ref{section:Results}. The prediction accuracies required to increase the reliability of the Kalman filter is also analysed and a \emph{EKF-top2} method is implemented based on a first order filter after sun reflection is predicted. This decreases the required prediction accuracy from $99.5\%$ to $70.0\%$.
+Sun reflection is modelled in Section~\ref{section:Reflection} and from this modelled vector we implement methods to increase the reliability of the Kalman filter. Different recovery methods are implemented, \emph{EKF-ignore}, \emph{EKF-reset} and \emph{EKF-combination}, and compared in Section~\ref{section:Results}. The prediction accuracies required to increase the reliability of the Kalman filter is also analysed and a \emph{EKF-top2} method is implemented based on a first order filter after sun reflection is predicted. This decreases the required prediction accuracy from $99.5\%$ to $70.0\%$.
 
 
 \begin{figure*}[h!b!t]
@@ -118,19 +121,19 @@ Sun reflection is modelled in section~\ref{section:Reflection} and from this mod
 %Sun reflection is a highly probable sensor anomaly on CubeSats. 
 %Therefore, future work will use the algorithm developed by \textcite{wang2019adaptive} to test the response thereof on sun reflection, noting that sun reflection occurs regularly during the sunlight phase of the orbit.
 
-\subsection{Preliminaries}
-The details of satellite dynamics will not be discussed in this article. However, it must be noted that the orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC}, respectively. General notation of this article is matrices in upper case and bold, vectors in lower case and bold and scalars as a lower or upper case but not in bold as illustrated below.
-\begin{itemize}
-	\item{\makebox[1.5cm]{Matrix\hfill} $\mathbf{A}$}
-	\item{\makebox[1.5cm]{Vector\hfill} $\mathbf{a} = \begin{bmatrix} 
-		x & y & z
-		\end{bmatrix}$}
-	\item{\makebox[1.5cm]{Scalar\hfill} $a$ or $A$}
-\end{itemize}
+%\subsection{Preliminaries}
+%The details of satellite dynamics will not be discussed in this article. However, it must be noted that the orbit-reference coordinate and satellite body coordinate frame will be referred to as \emph{ORC} and \emph{SBC}, respectively. General notation of this article is matrices in upper case and bold, vectors in lower case and bold and scalars as a lower or upper case but not in bold as illustrated below.
+%\begin{itemize}
+%	\item{\makebox[1.5cm]{Matrix\hfill} $\mathbf{A}$}
+%	\item{\makebox[1.5cm]{Vector\hfill} $\mathbf{a} = \begin{bmatrix} 
+%		x & y & z
+%		\end{bmatrix}$}
+%	\item{\makebox[1.5cm]{Scalar\hfill} $a$ or $A$}
+%\end{itemize}
+%
+%This will be the notation throughout this article unless specified otherwise. 
 
-This will be the notation throughout this article unless specified otherwise. 
-
-\section{Reflection}
+\section{Sun Reflection}
 \label{section:Reflection}
 The reflection anomaly is modelled for the specific shape and design of the CubeSat as shown in Figure~\ref{fig:CubeSat}.
 
@@ -157,18 +160,18 @@ The assumption is that the solar panel can be modelled as a geometric plane. The
 \begin{equation}
 \mathbf{r} = \mathbf{v} - 2\mathbf{n}^T(\mathbf{v} \cdot \mathbf{n}).
 \end{equation}
-Where $\mathbf{v}$ is the incoming sun vector and $\mathbf{n}$ is the average vector to the plane $ABCD$ of the solar panel, as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $XWYZ$ of the sun sensor, the equation of the plane, $XWYZ$, the reflected vector, $r$, and the point of origin is required. The reflection of the sun vector, $\mathbf{v}$ is illustrated in Figure~\ref{fig:LineIntersection} The equation for a plane can be denoted as
+where $\mathbf{v}$ is the incoming sun vector and $\mathbf{n}$ is the average vector to the plane $ABCD$ of the solar panel, as seen in Figure~\ref{fig:CubeSat}. To calculate the intersection of the reflected vector with the plane $XWYZ$ of the sun sensor, the equation of the plane, $XWYZ$, the reflected vector, $r$, and the point of origin is required. The reflection of the sun vector, $\mathbf{v}$ is illustrated in Figure~\ref{fig:LineIntersection} The equation for a plane can be denoted as
 
 \begin{equation}
-\mathbf{p} = ax + by + cz + d.
+\mathbf{p} = a\mathbf{x} + b\mathbf{y} + c\mathbf{z} + d.
 \label{eq:Plane}
 \end{equation}
-Where $x$, $y$ and $z$ are the dimensions in the SBC frame. The reflected unit vector can also be translated to 
+where $x$, $y$ and $z$ are the dimensions in the SBC frame. The reflected unit vector can also be translated to 
 \begin{equation}
 \begin{aligned}
-&	x = \alpha t \\
-&	y = \beta t \\
-&	z = \zeta t \\
+&	\mathbf{x} = \alpha t, \\
+&	\mathbf{y} = \beta t, \\
+&	\mathbf{z} = \zeta t \\
 \end{aligned}
 \label{eq:LineOfVector}
 \end{equation}
@@ -278,7 +281,7 @@ The operator split that produces the lowest Gini index provides the purest split
 
 It is evident in Figure~\ref{fig:DecisionTree} that the most notable splits at the beginning of the tree are the moving average from the feature extraction as well as the sun sensor and angular momentum of the reaction wheels measurements. This makes logical sense since the moving average provides the system with an extracted feature that correlates with the change in measurements. The sun reflection can also be detected on the sun sensor measurements, and changes in the angular momentum of the wheels indicate that there could be significant changes in the sun vector during the sun following period.
 
-Random forests, a method of using the prediction average of randomly sampled decision trees, is also tested, and the results thereof are shown in section~\ref{section:Results}.
+Random forests, a method of using the prediction average of randomly sampled decision trees, is also tested, and the results thereof are shown in Section~\ref{section:Results}.
 
 
 \subsection{Recovery}
